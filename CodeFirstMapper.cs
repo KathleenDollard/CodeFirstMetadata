@@ -37,7 +37,7 @@ namespace CodeFirstMetadataTest
 
         private void AssignNamedProperties<T>(IDom source, T obj, TargetChildMapping mapping) where T : CodeFirstMetadata<T>
         {
-            foreach (var namedProperty in mapping.NamedProperties)
+            foreach (var namedProperty in mapping.GetNamedProperties())
             {
                 var value = source.RequestValue(namedProperty);
                 if (ReflectionUtilities.CanSetProperty(obj, namedProperty))
