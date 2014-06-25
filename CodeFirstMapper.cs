@@ -4,10 +4,10 @@ using System.Linq;
 using System.Reflection;
 using System.Text;
 using System.Threading.Tasks;
-using CodeFirstMetadataTest.Common;
+using CodeFirst.Common;
 using RoslynDom.Common;
 
-namespace CodeFirstMetadataTest
+namespace CodeFirst
 {
     public class CodeFirstMapper : IMapper
     {
@@ -85,11 +85,15 @@ namespace CodeFirstMetadataTest
         {
             // TODO: Add class, properties, etc. maybe namespace, depending on abstract root 
             // yes, it's ugly, but the reflection here is worse, should have used DI
+            if ((mapping as TargetClassMapping) != null)
+            { return ((INestedContainer)source).Classes; }
             if ((mapping as TargetMethodMapping) != null)
             { return ((ITypeMemberContainer)source).Methods; }
+            if ((mapping as TargetPropertyMapping) != null)
+            { return ((ITypeMemberContainer)source).Properties; }
             if ((mapping as TargetParameterMapping) != null)
             { return ((IPropertyOrMethod)source).Parameters; }
-            return null;
+            throw new NotImplementedException();
         }
 
         private IEnumerable<T> CreateTargetChildren<T>(IEnumerable<IDom> sourceChildren, TargetChildMapping mapping)
