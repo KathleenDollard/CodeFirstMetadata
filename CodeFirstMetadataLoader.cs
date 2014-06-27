@@ -19,12 +19,11 @@ namespace CodeFirst
             if (ShouldRun(root, attributeIdentifier))
             {
                 // TODO: We need to be more flexible and look for the desired element and then map from that level
-var root = RDomFactory.GetRootFromFile(fileName);
-var cfNamespace = root.Namespaces.First();
-var returnType = typeof(T);
-var mapping = TargetMapping.DeriveMapping("root", "root", returnType.GetTypeInfo()) as TargetNamespaceMapping;
-var mapper = new CodeFirstMapper();
-var newObj = mapper.Map(mapping, cfNamespace);
+                var cfNamespace = root.Namespaces.First();
+                var returnType = typeof(T);
+                var mapping = TargetMapping.DeriveMapping("root", "root", returnType.GetTypeInfo()) as TargetNamespaceMapping;
+                var mapper = new CodeFirstMapper();
+                var newObj = mapper.Map(mapping, cfNamespace);
                 return newObj as T;
             }
             return null;
