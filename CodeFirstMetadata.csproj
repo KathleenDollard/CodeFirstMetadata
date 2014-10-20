@@ -36,6 +36,12 @@
     <Reference Include="RoslynDomCommon">
       <HintPath>..\..\RoslynDOM\RoslynDom\bin\Debug\RoslynDomCommon.dll</HintPath>
     </Reference>
+    <Reference Include="RoslynDomCSharpFactories">
+      <HintPath>..\..\RoslynDOM\RoslynDomCSharpFactories\bin\Debug\RoslynDomCSharpFactories.dll</HintPath>
+    </Reference>
+    <Reference Include="RoslynDomRDomCommon">
+      <HintPath>..\..\RoslynDOM\RoslynDomCSharpFactories\bin\Debug\RoslynDomRDomCommon.dll</HintPath>
+    </Reference>
     <Reference Include="RoslynDomUtilities">
       <HintPath>..\..\RoslynDOM\RoslynDom\bin\Debug\RoslynDomUtilities.dll</HintPath>
     </Reference>

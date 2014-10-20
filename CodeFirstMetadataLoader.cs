@@ -7,6 +7,7 @@ using System.Threading.Tasks;
 using CodeFirst.Common;
 using RoslynDom;
 using RoslynDom.Common;
+using RoslynDom.CSharp;
 
 namespace CodeFirst
 {
@@ -15,7 +16,17 @@ namespace CodeFirst
     {
         public T LoadFromFile(string fileName, string attributeIdentifier)
         {
-            var root = RDomFactory.GetRootFromFile(fileName);
+            var root = RDomCSharp.Factory.GetRootFromFile(fileName);
+            return LoadFrom(root, attributeIdentifier);
+        }
+        public T LoadFromString(string input, string attributeIdentifier)
+        {
+            var root = RDomCSharp.Factory.GetRootFromString(input);
+            return LoadFrom(root, attributeIdentifier);
+        }
+
+        public T LoadFrom(IRoot root, string attributeIdentifier)
+        {
             if (ShouldRun(root, attributeIdentifier))
             {
                 // TODO: We need to be more flexible and look for the desired element and then map from that level
@@ -28,7 +39,6 @@ namespace CodeFirst
             }
             return null;
         }
-
         private bool ShouldRun(IRoot root, string attributeIdentifier)
         {
             var classes = (from x in root.RootClasses
