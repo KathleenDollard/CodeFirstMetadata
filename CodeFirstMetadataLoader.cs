@@ -16,12 +16,12 @@ namespace CodeFirst
     {
         public T LoadFromFile(string fileName, string attributeIdentifier)
         {
-            var root = RDomCSharp.Factory.GetRootFromFile(fileName);
+            var root = RDom.CSharp.LoadFromFile(fileName);
             return LoadFrom(root, attributeIdentifier);
         }
         public T LoadFromString(string input, string attributeIdentifier)
         {
-            var root = RDomCSharp.Factory.GetRootFromString(input);
+            var root = RDom.CSharp.Load(input);
             return LoadFrom(root, attributeIdentifier);
         }
 
