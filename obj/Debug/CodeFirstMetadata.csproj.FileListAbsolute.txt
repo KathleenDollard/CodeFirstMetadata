@@ -12,7 +12,6 @@ C:\Users\Kathleen\Documents\Visual Studio 2013\Projects\CodeFirstMetadata\CodeFi
 C:\Users\Kathleen\Documents\Visual Studio 2013\Projects\CodeFirstMetadata\CodeFirstMetadata\bin\Debug\Microsoft.Practices.Unity.RegistrationByConvention.dll
 C:\Users\Kathleen\Documents\Visual Studio 2013\Projects\CodeFirstMetadata\CodeFirstMetadata\bin\Debug\RoslynDom.dll
 C:\Users\Kathleen\Documents\Visual Studio 2013\Projects\CodeFirstMetadata\CodeFirstMetadata\bin\Debug\RoslynDomCommon.dll
-C:\Users\Kathleen\Documents\Visual Studio 2013\Projects\CodeFirstMetadata\CodeFirstMetadata\bin\Debug\RoslynDomCSharpFactories.dll
 C:\Users\Kathleen\Documents\Visual Studio 2013\Projects\CodeFirstMetadata\CodeFirstMetadata\bin\Debug\RoslynDomRDomCommon.dll
 C:\Users\Kathleen\Documents\Visual Studio 2013\Projects\CodeFirstMetadata\CodeFirstMetadata\bin\Debug\RoslynDomUtilities.dll
 C:\Users\Kathleen\Documents\Visual Studio 2013\Projects\CodeFirstMetadata\CodeFirstMetadata\bin\Debug\System.Collections.Immutable.dll
