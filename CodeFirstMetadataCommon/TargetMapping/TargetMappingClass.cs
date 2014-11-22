@@ -8,34 +8,34 @@ using RoslynDom.Common;
 
 namespace CodeFirst.Common
 {
- 
-    public abstract class TargetClassMapping : TargetChildMapping
-    {
-        internal TargetClassMapping(string targetName, string prefix, TypeInfo typeInfo)
-            : base(targetName, prefix, typeInfo, TargetLevel.Class)
-        {        }
 
-        internal override bool CanHaveChildren
-        {
-            get { return true; }
-        }
+   public abstract class TargetClassMapping : TargetChildMapping
+   {
+      internal TargetClassMapping(string targetName, string prefix, TypeInfo typeInfo)
+          : base(targetName, prefix, typeInfo, TargetLevel.Class)
+      { }
 
-          public override IEnumerable<string> GetNamedProperties()
-        {
-            
-            return base.GetNamedProperties().Union(new string[]  {
+      internal override bool CanHaveChildren
+      {
+         get { return true; }
+      }
+
+      public override IEnumerable<string> GetNamedProperties()
+      {
+
+         return base.GetNamedProperties().Union(new string[]  {
                     "ClassName", "Namespace",
                     "Comments", "ScopeAccess",
                     "ImplementedInterfaces" });
-        }
-    }
+      }
+   }
 
-    public class TargetClassMapping<T> : TargetClassMapping
-    {
-        internal TargetClassMapping(string targetName, string prefix, TypeInfo typeInfo)
-        : base(targetName, prefix, typeInfo)
-        { }
-    }
+   public class TargetClassMapping<T> : TargetClassMapping
+   {
+      internal TargetClassMapping(string targetName, string prefix, TypeInfo typeInfo)
+      : base(targetName, prefix, typeInfo)
+      { }
+   }
 
 
 }

@@ -12,8 +12,7 @@ namespace CodeFirstMetadataTest.Diagnostic
 {
  
 
-    public class CodeFirstAnalyzer<T> : CodeFirstAnalyzerBase<T>
-      where T : SyntaxNode
+    public class CodeFirstAnalyzer : CodeFirstAnalyzerBase
     {
     }
 }

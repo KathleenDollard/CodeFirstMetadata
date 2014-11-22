@@ -24,7 +24,7 @@ namespace CodeFirstMetadataTest.Diagnostic
       public string MessageFormat;
       public string Category;
       public IEnumerable<CodeFirstAnalyzer> Analyzers { get; private set; }
-     // public IEnumerable<CodeFirstFix> Fixers { get; private set; }
+     public IEnumerable<CodeFirstFix> Fixers { get; private set; }
 
    }
 
