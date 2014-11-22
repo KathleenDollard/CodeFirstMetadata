@@ -1,0 +1,30 @@
+﻿<#  OutputClassPrefix(); #>
+[EventSource(Name = "<#= Meta.UniqueName #>")]
+<#= eventSourceScope #> sealed partial class <#= eventSourceClassName #> : EventSource
+<# this.PushBracket(); #>
+
+<# if (!loggerHandled) { #>
+<#@ include file="EventSourceStandardLogger.t4" #>
+<# } #>
+
+#region Your trace event methods
+
+<#
+foreach(var evt in Meta.Events)
+{
+    OutputXmlComments(evt);
+	OutputAttributes(evt);
+#>
+[Event(<#= evt.EventId #>)]
+<#= 
+MethodDeclaration(evt.Name, evt.ScopeAccess, evt.Parameters) 
+#>
+<#  this.PushBracket(); #>   
+if (IsEnabled()) WriteEvent(<#= evt.EventId #><#= ParametersFrom(evt.Parameters, true) #>);
+<# this.PopBracket();
+} #>
+#endregion
+
+<# this.PopBracket(); #>
+<# OutputClassSuffix(); #>
+

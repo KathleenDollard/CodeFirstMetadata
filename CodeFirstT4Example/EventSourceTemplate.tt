@@ -1,0 +1,32 @@
+﻿<#@ template language="C#" inherits="CodeFirstT4CSharpBase<CodeFirstSemanticLog>" #>
+<#@ assembly name="System.Core" #>
+<#@ assembly name="$(SolutionDir)\CodeFirstEventSource\bin\Debug\CodeFirstSemanticLog.Dll"  #>
+<#@ assembly name="$(SolutionDir)\CodeFirstEventSource\bin\Debug\CodeFirstMetadataCommon.Dll"  #>
+<#@ assembly name="$(SolutionDir)\CodeFirstMetadataT4Support\bin\Debug\CodeFirstMetadataT4Support.Dll"  #>
+<#@ import namespace="System.Linq" #>
+<#@ import namespace="CodeFirst.Common" #>
+<#@ import namespace="CodeFirstMetadataTest.SemanticLog" #>
+<# 
+	OutputGenerationWarning();
+  	var apiClassName = Meta.Name;
+  	var eventSourceClassName = Meta.Name;
+    var eventSourceMeta = Meta as CodeFirstSemanticLog; 
+    var loggerHandled = false; 
+    var includeInnerLogger = false;
+    var eventSourceScope = "public";
+ #>
+using System;
+using System.Diagnostics.Tracing;
+
+<# OutputNamespaceOpen(); #>
+<# if (Meta.IncludesInterface) { #>
+<#@ include file="EventSourceWithInterface.t4" #>
+<# }
+   else 
+   { #>
+<#@ include file="EventSourceNormal.t4" #>
+<#   } #>
+
+<# OutputNamespaceClose(); #>
+
+

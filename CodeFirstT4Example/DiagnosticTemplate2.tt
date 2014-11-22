@@ -1,0 +1,67 @@
+﻿<#@ template language="C#" inherits="CodeFirstT4CSharpBase<CodeFirstDiagnostic>" #>
+<#@ assembly name="System.Core" #>
+<#@ assembly name="$(SolutionDir)\CodeFirstAnalyzer\bin\Debug\CodeFirstAnalyzer.Dll"  #>
+<#@ assembly name="$(SolutionDir)\CodeFirstAnalyzer\bin\Debug\CodeFirstMetadataCommon.Dll"  #>
+<#@ assembly name="$(SolutionDir)\CodeFirstMetadataT4Support\bin\Debug\CodeFirstMetadataT4Support.Dll"  #>
+<#@ import namespace="System.Linq" #>
+<#@ import namespace="CodeFirst.Common" #>
+<#@ import namespace="KadGen.Common" #>
+<#@ import namespace="CodeFirstMetadataTest.Diagnostic" #>
+<# 
+	OutputGenerationWarning();
+ #>
+using System;
+using System.Collections.Generic;
+using System.Collections.Immutable;
+using System.Linq;
+using System.Threading;
+using Microsoft.CodeAnalysis;
+using Microsoft.CodeAnalysis.Diagnostics;
+using Microsoft.CodeAnalysis.CSharp;
+using Microsoft.CodeAnalysis.CSharp.Syntax;
+
+namespace <#= Meta.Namespace #>
+{
+   // TODO: Consider implementing other interfaces that implement IDiagnosticAnalyzer instead of or in addition to ISymbolAnalyzer
+
+   [DiagnosticAnalyzer(LanguageNames.CSharp)]
+   public class  <#= Meta.Name #>: ISyntaxNodeAnalyzer<SyntaxKind>
+   {
+      public const string DiagnosticId = <#= Meta.DiagnosticId #>;
+      internal const string Description = <#= Meta.Description #>;
+      internal const string MessageFormat = <#= Meta.MessageFormat #>";
+      internal const string Category = <#= Meta.Category #>;
+
+      internal static DiagnosticDescriptor Rule = new DiagnosticDescriptor(DiagnosticId, 
+                  Description, MessageFormat, Category, DiagnosticSeverity.Error, true);
+
+      public ImmutableArray<DiagnosticDescriptor> SupportedDiagnostics { get { return ImmutableArray.Create(Rule); } }
+
+      public ImmutableArray<SyntaxKind> SyntaxKindsOfInterest
+      {
+         get
+         {
+            return ImmutableArray.Create(<#= String.Join(", ", Meta.KindsOfInterest) #> );
+         }
+      }
+
+      public void AnalyzeNode(SyntaxNode node, SemanticModel semanticModel, 
+         Action<Diagnostic> addDiagnostic, AnalyzerOptions options, CancellationToken cancellationToken)
+      {
+         <# foreach (var analyzer in Meta.Analyzers) 
+         { #>
+         var <#= analyzer.Name #> = node as <#= analyzer.Type #>;
+         <#= analyzer.Statements.ToString()#>
+         <# } #>
+      }
+
+      private void Report(Location location, string v, Action<Diagnostic> addDiagnostic)
+      {
+         var diagnostic = Diagnostic.Create(Rule, location, v);
+         addDiagnostic(diagnostic);
+      }
+   }
+}
+
+
+

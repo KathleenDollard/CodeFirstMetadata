@@ -1,0 +1,30 @@
+﻿namespace DiagnosticAndCodeFix
+{
+   [DiagnosticSyntaxAnalyzer]
+   [DiagnosticId ( "KADGEN1002")]
+   [Description  ( "Insist on curly braces")]
+   [MessageFormat( "'{0}' needs a brace")]
+   [Category     ( "Style")]
+   [Kinds(SyntaxKind.IfStatement, SyntaxKind.ElseClause)]
+   public class DiagnosticSyntaxAnalyzer
+   {
+      public void AnalyzeNode( IfStatementSyntax ifStatement)
+      {
+         if (ifStatement?.Statement != null
+            && !ifStatement.Statement.IsKind(SyntaxKind.Block))
+         {
+            Report(ifStatement.IfKeyword.GetLocation(), "if statement", addDiagnostic);
+         }
+      }
+
+      public void AnalyzeNode(ElseClauseSyntax elseClause)
+      {
+         if (elseClause?.Statement != null
+            && !elseClause.Statement.IsKind(SyntaxKind.Block))
+         {
+            Report(elseClause.ElseKeyword.GetLocation(), "if statement", addDiagnostic);
+         }
+
+      }
+   }
+}

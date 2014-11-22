@@ -1,0 +1,21 @@
+﻿using System;
+using System.Collections.Generic;
+using KadMan.Common;
+
+namespace CodeFirstTest
+{
+    [LocalizationResources("Fred", "Joe")]
+    [Name("KadGen-Test-Temp")]
+    [SemanticLog]
+    public class NormalEventSource
+    {
+        [Version(2)]
+        [Keywords(3)]
+        public void foo(int Bar, string Bar2) { }
+
+        [Version(2)]
+        [Keywords(3)]
+        public void foo2() { }
+    }
+}
+

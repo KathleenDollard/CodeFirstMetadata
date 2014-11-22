@@ -1,0 +1,55 @@
+﻿using System;
+using System.Collections.Generic;
+using System.Linq;
+using System.Text;
+using System.Threading.Tasks;
+
+namespace KathleensAnalyzer
+{
+   [DiagnosticAndCodeFix]
+   [Id("KADGEN1001")]
+   [Description("Needs braces")]
+   [MessageFormat("'{0}' needs braces")]
+   [Category("Style")]
+   [FixType(typeof(ISyntaxNodeAnalyzer<SyntaxKind>))]
+   [Interesting(SyntaxKind.IfStatement)]
+   [Interesting(SyntaxKind.ElseClause)]
+   class DiagnosticCodeFix
+   {
+      public void AnalyzeNode(IfStatementSyntax ifStatement)
+      {
+         if (!ifStatement.Statement.IsKind(SyntaxKind.Block))
+         {
+            Report(ifStatement.IfKeyword, "if statement");
+         }
+      }
+
+      public void AnalyzeNode(ElseClauseSyntax elseClause)
+      {
+         if (!elseClause.Statement.IsKind(SyntaxKind.Block))
+         {
+            Report(elseClause.ElseKeyword, "else clause");
+         }
+      }
+
+      [Message("Add braces")]
+      public IfStatementSyntax GetFixesAsync
+      {
+         get
+         {
+            var newStatement = parent.WithStatement(
+                           SyntaxFactory.Block(ifStatement.Statement))
+                           .WithAdditionalAnnotations(Formatter.Annotation);
+         }
+      }
+
+      //// Following would be better, particularly adding multiples
+      //[Message("Add braces")]
+      //public void GetFixesAsync(IfStatementSyntax parent)
+      //{
+      //   var newStatement = parent.WithStatement(
+      //                  SyntaxFactory.Block(ifStatement.Statement))
+      //                  .WithAdditionalAnnotations(Formatter.Annotation);
+      //}
+   }
+}

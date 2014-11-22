@@ -1,0 +1,38 @@
+﻿<#@ template language="C#" inherits="CodeFirstT4CSharpBase<CodeFirstClass>" #>
+<#@ assembly name="System.Core" #>
+<#@ assembly name="$(SolutionDir)\CodeFirstPropertyChanged\bin\Debug\CodeFirstPropertyChanged.Dll"  #>
+<#@ assembly name="$(SolutionDir)\CodeFirstPropertyChanged\bin\Debug\CodeFirstMetadataCommon.Dll"  #>
+<#@ assembly name="$(SolutionDir)\CodeFirstMetadataT4Support\bin\Debug\CodeFirstMetadataT4Support.Dll"  #>
+<#@ import namespace="System.Linq" #>
+<#@ import namespace="CodeFirst.Common" #>
+<#@ import namespace="KadGen.Common" #>
+<#@ import namespace="CodeFirstMetadataTest.PropertyChanged" #>
+using System;
+using System.ComponentModel;
+
+<#
+foreach(var class in Meta.Classes)#>
+namespace <#= class.Namespace
+{
+   public class <#= Meta.Name #> : INotifyPropertyChanged
+      {
+      public event PropertyChangedEventHandler PropertyChanged;
+
+<#
+foreach(var prop in Meta.Properties)
+{
+   var fieldName = prop.Name.Substring(0,1).ToLower() + prop.Name.Substring(1);
+   var propertyName =prop.Name.Substring(0,1).ToUpper() + prop.Name.Substring(1);
+#>
+      private <#= prop.ProprtyType.Name #> <#= fieldName #>
+      public <#= prop.ScopeAccess #>, <#= prop.ProprtyType.Name #> <#= property.Name #>
+      {
+        get { return <#= fieldName #>; }
+        set { SetProperty(ref <#= fieldName #>, value)}
+      }
+<#} #>
+   }
+}
+<#} #>
+
+
