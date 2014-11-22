@@ -18,6 +18,8 @@
 using System;
 using System.Diagnostics.Tracing;
 
+// UniqueName: <#= Meta.UniqueName #>
+
 <# OutputNamespaceOpen(); #>
 <# if (Meta.IncludesInterface) { #>
 <#@ include file="EventSourceWithInterface.t4" #>

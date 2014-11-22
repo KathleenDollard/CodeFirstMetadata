@@ -104,6 +104,11 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="DiagnosticTemplate.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>DiagnosticTemplate.tt</DependentUpon>
+    </Compile>
     <Compile Include="EventSourceTemplate.cs">
       <DependentUpon>EventSourceTemplate.tt</DependentUpon>
       <DesignTime>True</DesignTime>
@@ -137,6 +142,10 @@
     <Service Include="{508349B6-6B84-4DF5-91F0-309BEEBAD82D}" />
   </ItemGroup>
   <ItemGroup>
+    <ProjectReference Include="..\CodeFirstAnalyzer\CodeFirstAnalyzer.csproj">
+      <Project>{01ff5566-a7fb-43c8-852e-4a5af0a5b41d}</Project>
+      <Name>CodeFirstAnalyzer</Name>
+    </ProjectReference>
     <ProjectReference Include="..\CodeFirstCSharp\CodeFirstCSharp.csproj">
       <Project>{5520a68e-2a78-4819-9a3c-3d7cc5d0afee}</Project>
       <Name>CodeFirstCSharp</Name>
@@ -161,6 +170,12 @@
       <Project>{e4a92482-fdf8-473f-a0a8-7e36a81bd607}</Project>
       <Name>CodeFirstSemanticLog</Name>
     </ProjectReference>
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="DiagnosticTemplate.tt">
+      <Generator>TextTemplatingFilePreprocessor</Generator>
+      <LastGenOutput>DiagnosticTemplate.cs</LastGenOutput>
+    </Content>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 

@@ -1,6 +1,7 @@
 ﻿namespace ConsoleRunT4Example
 {
     [SemanticLog()]
+    [UniqueName("MyUniqueName")]
     public class Normal
     {
         public void Message(string Message) { }

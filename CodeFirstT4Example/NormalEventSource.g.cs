@@ -1,12 +1,14 @@
 // This file was generated, if you change it your changes are toast
-// Generation was last done on 11/13/2014 12:00:00 AM using template EventSourceTemplate
+// Generation was last done on 11/22/2014 12:00:00 AM using template EventSourceTemplate
 
 using System;
 using System.Diagnostics.Tracing;
 
+// UniqueName: MyUniqueName
+
 namespace ConsoleRunT4Example
 {
-   [EventSource(Name = "ConsoleRunT4Example-Normal")]
+   [EventSource(Name = "MyUniqueName")]
    public sealed partial class Normal : EventSource
    {
       #region Standard class stuff

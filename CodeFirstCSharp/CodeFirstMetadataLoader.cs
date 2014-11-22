@@ -41,11 +41,18 @@ namespace CodeFirst
         }
         private bool ShouldRun(IRoot root, string attributeIdentifier)
         {
-            var classes = (from x in root.RootClasses
-                           from y in x.Attributes
-                           where y.Name == attributeIdentifier
-                           select true);
-            return (classes.Count() > 0);
+         var attributeUsed = root.RootClasses
+                              .Any(x => x.Attributes
+                                    .Any(y => y.Name == attributeIdentifier));
+            //var classes = (from x in root.RootClasses
+            //               from y in x.Attributes
+            //               where y.Name == attributeIdentifier
+            //               select true);
+            if (attributeUsed) { return true; }
+         var hasNamedBase = root.RootClasses
+                        .Any(x => x.BaseType.Name == attributeIdentifier + "Base");
+         return hasNamedBase;
+
         }
     }
 }

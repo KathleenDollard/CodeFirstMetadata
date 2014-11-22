@@ -5,7 +5,6 @@
 <#@ assembly name="$(SolutionDir)\CodeFirstMetadataT4Support\bin\Debug\CodeFirstMetadataT4Support.Dll"  #>
 <#@ import namespace="System.Linq" #>
 <#@ import namespace="CodeFirst.Common" #>
-<#@ import namespace="KadGen.Common" #>
 <#@ import namespace="CodeFirstMetadataTest.Diagnostic" #>
 <# 
 	OutputGenerationWarning();
@@ -52,8 +51,6 @@ namespace <#= Meta.Namespace #>
       {
       <# foreach(var analyzer in Meta.Analyzers) 
       {#>
-         var <#= analyzer.Name #> = node as <#= analyzer.Type #>;
-         <#= analyzer.Statements.ToString() #>
       <# } #>
       }
 

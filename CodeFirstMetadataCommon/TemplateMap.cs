@@ -32,7 +32,9 @@ namespace CodeFirst.Common
 
       public IEnumerable<string> GetFileNames(string startDirectory)
       {
-         var sources = FileSupport.GetMatchingFiles("*." + InputExtension, startDirectory, true).ToArray();
+         var sources = FileSupport.GetMatchingFiles("*." + InputExtension, startDirectory, true)
+                              .Where(x => !x.Contains("\\TemporaryGeneratedFile_"))
+                              .Where(x => !x.Contains("\\AssemblyInfo.cs"));
          return sources;
       }
 

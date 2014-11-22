@@ -36,7 +36,7 @@ namespace KathleensAnalyzer
    //                  SyntaxFactory.Block(x.Statement)));
    //   }
    //}
-   public class IfElseBraceDiagnosticCodeFirst : DiagnosticBase
+   public class IfElseBraceDiagnosticCodeFirst : DiagnosticAndCodeFixBase
    {
       public IfElseBraceDiagnosticCodeFirst()
       {

@@ -23,6 +23,8 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "CodeFirstCSharp", "CodeFirs
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "CodeFirstAnalyzer", "CodeFirstAnalyzer\CodeFirstAnalyzer.csproj", "{01FF5566-A7FB-43C8-852E-4A5AF0A5B41D}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "GenerationMetadata", "GenerationMetadata\GenerationMetadata.csproj", "{9F3249B5-B201-4BDF-9A3A-E89487296372}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -117,6 +119,18 @@ Global
 		{01FF5566-A7FB-43C8-852E-4A5AF0A5B41D}.Release|ARM.Build.0 = Release|Any CPU
 		{01FF5566-A7FB-43C8-852E-4A5AF0A5B41D}.Release|x86.ActiveCfg = Release|Any CPU
 		{01FF5566-A7FB-43C8-852E-4A5AF0A5B41D}.Release|x86.Build.0 = Release|Any CPU
+		{9F3249B5-B201-4BDF-9A3A-E89487296372}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{9F3249B5-B201-4BDF-9A3A-E89487296372}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{9F3249B5-B201-4BDF-9A3A-E89487296372}.Debug|ARM.ActiveCfg = Debug|Any CPU
+		{9F3249B5-B201-4BDF-9A3A-E89487296372}.Debug|ARM.Build.0 = Debug|Any CPU
+		{9F3249B5-B201-4BDF-9A3A-E89487296372}.Debug|x86.ActiveCfg = Debug|Any CPU
+		{9F3249B5-B201-4BDF-9A3A-E89487296372}.Debug|x86.Build.0 = Debug|Any CPU
+		{9F3249B5-B201-4BDF-9A3A-E89487296372}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{9F3249B5-B201-4BDF-9A3A-E89487296372}.Release|Any CPU.Build.0 = Release|Any CPU
+		{9F3249B5-B201-4BDF-9A3A-E89487296372}.Release|ARM.ActiveCfg = Release|Any CPU
+		{9F3249B5-B201-4BDF-9A3A-E89487296372}.Release|ARM.Build.0 = Release|Any CPU
+		{9F3249B5-B201-4BDF-9A3A-E89487296372}.Release|x86.ActiveCfg = Release|Any CPU
+		{9F3249B5-B201-4BDF-9A3A-E89487296372}.Release|x86.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

@@ -8,6 +8,8 @@ using CodeFirstMetadataTest.SemanticLog;
 using CodeFirstMetadataTest.PropertyChanged;
 using CodeFirstT4Example;
 using RoslynDom.Common;
+using CodeFirstMetadataTest.Diagnostic;
+using System.IO;
 
 namespace ConsoleRunT4Example
 {
@@ -18,28 +20,30 @@ namespace ConsoleRunT4Example
          string[] outFiles;
          var templateMaps = new List<TemplateMap>();
 
-         templateMaps.Add(new TemplateMap<CodeFirstSemanticLogGroup, EventSourceTemplate>
-            ("SemanticLog",
-             new CodeFirstMetadataLoader<CodeFirstSemanticLogGroup>(),
-             new T4TemplateRunner(),
-             new EventSourceTemplate()));
-
-         templateMaps.Add(new TemplateMap<CodeFirstClassGroup, PropertyChangedTemplate>
-            ("NotifyPropertyChanged",
-             new CodeFirstMetadataLoader<CodeFirstClassGroup>(),
-             new T4TemplateRunner(),
-             new PropertyChangedTemplate()));
-
-         //templateMaps.Add(new TemplateMap<CodeFirstDiagnosticGroup, DiagnosticTemplate>
-         //   ("DiagnosticAndCodeFix",
-         //    new CodeFirstMetadataLoader<CodeFirstDiagnosticGroup>(),
+         //templateMaps.Add(new TemplateMap<CodeFirstSemanticLogGroup, EventSourceTemplate>
+         //   ("SemanticLog",
+         //    new CodeFirstMetadataLoader<CodeFirstSemanticLogGroup>(),
          //    new T4TemplateRunner(),
-         //    new DiagnosticTemplate()));
+         //    new EventSourceTemplate()));
 
+         //templateMaps.Add(new TemplateMap<CodeFirstClassGroup, PropertyChangedTemplate>
+         //   ("NotifyPropertyChanged",
+         //    new CodeFirstMetadataLoader<CodeFirstClassGroup>(),
+         //    new T4TemplateRunner(),
+         //    new PropertyChangedTemplate()));
+
+         templateMaps.Add(new TemplateMap<CodeFirstDiagnosticGroup, DiagnosticTemplate>
+            ("DiagnosticAndCodeFix",
+             new CodeFirstMetadataLoader<CodeFirstDiagnosticGroup>(),
+             new T4TemplateRunner(),
+             new DiagnosticTemplate(),
+             inputExtension: ".cs"));
+
+         var startDirectory = FileSupport.ProjectPath(AppDomain.CurrentDomain.BaseDirectory);
          foreach (var templateMap in templateMaps)
          {
-            var startDirectory = FileSupport.ProjectPath(AppDomain.CurrentDomain.BaseDirectory);
-            var sources = templateMap.GetFileNames(startDirectory);
+            var sourceDirectory = Path.Combine(startDirectory, "..\\GenerationMetadata");
+            var sources = templateMap.GetFileNames(sourceDirectory);
             var output = templateMap.OutputToFiles(out outFiles, sources.ToArray());
          }
 

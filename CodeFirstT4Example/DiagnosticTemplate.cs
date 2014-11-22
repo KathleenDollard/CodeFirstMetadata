@@ -11,7 +11,6 @@ namespace CodeFirstT4Example
 {
     using System.Linq;
     using CodeFirst.Common;
-    using KadGen.Common;
     using CodeFirstMetadataTest.Diagnostic;
     using System;
     
@@ -30,7 +29,7 @@ namespace CodeFirstT4Example
         public override string TransformText()
         {
             
-            #line 10 "C:\Users\Kathleen\Documents\Visual Studio 2013\Projects\CodeFirstMetadata\CodeFirstT4Example\DiagnosticTemplate.tt"
+            #line 9 "C:\Users\Kathleen\Documents\Visual Studio 2013\Projects\CodeFirstMetadata\CodeFirstT4Example\DiagnosticTemplate.tt"
  
 	OutputGenerationWarning();
     var classMeta = Meta as CodeFirstDiagnostic;
@@ -49,7 +48,7 @@ using Microsoft.CodeAnalysis.CSharp.Syntax;
 
 namespace ");
             
-            #line 23 "C:\Users\Kathleen\Documents\Visual Studio 2013\Projects\CodeFirstMetadata\CodeFirstT4Example\DiagnosticTemplate.tt"
+            #line 22 "C:\Users\Kathleen\Documents\Visual Studio 2013\Projects\CodeFirstMetadata\CodeFirstT4Example\DiagnosticTemplate.tt"
             this.Write(this.ToStringHelper.ToStringWithCulture(Meta.Namespace));
             
             #line default
@@ -63,28 +62,28 @@ namespace ");
    {
       public const string DiagnosticId = """);
             
-            #line 30 "C:\Users\Kathleen\Documents\Visual Studio 2013\Projects\CodeFirstMetadata\CodeFirstT4Example\DiagnosticTemplate.tt"
+            #line 29 "C:\Users\Kathleen\Documents\Visual Studio 2013\Projects\CodeFirstMetadata\CodeFirstT4Example\DiagnosticTemplate.tt"
             this.Write(this.ToStringHelper.ToStringWithCulture(Meta.Id));
             
             #line default
             #line hidden
             this.Write("\";\r\n      internal const string Description = \"");
             
-            #line 31 "C:\Users\Kathleen\Documents\Visual Studio 2013\Projects\CodeFirstMetadata\CodeFirstT4Example\DiagnosticTemplate.tt"
+            #line 30 "C:\Users\Kathleen\Documents\Visual Studio 2013\Projects\CodeFirstMetadata\CodeFirstT4Example\DiagnosticTemplate.tt"
             this.Write(this.ToStringHelper.ToStringWithCulture(Meta.Description));
             
             #line default
             #line hidden
             this.Write("\";\r\n      internal const string MessageFormat = \"");
             
-            #line 32 "C:\Users\Kathleen\Documents\Visual Studio 2013\Projects\CodeFirstMetadata\CodeFirstT4Example\DiagnosticTemplate.tt"
+            #line 31 "C:\Users\Kathleen\Documents\Visual Studio 2013\Projects\CodeFirstMetadata\CodeFirstT4Example\DiagnosticTemplate.tt"
             this.Write(this.ToStringHelper.ToStringWithCulture(Meta.MessageFormat));
             
             #line default
             #line hidden
             this.Write("\";\r\n      internal const string Category = \"");
             
-            #line 33 "C:\Users\Kathleen\Documents\Visual Studio 2013\Projects\CodeFirstMetadata\CodeFirstT4Example\DiagnosticTemplate.tt"
+            #line 32 "C:\Users\Kathleen\Documents\Visual Studio 2013\Projects\CodeFirstMetadata\CodeFirstT4Example\DiagnosticTemplate.tt"
             this.Write(this.ToStringHelper.ToStringWithCulture(Meta.Category));
             
             #line default
@@ -111,36 +110,15 @@ namespace ");
       {
       ");
             
-            #line 53 "C:\Users\Kathleen\Documents\Visual Studio 2013\Projects\CodeFirstMetadata\CodeFirstT4Example\DiagnosticTemplate.tt"
+            #line 52 "C:\Users\Kathleen\Documents\Visual Studio 2013\Projects\CodeFirstMetadata\CodeFirstT4Example\DiagnosticTemplate.tt"
  foreach(var analyzer in Meta.Analyzers) 
       {
             
             #line default
             #line hidden
-            this.Write("         var ");
+            this.Write("      ");
             
-            #line 55 "C:\Users\Kathleen\Documents\Visual Studio 2013\Projects\CodeFirstMetadata\CodeFirstT4Example\DiagnosticTemplate.tt"
-            this.Write(this.ToStringHelper.ToStringWithCulture(analyzer.Name));
-            
-            #line default
-            #line hidden
-            this.Write(" = node as ");
-            
-            #line 55 "C:\Users\Kathleen\Documents\Visual Studio 2013\Projects\CodeFirstMetadata\CodeFirstT4Example\DiagnosticTemplate.tt"
-            this.Write(this.ToStringHelper.ToStringWithCulture(analyzer.Type));
-            
-            #line default
-            #line hidden
-            this.Write(";\r\n         ");
-            
-            #line 56 "C:\Users\Kathleen\Documents\Visual Studio 2013\Projects\CodeFirstMetadata\CodeFirstT4Example\DiagnosticTemplate.tt"
-            this.Write(this.ToStringHelper.ToStringWithCulture(analyzer.Statements.ToString()));
-            
-            #line default
-            #line hidden
-            this.Write("\r\n      ");
-            
-            #line 57 "C:\Users\Kathleen\Documents\Visual Studio 2013\Projects\CodeFirstMetadata\CodeFirstT4Example\DiagnosticTemplate.tt"
+            #line 54 "C:\Users\Kathleen\Documents\Visual Studio 2013\Projects\CodeFirstMetadata\CodeFirstT4Example\DiagnosticTemplate.tt"
  } 
             
             #line default

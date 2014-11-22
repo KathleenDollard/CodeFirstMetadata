@@ -17,10 +17,10 @@ namespace KathleensAnalyzer
    [DiagnosticAnalyzer(LanguageNames.CSharp)]
    public class DiagnosticAnalyzer : ISyntaxNodeAnalyzer<SyntaxKind>
    {
-      public const string DiagnosticId = "KADGEN1001";
-      internal const string Description = "Needs braces";
-      internal const string MessageFormat = "'{0}' needs braces";
-      internal const string Category = "Style";
+      public const string DiagnosticId = "";
+      internal const string Description = "";
+      internal const string MessageFormat = "";
+      internal const string Category = "";
 
       internal static DiagnosticDescriptor Rule = new DiagnosticDescriptor(DiagnosticId, Description, MessageFormat, Category, DiagnosticSeverity.Error, true);
 

@@ -8,7 +8,7 @@ namespace CodeFirstMetadataTest.SemanticLog
     {
         public CodeFirstSemanticLogBase()
         {
-            this.Events = new List<CodeFirstLogEvent>();
+            Events = new List<CodeFirstLogEvent>();
         }
 
         public virtual string UniqueName { get; set; }

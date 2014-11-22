@@ -42,15 +42,22 @@ namespace CodeFirstT4Example
             
             #line default
             #line hidden
-            this.Write("using System;\r\nusing System.Diagnostics.Tracing;\r\n\r\n");
+            this.Write("using System;\r\nusing System.Diagnostics.Tracing;\r\n\r\n// UniqueName: ");
             
             #line 21 "C:\Users\Kathleen\Documents\Visual Studio 2013\Projects\CodeFirstMetadata\CodeFirstT4Example\EventSourceTemplate.tt"
+            this.Write(this.ToStringHelper.ToStringWithCulture(Meta.UniqueName));
+            
+            #line default
+            #line hidden
+            this.Write("\r\n\r\n");
+            
+            #line 23 "C:\Users\Kathleen\Documents\Visual Studio 2013\Projects\CodeFirstMetadata\CodeFirstT4Example\EventSourceTemplate.tt"
  OutputNamespaceOpen(); 
             
             #line default
             #line hidden
             
-            #line 22 "C:\Users\Kathleen\Documents\Visual Studio 2013\Projects\CodeFirstMetadata\CodeFirstT4Example\EventSourceTemplate.tt"
+            #line 24 "C:\Users\Kathleen\Documents\Visual Studio 2013\Projects\CodeFirstMetadata\CodeFirstT4Example\EventSourceTemplate.tt"
  if (Meta.IncludesInterface) { 
             
             #line default
@@ -398,7 +405,7 @@ foreach(var evt in Meta.Events)
             this.Write("\r\n\r\n");
             this.Write("\r\n");
             
-            #line 24 "C:\Users\Kathleen\Documents\Visual Studio 2013\Projects\CodeFirstMetadata\CodeFirstT4Example\EventSourceTemplate.tt"
+            #line 26 "C:\Users\Kathleen\Documents\Visual Studio 2013\Projects\CodeFirstMetadata\CodeFirstT4Example\EventSourceTemplate.tt"
  }
    else 
    { 
@@ -590,14 +597,14 @@ foreach(var evt in Meta.Events)
             this.Write("\r\n");
             this.Write("\r\n");
             
-            #line 28 "C:\Users\Kathleen\Documents\Visual Studio 2013\Projects\CodeFirstMetadata\CodeFirstT4Example\EventSourceTemplate.tt"
+            #line 30 "C:\Users\Kathleen\Documents\Visual Studio 2013\Projects\CodeFirstMetadata\CodeFirstT4Example\EventSourceTemplate.tt"
    } 
             
             #line default
             #line hidden
             this.Write("\r\n");
             
-            #line 30 "C:\Users\Kathleen\Documents\Visual Studio 2013\Projects\CodeFirstMetadata\CodeFirstT4Example\EventSourceTemplate.tt"
+            #line 32 "C:\Users\Kathleen\Documents\Visual Studio 2013\Projects\CodeFirstMetadata\CodeFirstT4Example\EventSourceTemplate.tt"
  OutputNamespaceClose(); 
             
             #line default

@@ -16,15 +16,15 @@ namespace CodeFirstMetadataTest.Diagnostic
       public CodeFirstDiagnosticBase()
       {
          Analyzers = new List<CodeFirstAnalyzer>();
-        // this.Fixers = new List<CodeFirstFix>();
+         Fixers = new List<CodeFirstFix>();
       }
 
-      public string Id;
-      public string Description;
-      public string MessageFormat;
-      public string Category;
-      public IEnumerable<CodeFirstAnalyzer> Analyzers { get; private set; }
-     public IEnumerable<CodeFirstFix> Fixers { get; private set; }
+      public string Id { get; set; }
+      public string Description { get; set; }
+      public string MessageFormat { get; set; }
+      public string Category { get; set; }
+      public List<CodeFirstAnalyzer> Analyzers { get; private set; }
+      public List<CodeFirstFix> Fixers { get; private set; }
 
    }
 

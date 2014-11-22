@@ -81,6 +81,7 @@
     </Reference>
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="DiagnosticAndCodeFixAttribute.cs" />
     <Compile Include="DiagnosticBase.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="AnalyzerExample\CodeFirstFix.cs" />

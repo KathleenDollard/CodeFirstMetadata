@@ -1,5 +1,5 @@
 // This file was generated, if you change it your changes are toast
-// Generation was last done on 11/13/2014 12:00:00 AM using template PropertyChangedTemplate
+// Generation was last done on 11/22/2014 12:00:00 AM using template PropertyChangedTemplate
 
 using System;
 using System.ComponentModel;

@@ -11,9 +11,5 @@ namespace CodeFirstMetadataTest.Diagnostic
 {
 
    public class CodeFirstDiagnostic : CodeFirstDiagnosticBase
-    {
-        // TODO: Supply custom code
-        // TODO: Provide way for multi-property notification
-    
-    }
+    { }
 }

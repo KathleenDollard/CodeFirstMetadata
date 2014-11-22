@@ -1,18 +1,10 @@
 ﻿using Microsoft.CodeAnalysis;
-using Microsoft.CodeAnalysis.CodeActions;
-using Microsoft.CodeAnalysis.CSharp;
-using Microsoft.CodeAnalysis.Diagnostics;
-using Microsoft.CodeAnalysis.Text;
 using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading;
-using System.Threading.Tasks;
 
 namespace CodeFirstAnalyzer
 {
-   public class DiagnosticBase
+   [DiagnosticAndCodeFix]
+   public class DiagnosticAndCodeFixBase
    {
       public string Id { get; set; }
       public string Description { get; set; }
