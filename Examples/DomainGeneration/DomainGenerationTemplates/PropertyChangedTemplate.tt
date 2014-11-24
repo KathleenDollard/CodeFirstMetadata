@@ -1,0 +1,70 @@
+﻿<#@ template language="C#" inherits="CodeFirstT4CSharpBase<CodeFirstClass>" #>
+<#@ assembly name="System.Core" #>
+<#@ assembly name="$(SolutionDir)\CodeFirstPropertyChanged\bin\Debug\CodeFirstPropertyChanged.Dll"  #>
+<#@ assembly name="$(SolutionDir)\CodeFirstPropertyChanged\bin\Debug\CodeFirstMetadataCommon.Dll"  #>
+<#@ assembly name="$(SolutionDir)\CodeFirstMetadataT4Support\bin\Debug\CodeFirstMetadataT4Support.Dll"  #>
+<#@ import namespace="System.Linq" #>
+<#@ import namespace="CodeFirst.Common" #>
+<#@ import namespace="KadGen.Common" #>
+<#@ import namespace="CodeFirstMetadataTest.PropertyChanged" #>
+<# 
+	OutputGenerationWarning();
+    var classMeta = Meta as CodeFirstClass;
+ #>
+using System;
+using System.ComponentModel;
+
+<# OutputNamespaceOpen(); #>
+
+public class <#= Meta.Name #> : INotifyPropertyChanged
+
+<#
+PushBracket();
+foreach(var prop in Meta.Properties)
+{ #>
+<#= FieldDeclaration(prop.Name, prop.PropertyType.Name) #>;
+<# } #>
+
+public event PropertyChangedEventHandler PropertyChanged;
+
+protected virtual void OnPropertyChanged(string name)
+{
+    if (this.PropertyChanged != null)
+    {
+        this.PropertyChanged(this, new PropertyChangedEventArgs(name));
+    }
+}
+
+<#
+foreach(var prop in Meta.Properties)
+{
+    OutputXmlComments(prop);
+	OutputAttributes(prop);
+    var fieldName = MakeFieldName(prop.Name);
+    var propertyName = MakePublicName(prop.Name);#>
+<#= 
+PropertyDeclaration(propertyName, prop.ScopeAccess, prop.PropertyType.Name) 
+#>
+<# this.PushBracket(); #>  
+<# if (prop.CanGet) { #>
+get { return <#= fieldName #>; }
+<# } #>
+<# if (prop.CanGet) { #>
+set
+<# PushBracket(); #>
+
+if ( <#= fieldName #> != value )
+{ <#= fieldName #> = value;
+   this.OnPropertyChanged("<#= propertyName #>");
+}
+<# PopBracket(); #>
+<# }#>
+<# this.PopBracket();
+} #>
+
+<# 
+PopBracket();
+OutputNamespaceClose(); 
+#>
+
+

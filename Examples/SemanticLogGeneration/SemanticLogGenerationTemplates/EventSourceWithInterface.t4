@@ -1,0 +1,31 @@
+﻿<#      OutputXmlComments(Meta); #>
+public partial class <#= apiClassName #> : <#= Meta.ImplementedInterfaces.First() #>
+<# 
+this.PushBracket(); 
+includeInnerLogger = true;
+eventSourceScope = "private";
+eventSourceClassName = "Nested" + apiClassName;
+#>
+
+<#@ include file="EventSourceStandardLogger.t4" #>
+
+<#
+loggerHandled = true;
+foreach(var evt in Meta.Events)
+{
+    OutputXmlComments(evt);
+#>
+<#= 
+MethodDeclaration(evt.Name, evt.ScopeAccess, evt.Parameters) 
+#>
+<#  this.PushBracket(); #>  
+innerLog.<#= evt.Name #>(<#= ParametersFrom(evt.Parameters) #>);
+<# this.PopBracket();
+} 
+
+#>
+
+<#@ include file="EventSourceNormal.t4" #>
+<# this.PopBracket(); #>
+
+

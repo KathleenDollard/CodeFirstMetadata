@@ -6,12 +6,17 @@ using System.Text;
 using System.Threading.Tasks;
 using CodeFirst.Common;
 using RoslynDom.Common;
+using System.Collections;
+using System.Data.Entity.Design.PluralizationServices;
+using System.Globalization;
 
 namespace CodeFirst
 {
    public class CodeFirstMapper : IMapper
    {
       private static readonly TypeInfo thisType = typeof(CodeFirstMapper).GetTypeInfo();
+
+      private static PluralizationService pluralizeService = PluralizationService.CreateService(CultureInfo.GetCultureInfo("en-us"));
 
       public object Map(TargetChildMapping mapping, IDom source)
       {
@@ -83,6 +88,9 @@ namespace CodeFirst
             {
                var newItems = ReflectionHelpers.InvokeGenericMethod(thisType, "CreateTargetChildren",
                      childMap.UnderlyingTypInfo, this, sourceChildren, childMap);
+               newItems = ReflectionHelpers.InvokeGenericMethod(thisType, "AddFromConstructor",
+                    childMap.UnderlyingTypInfo, this, source, childMap, newItems);
+
                ReflectionHelpers.AssignPropertyValue(obj, childMap.TargetName, newItems);
             }
          }
@@ -114,6 +122,42 @@ namespace CodeFirst
          return newItems;
       }
 
+      private IEnumerable<T> AddFromConstructor<T>(IDom source, 
+                  TargetChildMapping mapping, IEnumerable<T> items)
+      {
+         if (source == null) { return items; }
+         var newItems = new List<T>();
+         var sourceWithConstructor = source as IClassOrStructure;
+         if (sourceWithConstructor == null) { return items; }
+         foreach (var constructor in sourceWithConstructor.Constructors) // no clue what multiple constructors might mean
+         {
+            foreach (var statement in constructor.Statements)
+            {
+               var assignment = statement as IInvocationStatement;
+               if (assignment != null)
+               {
+                  var name = assignment.MethodName;
+                  // Convention used here
+                  if (!name.StartsWith("Add")) { continue; }
+                  name = name.SubstringAfter("Add");
+                  var plural = pluralizeService.Pluralize(name);
+                  var property = (source as ITypeMemberContainer).Properties
+                                    .Where(x => x.Name == plural)
+                                    .FirstOrDefault();
+                  if (property == null) { continue; }
+
+                  // TODO: KAD: Start Here
+                  ////var isLiteral = assignment.Expression.ExpressionType == ExpressionType.Literal;
+                  //var isIdentifier = assignment.Left.ExpressionType == ExpressionType.Identifier;
+                  //if (isLiteral && isIdentifier)
+                  //{
+                  //   AddSensibly(ret, assignment.Left.Expression, assignment.Expression.Expression);
+                  //}
+               }
+            }
+         }
+         return items.Union(newItems);
+      }
 
       private class UsageTrackingEntry<TValue>
       {
@@ -137,24 +181,50 @@ namespace CodeFirst
          var ret = new List<UsageTrackingEntry<KeyValuePair<string, object>>>();
          foreach (var attrib in source.Attributes)
          {
-            foreach (var attribValue in attrib.AttributeValues)
+            IEnumerable<IAttributeValue > attribValues = attrib.AttributeValues;
+            var firstValue = attrib?.AttributeValues?.FirstOrDefault();
+            if (firstValue != null && string.IsNullOrEmpty(firstValue.Name )) // assume positional param
             {
-               if (string.IsNullOrWhiteSpace(attribValue.Name))
+               ret.Add(new UsageTrackingEntry<KeyValuePair<string, object>>(new KeyValuePair<string, object>(attrib.Name, firstValue.Value)));
+               attribValues = attribValues.Skip(1);
+            }
+            foreach (var attribValue in attribValues)
+            {
+               AddSensibly(ret, attribValue.Name, attribValue.Value);
+            }
+         }
+         GetConstructorValues(ret, source as IClassOrStructure );
+         return ret;
+      }
+
+      private void GetConstructorValues(List<UsageTrackingEntry<KeyValuePair<string, object>>> ret, IClassOrStructure source)
+      {
+         if (source == null) { return; }
+         foreach (var constructor in source.Constructors ) // no clue what multiple constructors might mean
+         {
+            foreach(var statement in constructor.Statements)
+            {
+               var assignment = statement as IAssignmentStatement;
+               if (assignment != null)
                {
-                  // Relies on unnamed coming before named
-                  if (attribValue == attrib.AttributeValues.First())
+                  var isLiteral = assignment.Expression.ExpressionType == ExpressionType.Literal;
+                  var isIdentifier = assignment.Left.ExpressionType == ExpressionType.Identifier;
+                  if (isLiteral && isIdentifier )
                   {
-                     ret.Add(new UsageTrackingEntry<KeyValuePair<string, object>>(new KeyValuePair<string, object>(attrib.Name, attribValue.Value)));
+                     AddSensibly(ret, assignment.Left.InitialExpressionString , assignment.Expression.InitialExpressionString);
                   }
-               }
-               if (!string.IsNullOrWhiteSpace(attribValue.Name)
-                     && !ret.Exists(x => x.Value.Key == attribValue.Name)) // No error or warning non dupes
-               {
-                  ret.Add(new UsageTrackingEntry<KeyValuePair<string, object>>(new KeyValuePair<string, object>(attribValue.Name, attribValue.Value)));
                }
             }
          }
-         return ret;
+      }
+
+      private void AddSensibly(List<UsageTrackingEntry<KeyValuePair<string, object>>> ret, string name, object value)
+      {
+         if (!string.IsNullOrWhiteSpace(name)
+                           && !ret.Exists(x => x.Value.Key == name)) // No error or warning on dupes
+         {
+            ret.Add(new UsageTrackingEntry<KeyValuePair<string, object>>(new KeyValuePair<string, object>(name, value)));
+         }
       }
    }
 }

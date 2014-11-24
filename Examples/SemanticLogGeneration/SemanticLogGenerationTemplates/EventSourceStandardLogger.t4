@@ -1,0 +1,20 @@
+﻿
+#region Standard class stuff
+// Private constructor blocks direct instantiation of class
+private <#= Meta.Name #>() {}
+
+// Readonly access to cached, lazily created singleton instance
+private static readonly Lazy<<#= Meta.Name #>> _lazyLog = 
+        new Lazy<<#= Meta.Name #>>(() => new <#= Meta.Name #>()); 
+public static <#= Meta.Name #> Log
+{
+	get { return _lazyLog.Value; }
+}
+// Readonly access to  private cached, lazily created singleton inner class instance
+private static readonly Lazy<<#= Meta.Name #>> _lazyInnerlog = 
+        new Lazy<<#= Meta.Name #>>(() => new <#= Meta.Name #>());
+private static <#= Meta.Name #> innerLog
+{
+	get { return _lazyInnerlog.Value; }
+}
+#endregion

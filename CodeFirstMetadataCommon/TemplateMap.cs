@@ -15,26 +15,34 @@ namespace CodeFirst.Common
       public TemplateMap(string attributeIdentifier,
                   ITemplateRunner templateRunner,
                   object template,
+                  string metadataDirectory,
                   string inputExtension,
-                  string outputFormat)
+                  string outputFormat,
+                  string outputDirectory)
       {
          AttributeIdentifier = attributeIdentifier;
          TemplateRunner = templateRunner;
          Template = template;
+         MetadataDirectory = metadataDirectory;
          InputExtension = RemovePeriod(inputExtension);
          OutputFormat = outputFormat;
+         OutputDirectory = outputDirectory;
       }
       public string AttributeIdentifier { get; private set; }
       public ITemplateRunner TemplateRunner { get; private set; }
       public object Template { get; private set; }
       public string InputExtension { get; private set; }
       public string OutputFormat { get; private set; }
+      public string MetadataDirectory { get; private set; }
+      public string OutputDirectory { get; private set; }
 
       public IEnumerable<string> GetFileNames(string startDirectory)
       {
+         startDirectory = Path.Combine(startDirectory, MetadataDirectory);
          var sources = FileSupport.GetMatchingFiles("*." + InputExtension, startDirectory, true)
                               .Where(x => !x.Contains("\\TemporaryGeneratedFile_"))
-                              .Where(x => !x.Contains("\\AssemblyInfo.cs"));
+                              .Where(x => !x.Contains("\\AssemblyInfo.cs"))
+                              .Where(x => !x.EndsWith(".g.cs"));
          return sources;
       }
 
@@ -56,9 +64,11 @@ namespace CodeFirst.Common
                 IMetadataLoader<TMetadata> metadataLoader,
                 ITemplateRunner templateRunner,
                 TTemplate template,
+                string metadataDirectory,
                 string inputExtension = ".cfcs",
-                string outputFormat = "{0}.g.cs")
-        : base(attributeId, templateRunner, template, inputExtension, outputFormat)
+                string outputFormat = "{0}.g.cs",
+                string outputDirectory = null)
+        : base(attributeId, templateRunner, template, metadataDirectory, inputExtension, outputFormat, outputDirectory)
       {
          MetadataLoader = metadataLoader;
       }
