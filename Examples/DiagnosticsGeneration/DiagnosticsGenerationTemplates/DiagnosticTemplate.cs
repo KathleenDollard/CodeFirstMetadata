@@ -7,7 +7,7 @@
 //     the code is regenerated.
 // </auto-generated>
 // ------------------------------------------------------------------------------
-namespace CodeFirstT4Example
+namespace DiagnosticsGenerationTemplates
 {
     using System.Linq;
     using CodeFirst.Common;
@@ -18,7 +18,7 @@ namespace CodeFirstT4Example
     /// Class to produce the template output
     /// </summary>
     
-    #line 1 "C:\Users\Kathleen\Documents\Visual Studio 2013\Projects\CodeFirstMetadata\CodeFirstT4Example\DiagnosticTemplate.tt"
+    #line 1 "C:\Users\Kathleen\Documents\Visual Studio 2013\Projects\CodeFirstMetadata\Examples\DiagnosticsGeneration\DiagnosticsGenerationTemplates\DiagnosticTemplate.tt"
     [global::System.CodeDom.Compiler.GeneratedCodeAttribute("Microsoft.VisualStudio.TextTemplating", "14.0.0.0")]
     public partial class DiagnosticTemplate : CodeFirstT4CSharpBase<CodeFirstDiagnostic>
     {
@@ -29,7 +29,7 @@ namespace CodeFirstT4Example
         public override string TransformText()
         {
             
-            #line 9 "C:\Users\Kathleen\Documents\Visual Studio 2013\Projects\CodeFirstMetadata\CodeFirstT4Example\DiagnosticTemplate.tt"
+            #line 9 "C:\Users\Kathleen\Documents\Visual Studio 2013\Projects\CodeFirstMetadata\Examples\DiagnosticsGeneration\DiagnosticsGenerationTemplates\DiagnosticTemplate.tt"
  
 	OutputGenerationWarning();
     var classMeta = Meta as CodeFirstDiagnostic;
@@ -48,42 +48,44 @@ using Microsoft.CodeAnalysis.CSharp.Syntax;
 
 namespace ");
             
-            #line 22 "C:\Users\Kathleen\Documents\Visual Studio 2013\Projects\CodeFirstMetadata\CodeFirstT4Example\DiagnosticTemplate.tt"
+            #line 22 "C:\Users\Kathleen\Documents\Visual Studio 2013\Projects\CodeFirstMetadata\Examples\DiagnosticsGeneration\DiagnosticsGenerationTemplates\DiagnosticTemplate.tt"
             this.Write(this.ToStringHelper.ToStringWithCulture(Meta.Namespace));
             
             #line default
             #line hidden
-            this.Write(@"
-{
-   // TODO: Consider implementing other interfaces that implement IDiagnosticAnalyzer instead of or in addition to ISymbolAnalyzer
-
-   [DiagnosticAnalyzer(LanguageNames.CSharp)]
-   public class DiagnosticAnalyzer : ISyntaxNodeAnalyzer<SyntaxKind>
-   {
-      public const string DiagnosticId = ");
+            this.Write("\r\n{\r\n   // TODO: Consider implementing other interfaces that implement IDiagnosti" +
+                    "cAnalyzer instead of or in addition to ISymbolAnalyzer\r\n\r\n   [DiagnosticAnalyzer" +
+                    "(LanguageNames.CSharp)]\r\n   public class ");
             
-            #line 29 "C:\Users\Kathleen\Documents\Visual Studio 2013\Projects\CodeFirstMetadata\CodeFirstT4Example\DiagnosticTemplate.tt"
+            #line 27 "C:\Users\Kathleen\Documents\Visual Studio 2013\Projects\CodeFirstMetadata\Examples\DiagnosticsGeneration\DiagnosticsGenerationTemplates\DiagnosticTemplate.tt"
+            this.Write(this.ToStringHelper.ToStringWithCulture(Meta.Name));
+            
+            #line default
+            #line hidden
+            this.Write(" : DiagnosticAnalyzer\r\n   {\r\n      public const string DiagnosticId = ");
+            
+            #line 29 "C:\Users\Kathleen\Documents\Visual Studio 2013\Projects\CodeFirstMetadata\Examples\DiagnosticsGeneration\DiagnosticsGenerationTemplates\DiagnosticTemplate.tt"
             this.Write(this.ToStringHelper.ToStringWithCulture(Meta.Id));
             
             #line default
             #line hidden
             this.Write(";\r\n      internal const string Description = ");
             
-            #line 30 "C:\Users\Kathleen\Documents\Visual Studio 2013\Projects\CodeFirstMetadata\CodeFirstT4Example\DiagnosticTemplate.tt"
+            #line 30 "C:\Users\Kathleen\Documents\Visual Studio 2013\Projects\CodeFirstMetadata\Examples\DiagnosticsGeneration\DiagnosticsGenerationTemplates\DiagnosticTemplate.tt"
             this.Write(this.ToStringHelper.ToStringWithCulture(Meta.Description));
             
             #line default
             #line hidden
             this.Write(";\r\n      internal const string MessageFormat = ");
             
-            #line 31 "C:\Users\Kathleen\Documents\Visual Studio 2013\Projects\CodeFirstMetadata\CodeFirstT4Example\DiagnosticTemplate.tt"
+            #line 31 "C:\Users\Kathleen\Documents\Visual Studio 2013\Projects\CodeFirstMetadata\Examples\DiagnosticsGeneration\DiagnosticsGenerationTemplates\DiagnosticTemplate.tt"
             this.Write(this.ToStringHelper.ToStringWithCulture(Meta.MessageFormat));
             
             #line default
             #line hidden
             this.Write(";\r\n      internal const string Category = ");
             
-            #line 32 "C:\Users\Kathleen\Documents\Visual Studio 2013\Projects\CodeFirstMetadata\CodeFirstT4Example\DiagnosticTemplate.tt"
+            #line 32 "C:\Users\Kathleen\Documents\Visual Studio 2013\Projects\CodeFirstMetadata\Examples\DiagnosticsGeneration\DiagnosticsGenerationTemplates\DiagnosticTemplate.tt"
             this.Write(this.ToStringHelper.ToStringWithCulture(Meta.Category));
             
             #line default
@@ -92,40 +94,77 @@ namespace ");
 
       internal static DiagnosticDescriptor Rule = new DiagnosticDescriptor(DiagnosticId, Description, MessageFormat, Category, DiagnosticSeverity.Error, true);
 
-      public ImmutableArray<DiagnosticDescriptor> SupportedDiagnostics { get { return ImmutableArray.Create(Rule); } }
+      public override ImmutableArray<DiagnosticDescriptor> SupportedDiagnostics { get { return ImmutableArray.Create(Rule); } }
 
-      public ImmutableArray<SyntaxKind> SyntaxKindsOfInterest
+      public override void Initialize(AnalysisContext context)
       {
-         get
-         {
-            return ImmutableArray.Create(SyntaxKind.IfStatement, SyntaxKind.ElseClause);
-         }
-      }
-
-      public void AnalyzeNode(SyntaxNode node, 
-         SemanticModel semanticModel, 
-         Action<Diagnostic> addDiagnostic, 
-         AnalyzerOptions options, 
-         CancellationToken cancellationToken)
-      {
-      ");
+         context.RegisterSyntaxNodeAction(AnalyzeNodes, ");
             
-            #line 52 "C:\Users\Kathleen\Documents\Visual Studio 2013\Projects\CodeFirstMetadata\CodeFirstT4Example\DiagnosticTemplate.tt"
- foreach(var analyzer in Meta.Analyzers) 
-      {
+            #line 40 "C:\Users\Kathleen\Documents\Visual Studio 2013\Projects\CodeFirstMetadata\Examples\DiagnosticsGeneration\DiagnosticsGenerationTemplates\DiagnosticTemplate.tt"
+            this.Write(this.ToStringHelper.ToStringWithCulture(String.Join(", ", Meta.Analyzers.Select(x=>x.SyntaxKind))));
             
             #line default
             #line hidden
-            this.Write("      ");
+            this.Write(");\r\n      }\r\n\r\n      private void AnalyzeNodes(SyntaxNodeAnalysisContext context)" +
+                    "\r\n      {\r\n      ");
             
-            #line 54 "C:\Users\Kathleen\Documents\Visual Studio 2013\Projects\CodeFirstMetadata\CodeFirstT4Example\DiagnosticTemplate.tt"
+            #line 45 "C:\Users\Kathleen\Documents\Visual Studio 2013\Projects\CodeFirstMetadata\Examples\DiagnosticsGeneration\DiagnosticsGenerationTemplates\DiagnosticTemplate.tt"
+ foreach(var analyzer in Meta.Analyzers) 
+      {
+      
+            
+            #line default
+            #line hidden
+            this.Write("\r\n         var ");
+            
+            #line 49 "C:\Users\Kathleen\Documents\Visual Studio 2013\Projects\CodeFirstMetadata\Examples\DiagnosticsGeneration\DiagnosticsGenerationTemplates\DiagnosticTemplate.tt"
+            this.Write(this.ToStringHelper.ToStringWithCulture(analyzer.VariableName));
+            
+            #line default
+            #line hidden
+            this.Write(" = context.Node as  ");
+            
+            #line 49 "C:\Users\Kathleen\Documents\Visual Studio 2013\Projects\CodeFirstMetadata\Examples\DiagnosticsGeneration\DiagnosticsGenerationTemplates\DiagnosticTemplate.tt"
+            this.Write(this.ToStringHelper.ToStringWithCulture(analyzer.PropertyType.Name));
+            
+            #line default
+            #line hidden
+            this.Write(";\r\n         if (");
+            
+            #line 50 "C:\Users\Kathleen\Documents\Visual Studio 2013\Projects\CodeFirstMetadata\Examples\DiagnosticsGeneration\DiagnosticsGenerationTemplates\DiagnosticTemplate.tt"
+            this.Write(this.ToStringHelper.ToStringWithCulture(analyzer.VariableName));
+            
+            #line default
+            #line hidden
+            this.Write(" != null\r\n               && (");
+            
+            #line 51 "C:\Users\Kathleen\Documents\Visual Studio 2013\Projects\CodeFirstMetadata\Examples\DiagnosticsGeneration\DiagnosticsGenerationTemplates\DiagnosticTemplate.tt"
+            this.Write(this.ToStringHelper.ToStringWithCulture(analyzer.ConditionString));
+            
+            #line default
+            #line hidden
+            this.Write("))\r\n         {\r\n            Location loc = ");
+            
+            #line 53 "C:\Users\Kathleen\Documents\Visual Studio 2013\Projects\CodeFirstMetadata\Examples\DiagnosticsGeneration\DiagnosticsGenerationTemplates\DiagnosticTemplate.tt"
+            this.Write(this.ToStringHelper.ToStringWithCulture(analyzer.GetLocationString));
+            
+            #line default
+            #line hidden
+            this.Write(";\r\n            Diagnostic diagnostic = Diagnostic.Create(Rule, loc, ");
+            
+            #line 54 "C:\Users\Kathleen\Documents\Visual Studio 2013\Projects\CodeFirstMetadata\Examples\DiagnosticsGeneration\DiagnosticsGenerationTemplates\DiagnosticTemplate.tt"
+            this.Write(this.ToStringHelper.ToStringWithCulture(analyzer.MessageArg));
+            
+            #line default
+            #line hidden
+            this.Write(");\r\n            context.ReportDiagnostic(diagnostic);\r\n         }\r\n\r\n      ");
+            
+            #line 58 "C:\Users\Kathleen\Documents\Visual Studio 2013\Projects\CodeFirstMetadata\Examples\DiagnosticsGeneration\DiagnosticsGenerationTemplates\DiagnosticTemplate.tt"
  } 
             
             #line default
             #line hidden
-            this.Write("      }\r\n\r\n      private void Report(Location location, string v, Action<Diagnost" +
-                    "ic> addDiagnostic)\r\n      {\r\n         var diagnostic = Diagnostic.Create(Rule, l" +
-                    "ocation, v);\r\n         addDiagnostic(diagnostic);\r\n      }\r\n   }\r\n}");
+            this.Write("      }\r\n   }\r\n}");
             return this.GenerationEnvironment.ToString();
         }
     }

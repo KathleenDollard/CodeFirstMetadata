@@ -43,7 +43,7 @@ namespace CodeFirstMetadataTest.SemanticLog
       public bool IsLocalized
       { get { return !string.IsNullOrWhiteSpace(this.LocalizationResources); } }
 
-      public override bool ValidateAndUpdateCore()
+      protected override bool ValidateAndUpdateCore()
       {
          var isOk = base.ValidateAndUpdateCore();
          if (isOk)

@@ -12,27 +12,47 @@ using System.Globalization;
 
 namespace CodeFirst
 {
-   public class CodeFirstMapper : IMapper
+   public class CodeFirstMapper2<T> : IMapper2<T>
+      where T : CodeFirstMetadata<T>
    {
-      private static readonly TypeInfo thisType = typeof(CodeFirstMapper).GetTypeInfo();
-
+      private static readonly TypeInfo thisType = typeof(CodeFirstMapper2<T>).GetTypeInfo();
       private static PluralizationService pluralizeService = PluralizationService.CreateService(CultureInfo.GetCultureInfo("en-us"));
+      private ICodeFirstServiceProvider serviceProvider;
+
+      public CodeFirstMapper2(ICodeFirstServiceProvider serviceProvider)
+      {
+         this.serviceProvider = serviceProvider;
+      }
 
       public virtual IEnumerable<Type> SupportedTypes
       { get { return new[] { typeof(CodeFirstMetadata) }; } }
 
-      public virtual CodeFirstMetadata Map(TargetChildMapping mapping, IDom source)
+      public virtual T Map(TargetChildMapping mapping, IDom source)
       {
          var codeFirstType = mapping.GetType().GetTypeInfo().GenericTypeArguments.First();
-         var innerType = codeFirstType.GetTypeInfo().GenericTypeArguments.First();
-         return ReflectionHelpers.InvokeGenericMethod(thisType, "MapInternal",
-               innerType, this, mapping, source) as CodeFirstMetadata;
+         var ret = ReflectionHelpers.CreateInstanceOfType<T>();
+         AssignNamedProperties(source, ret, mapping);
+         var sourceWithAttributes = source as IHasAttributes;
+         if (sourceWithAttributes != null)
+         {
+            AssignAttributesToProperties(sourceWithAttributes, ret, mapping);
+         }
+         AssignChildren(source, ret, mapping);
+         return ret;
       }
 
-      private TLocal MapInternal<TLocal>(TargetChildMapping mapping, IDom source)
-          where TLocal : CodeFirstMetadata<TLocal>
+      public virtual IEnumerable<T> MapList(TargetChildMapping mapping, IEnumerable<IDom> sourceList)
       {
-         var ret = ReflectionHelpers.CreateInstanceOfType<TLocal>();
+         var ret = new List<T>();
+         foreach( var source in sourceList)
+         { ret.Add(Map(mapping, source)); }
+         return ret;
+      }
+
+      public virtual T MapFromInvocation(TargetChildMapping mapping, IDom source)
+      {
+         var codeFirstType = mapping.GetType().GetTypeInfo().GenericTypeArguments.First();
+         var ret = ReflectionHelpers.CreateInstanceOfType<T>();
          AssignNamedProperties(source, ret, mapping);
          var sourceWithAttributes = source as IHasAttributes;
          if (sourceWithAttributes != null)
@@ -89,12 +109,14 @@ namespace CodeFirst
             var sourceChildren = GetSourceChildren(source, childMap);
             if (sourceChildren != null)
             {
-               var newItems = ReflectionHelpers.InvokeGenericMethod(thisType, "CreateTargetChildren",
-                     childMap.UnderlyingTypInfo, this, sourceChildren, childMap);
-               newItems = ReflectionHelpers.InvokeGenericMethod(thisType, "AddFromConstructor",
-                    childMap.UnderlyingTypInfo, this, source, childMap, newItems);
+               var mapper = serviceProvider.GetMapper2(childMap.UnderlyingTypInfo);
+               //var newItems = mapper.MapList(childMap, sourceChildren);
+               //var newItems = ReflectionHelpers.InvokeGenericMethod(thisType, "CreateTargetChildren",
+               //      childMap.UnderlyingTypInfo, this, sourceChildren, childMap);
+               //newItems = ReflectionHelpers.InvokeGenericMethod(thisType, "AddFromConstructor",
+                //    childMap.UnderlyingTypInfo, this, source, childMap, newItems);
 
-               ReflectionHelpers.AssignPropertyValue(obj, childMap.TargetName, newItems);
+              // ReflectionHelpers.AssignPropertyValue(obj, childMap.TargetName, newItems);
             }
          }
       }
@@ -114,17 +136,18 @@ namespace CodeFirst
          throw new NotImplementedException();
       }
 
-      private IEnumerable<TLocal> CreateTargetChildren<TLocal>(IEnumerable<IDom> sourceChildren, TargetChildMapping mapping)
-         where TLocal : CodeFirstMetadata
-      {
-         var newItems = new List<TLocal>();
-         foreach (var sourceChild in sourceChildren)
-         {
-            var newChild = (TLocal)Map(mapping, sourceChild);
-            newItems.Add(newChild);
-         }
-         return newItems;
-      }
+      //private IEnumerable<TLocal> CreateTargetChildren<TLocal>(IEnumerable<IDom> sourceChildren, TargetChildMapping mapping)
+      //   where TLocal : CodeFirstMetadata
+      //{
+      //   var newItems = new List<TLocal>();
+      //   foreach (var sourceChild in sourceChildren)
+      //   {
+      //      var mapper = serviceProvider.GetMapper<TLocal>();
+      //      var newChild = mapper.Map(mapping, sourceChild);
+      //      newItems.Add((TLocal)newChild);
+      //   }
+      //   return newItems;
+      //}
 
       private IEnumerable<TLocal> AddFromConstructor<TLocal>(IDom source,
                   TargetChildMapping mapping, IEnumerable<TLocal> items)
@@ -138,15 +161,6 @@ namespace CodeFirst
             foreach (var statement in constructor.Statements)
             {
                AddFromInvocation(statement as IInvocationStatement, source as IClass, newItems);
-
-
-               // TODO: KAD: Start Here
-               ////var isLiteral = assignment.Expression.ExpressionType == ExpressionType.Literal;
-               //var isIdentifier = assignment.Left.ExpressionType == ExpressionType.Identifier;
-               //if (isLiteral && isIdentifier)
-               //{
-               //   AddSensibly(ret, assignment.Left.Expression, assignment.Expression.Expression);
-               //}
             }
          }
          return items.Union(newItems);
@@ -186,11 +200,8 @@ namespace CodeFirst
             var propInfo = newProperties.Where(x => x.Name == argName).FirstOrDefault();
             if (propInfo != null)
             {
-               object value = arg.ValueExpression ;
-               if (arg.ValueExpression is IOtherExpression )
-               { value = arg.ValueExpression.InitialExpressionString; }
-               else
-               { value = arg.ValueExpression; }
+               object value = arg.ValueExpression;
+               if (propInfo.PropertyType == typeof(string)) { value = arg.ValueExpression.InitialExpressionString; }
                propInfo.SetValue(newItem, value);
                usedProperties.Add(propInfo);
             }

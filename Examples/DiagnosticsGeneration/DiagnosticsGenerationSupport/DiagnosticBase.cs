@@ -1,7 +1,10 @@
 ﻿using Microsoft.CodeAnalysis;
+using Microsoft.CodeAnalysis.CSharp;
 using System;
+using System.Collections;
+using System.Collections.Generic;
 
-namespace CodeFirstAnalyzer
+namespace CodeFirstMetadataTest.Diagnostic
 {
    [DiagnosticAndCodeFix]
    public class DiagnosticAndCodeFixBase
@@ -10,13 +13,17 @@ namespace CodeFirstAnalyzer
       public string Description { get; set; }
       public string MessageFormat { get; set; }
       public string Category { get; set; }
-      protected static Diagnostic Report(Location location, params string[] messageArgs) { return null; }
-      protected static Diagnostic Report(SyntaxToken token, params string[] messageArgs) { return null; }
+      protected static Microsoft.CodeAnalysis.Diagnostic Report(Location location, params string[] messageArgs) { return null; }
+      protected static Microsoft.CodeAnalysis.Diagnostic Report(SyntaxToken token, params string[] messageArgs) { return null; }
 
-      public void AddAnalyzer<TSyntaxNode>(Func<TSyntaxNode, bool> condition, Func<TSyntaxNode, Location> getLocation,
-          params string[] messageArgs)
+      public IList<CodeFirstAnalyzer> Analyzers { get; set; }
+
+      public void AddAnalyzer<TSyntaxNode>(SyntaxKind syntaxKind, Func<TSyntaxNode, bool> condition, Func<TSyntaxNode, Location> getLocation,
+          string messageArg)
+         where TSyntaxNode : SyntaxNode 
       { }
       public void AddCodeFix<TSyntaxNode>(Func<TSyntaxNode, SyntaxNode> makeNewNode, bool skipFormatting = false, params string[] messageArgs)
+         where TSyntaxNode : SyntaxNode
       { }
       //protected void AddAnalyzer<T>(Func<T, bool> condition, Func<T, Location> location, string messageArg) { }
 

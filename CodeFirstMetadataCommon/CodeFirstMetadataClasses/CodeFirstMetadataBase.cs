@@ -103,7 +103,7 @@ namespace CodeFirst.Common
             return ret;
         }
 
-        public virtual bool ValidateAndUpdateCore()
+      protected virtual bool ValidateAndUpdateCore()
         { return true; }
 
     }

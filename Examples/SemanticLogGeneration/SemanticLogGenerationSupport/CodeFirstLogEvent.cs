@@ -12,7 +12,7 @@ namespace CodeFirstMetadataTest.SemanticLog
 
     public class CodeFirstLogEvent : CodeFirstLogEventBase
     {
-        public override bool ValidateAndUpdateCore()
+        protected override bool ValidateAndUpdateCore()
         {
             var isOk = base.ValidateAndUpdateCore();
             if (isOk)

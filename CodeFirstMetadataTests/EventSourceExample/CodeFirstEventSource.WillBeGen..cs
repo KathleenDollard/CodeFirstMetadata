@@ -13,7 +13,6 @@ namespace CodeFirstMetadataTest.SemanticLog
             this.AddDefiningAttribute(typeof(EventSourceAttribute));
         }
 
-        public virtual string Name { get; set; }
         public virtual string LocalizationResources { get; set; }
 
         public IEnumerable<CodeFirstEvent> Events { get; private set; }

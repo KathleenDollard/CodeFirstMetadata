@@ -24,7 +24,7 @@ namespace <#= Meta.Namespace #>
    // TODO: Consider implementing other interfaces that implement IDiagnosticAnalyzer instead of or in addition to ISymbolAnalyzer
 
    [DiagnosticAnalyzer(LanguageNames.CSharp)]
-   public class DiagnosticAnalyzer : ISyntaxNodeAnalyzer<SyntaxKind>
+   public class <#= Meta.Name #> : DiagnosticAnalyzer
    {
       public const string DiagnosticId = <#= Meta.Id #>;
       internal const string Description = <#= Meta.Description #>;
@@ -33,31 +33,29 @@ namespace <#= Meta.Namespace #>
 
       internal static DiagnosticDescriptor Rule = new DiagnosticDescriptor(DiagnosticId, Description, MessageFormat, Category, DiagnosticSeverity.Error, true);
 
-      public ImmutableArray<DiagnosticDescriptor> SupportedDiagnostics { get { return ImmutableArray.Create(Rule); } }
+      public override ImmutableArray<DiagnosticDescriptor> SupportedDiagnostics { get { return ImmutableArray.Create(Rule); } }
 
-      public ImmutableArray<SyntaxKind> SyntaxKindsOfInterest
+      public override void Initialize(AnalysisContext context)
       {
-         get
-         {
-            return ImmutableArray.Create(SyntaxKind.IfStatement, SyntaxKind.ElseClause);
-         }
+         context.RegisterSyntaxNodeAction(AnalyzeNodes, <#= String.Join(", ", Meta.Analyzers.Select(x=>x.SyntaxKind)) #>);
       }
 
-      public void AnalyzeNode(SyntaxNode node, 
-         SemanticModel semanticModel, 
-         Action<Diagnostic> addDiagnostic, 
-         AnalyzerOptions options, 
-         CancellationToken cancellationToken)
+      private void AnalyzeNodes(SyntaxNodeAnalysisContext context)
       {
       <# foreach(var analyzer in Meta.Analyzers) 
-      {#>
-      <# } #>
-      }
-
-      private void Report(Location location, string v, Action<Diagnostic> addDiagnostic)
       {
-         var diagnostic = Diagnostic.Create(Rule, location, v);
-         addDiagnostic(diagnostic);
+      #>
+
+         var <#= analyzer.VariableName #> = context.Node as  <#= analyzer.PropertyType.Name #>;
+         if (<#= analyzer.VariableName #> != null
+               && (<#= analyzer.ConditionString #>))
+         {
+            Location loc = <#= analyzer.GetLocationString #>;
+            Diagnostic diagnostic = Diagnostic.Create(Rule, loc, <#= analyzer.MessageArg #>);
+            context.ReportDiagnostic(diagnostic);
+         }
+
+      <# } #>
       }
    }
 }

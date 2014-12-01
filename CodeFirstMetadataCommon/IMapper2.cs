@@ -7,14 +7,15 @@ using System.Threading.Tasks;
 
 namespace CodeFirst.Common
 {
-   public interface IMapper
+   public interface IMapper2
    {
       IEnumerable<Type> SupportedTypes { get; }
-      CodeFirstMetadata Map(TargetChildMapping mapping, IDom source);
    }
 
-   public interface IMapper<out T> : IMapper 
+   public interface IMapper2<out T> : IMapper2
       where T : CodeFirstMetadata
    {
+      T Map(TargetChildMapping mapping, IDom source);
+      IEnumerable<T> MapList(TargetChildMapping mapping, IEnumerable<IDom> sourceList);
    }
 }

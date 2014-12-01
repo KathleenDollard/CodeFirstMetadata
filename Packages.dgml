@@ -1,148 +1,74 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
 <DirectedGraph GraphDirection="LeftToRight" xmlns="http://schemas.microsoft.com/vs/2009/dgml">
   <Nodes>
-    <Node Id="GenerationMetadata" Label="GenerationMetadata" Category="Project" />
-    <Node Id="Microsoft.CodeAnalysis.Common 1.0.0-beta1-20141031-01" Label="Microsoft.CodeAnalysis.Common 1.0.0-beta1-20141031-01" Category="Package" />
-    <Node Id="Microsoft.CodeAnalysis.CSharp 1.0.0-beta1-20141031-01" Label="Microsoft.CodeAnalysis.CSharp 1.0.0-beta1-20141031-01" Category="Package" />
-    <Node Id="System.Collections.Immutable 1.1.32-beta" Label="System.Collections.Immutable 1.1.32-beta" Category="Package" />
-    <Node Id="System.Reflection.Metadata 1.0.17-beta" Label="System.Reflection.Metadata 1.0.17-beta" Category="Package" />
-    <Node Id="CodeFirstAnalyzer" Label="CodeFirstAnalyzer" Category="Project" />
-    <Node Id="Microsoft.CodeAnalysis.Common 1.0.0-beta1-20141031-01" Label="Microsoft.CodeAnalysis.Common 1.0.0-beta1-20141031-01" Category="Package" />
-    <Node Id="Microsoft.CodeAnalysis.CSharp 1.0.0-beta1-20141031-01" Label="Microsoft.CodeAnalysis.CSharp 1.0.0-beta1-20141031-01" Category="Package" />
-    <Node Id="Microsoft.CodeAnalysis.CSharp.Workspaces 1.0.0-beta1-20141031-01" Label="Microsoft.CodeAnalysis.CSharp.Workspaces 1.0.0-beta1-20141031-01" Category="Package" />
-    <Node Id="Microsoft.CodeAnalysis.Workspaces.Common 1.0.0-beta1-20141031-01" Label="Microsoft.CodeAnalysis.Workspaces.Common 1.0.0-beta1-20141031-01" Category="Package" />
-    <Node Id="RoslynDom 1.0.16-alpha" Label="RoslynDom 1.0.16-alpha" Category="Package" />
-    <Node Id="System.Collections.Immutable 1.1.32-beta" Label="System.Collections.Immutable 1.1.32-beta" Category="Package" />
-    <Node Id="System.Reflection.Metadata 1.0.17-beta" Label="System.Reflection.Metadata 1.0.17-beta" Category="Package" />
-    <Node Id="Unity 3.5.1405-prerelease" Label="Unity 3.5.1405-prerelease" Category="Package" />
-    <Node Id="CodeFirstCSharp" Label="CodeFirstCSharp" Category="Project" />
-    <Node Id="Microsoft.CodeAnalysis.Common 1.0.0-beta1-20141031-01" Label="Microsoft.CodeAnalysis.Common 1.0.0-beta1-20141031-01" Category="Package" />
-    <Node Id="Microsoft.CodeAnalysis.CSharp 1.0.0-beta1-20141031-01" Label="Microsoft.CodeAnalysis.CSharp 1.0.0-beta1-20141031-01" Category="Package" />
-    <Node Id="Microsoft.CodeAnalysis.CSharp.Workspaces 1.0.0-beta1-20141031-01" Label="Microsoft.CodeAnalysis.CSharp.Workspaces 1.0.0-beta1-20141031-01" Category="Package" />
-    <Node Id="Microsoft.CodeAnalysis.Workspaces.Common 1.0.0-beta1-20141031-01" Label="Microsoft.CodeAnalysis.Workspaces.Common 1.0.0-beta1-20141031-01" Category="Package" />
-    <Node Id="RoslynDomCSharpFactories 1.0.15-alpha" Label="RoslynDomCSharpFactories 1.0.15-alpha" Category="Package" />
-    <Node Id="System.Collections.Immutable 1.1.32-beta" Label="System.Collections.Immutable 1.1.32-beta" Category="Package" />
-    <Node Id="System.Reflection.Metadata 1.0.17-beta" Label="System.Reflection.Metadata 1.0.17-beta" Category="Package" />
-    <Node Id="Unity 3.5.1405-prerelease" Label="Unity 3.5.1405-prerelease" Category="Package" />
-    <Node Id="CodeFirstT4Example" Label="CodeFirstT4Example" Category="Project" />
-    <Node Id="Microsoft.CodeAnalysis.Common 1.0.0-beta1-20141031-01" Label="Microsoft.CodeAnalysis.Common 1.0.0-beta1-20141031-01" Category="Package" />
-    <Node Id="Microsoft.CodeAnalysis.CSharp 1.0.0-beta1-20141031-01" Label="Microsoft.CodeAnalysis.CSharp 1.0.0-beta1-20141031-01" Category="Package" />
-    <Node Id="Microsoft.CodeAnalysis.CSharp.Workspaces 1.0.0-beta1-20141031-01" Label="Microsoft.CodeAnalysis.CSharp.Workspaces 1.0.0-beta1-20141031-01" Category="Package" />
-    <Node Id="Microsoft.CodeAnalysis.Workspaces.Common 1.0.0-beta1-20141031-01" Label="Microsoft.CodeAnalysis.Workspaces.Common 1.0.0-beta1-20141031-01" Category="Package" />
-    <Node Id="RoslynDom 1.0.16-alpha" Label="RoslynDom 1.0.16-alpha" Category="Package" />
-    <Node Id="System.Collections.Immutable 1.1.32-beta" Label="System.Collections.Immutable 1.1.32-beta" Category="Package" />
-    <Node Id="System.Reflection.Metadata 1.0.17-beta" Label="System.Reflection.Metadata 1.0.17-beta" Category="Package" />
-    <Node Id="Unity 3.5.1405-prerelease" Label="Unity 3.5.1405-prerelease" Category="Package" />
-    <Node Id="CodeFirstMetadataTests" Label="CodeFirstMetadataTests" Category="Project" />
-    <Node Id="Microsoft.CodeAnalysis.Common 1.0.0-beta1-20141031-01" Label="Microsoft.CodeAnalysis.Common 1.0.0-beta1-20141031-01" Category="Package" />
-    <Node Id="Microsoft.CodeAnalysis.CSharp 1.0.0-beta1-20141031-01" Label="Microsoft.CodeAnalysis.CSharp 1.0.0-beta1-20141031-01" Category="Package" />
-    <Node Id="Microsoft.CodeAnalysis.CSharp.Workspaces 1.0.0-beta1-20141031-01" Label="Microsoft.CodeAnalysis.CSharp.Workspaces 1.0.0-beta1-20141031-01" Category="Package" />
-    <Node Id="Microsoft.CodeAnalysis.Workspaces.Common 1.0.0-beta1-20141031-01" Label="Microsoft.CodeAnalysis.Workspaces.Common 1.0.0-beta1-20141031-01" Category="Package" />
-    <Node Id="RoslynDom 1.0.16-alpha" Label="RoslynDom 1.0.16-alpha" Category="Package" />
-    <Node Id="RoslynDomCSharpFactories 1.0.15-alpha" Label="RoslynDomCSharpFactories 1.0.15-alpha" Category="Package" />
-    <Node Id="System.Collections.Immutable 1.1.32-beta" Label="System.Collections.Immutable 1.1.32-beta" Category="Package" />
-    <Node Id="System.Reflection.Metadata 1.0.17-beta" Label="System.Reflection.Metadata 1.0.17-beta" Category="Package" />
-    <Node Id="Unity 3.5.1405-prerelease" Label="Unity 3.5.1405-prerelease" Category="Package" />
-    <Node Id="CodeFirstMetadataCommon" Label="CodeFirstMetadataCommon" Category="Project" />
-    <Node Id="Microsoft.CodeAnalysis.Common 1.0.0-beta1-20141031-01" Label="Microsoft.CodeAnalysis.Common 1.0.0-beta1-20141031-01" Category="Package" />
-    <Node Id="Microsoft.CodeAnalysis.CSharp 1.0.0-beta1-20141031-01" Label="Microsoft.CodeAnalysis.CSharp 1.0.0-beta1-20141031-01" Category="Package" />
-    <Node Id="Microsoft.CodeAnalysis.CSharp.Workspaces 1.0.0-beta1-20141031-01" Label="Microsoft.CodeAnalysis.CSharp.Workspaces 1.0.0-beta1-20141031-01" Category="Package" />
-    <Node Id="Microsoft.CodeAnalysis.Workspaces.Common 1.0.0-beta1-20141031-01" Label="Microsoft.CodeAnalysis.Workspaces.Common 1.0.0-beta1-20141031-01" Category="Package" />
-    <Node Id="RoslynDom 1.0.16-alpha" Label="RoslynDom 1.0.16-alpha" Category="Package" />
-    <Node Id="System.Collections.Immutable 1.1.32-beta" Label="System.Collections.Immutable 1.1.32-beta" Category="Package" />
-    <Node Id="System.Reflection.Metadata 1.0.17-beta" Label="System.Reflection.Metadata 1.0.17-beta" Category="Package" />
-    <Node Id="Unity 3.5.1405-prerelease" Label="Unity 3.5.1405-prerelease" Category="Package" />
-    <Node Id="CodeFirstMetadata" Label="CodeFirstMetadata" Category="Project" />
-    <Node Id="Microsoft.CodeAnalysis.Common 1.0.0-beta1-20141031-01" Label="Microsoft.CodeAnalysis.Common 1.0.0-beta1-20141031-01" Category="Package" />
-    <Node Id="Microsoft.CodeAnalysis.CSharp 1.0.0-beta1-20141031-01" Label="Microsoft.CodeAnalysis.CSharp 1.0.0-beta1-20141031-01" Category="Package" />
-    <Node Id="Microsoft.CodeAnalysis.CSharp.Workspaces 1.0.0-beta1-20141031-01" Label="Microsoft.CodeAnalysis.CSharp.Workspaces 1.0.0-beta1-20141031-01" Category="Package" />
-    <Node Id="Microsoft.CodeAnalysis.Workspaces.Common 1.0.0-beta1-20141031-01" Label="Microsoft.CodeAnalysis.Workspaces.Common 1.0.0-beta1-20141031-01" Category="Package" />
-    <Node Id="RoslynDom 1.0.16-alpha" Label="RoslynDom 1.0.16-alpha" Category="Package" />
-    <Node Id="System.Collections.Immutable 1.1.32-beta" Label="System.Collections.Immutable 1.1.32-beta" Category="Package" />
-    <Node Id="System.Reflection.Metadata 1.0.17-beta" Label="System.Reflection.Metadata 1.0.17-beta" Category="Package" />
-    <Node Id="Unity 3.5.1405-prerelease" Label="Unity 3.5.1405-prerelease" Category="Package" />
+    <Node Id="CodeFirstCSharp" Category="Project" Bounds="208.175004170736,23.158050869315,115.153333333333,27.29" Label="CodeFirstCSharp" UseManualLocation="True" />
+    <Node Id="CodeFirstMetadata" Category="Project" Bounds="733.96332438151,58.4965720598856,128.846666666667,27.29" Label="CodeFirstMetadata" />
+    <Node Id="CodeFirstMetadataCommon" Category="Project" Bounds="806.491822357178,132.619613972378,181.88,27.29" Label="CodeFirstMetadataCommon" UseManualLocation="True" />
+    <Node Id="CodeFirstMetadataTests" Category="Project" Bounds="-8.19666821797689,19.158050869315,157.896666666667,27.29" Label="CodeFirstMetadataTests" UseManualLocation="True" />
+    <Node Id="Examples\CodeFirstT4Example" Category="Project" Bounds="380.838360392253,9.32951397237778,135.826666666667,27.29" Label="CodeFirstT4Example" />
+    <Node Id="Examples\DiagnosticsGeneration\DiagnosticsGenerationMetadata" Category="Project" Bounds="1182.53831461589,3.03997662658691,204.426666666667,27.29" Label="DiagnosticsGenerationMetadata" UseManualLocation="True" />
+    <Node Id="Examples\DiagnosticsGeneration\DiagnosticsGenerationSupport" Category="Project" Bounds="1110.88331461589,62.3300766265869,195.736666666667,27.29" Label="DiagnosticsGenerationSupport" />
+    <Node Id="Examples\DiagnosticsGeneration\DiagnosticsGenerationTemplates" Category="Project" Bounds="1094.37182235718,149.619613972378,208.58,27.29" Label="DiagnosticsGenerationTemplates" UseManualLocation="True" />
+    <Node Id="Examples\DomainGeneration\DomainGenerationTemplates" Category="Project" Bounds="1346.98825358073,-55.2100481689453,187.526666666667,27.29" Label="DomainGenerationTemplates" UseManualLocation="True" />
+    <Node Id="Microsoft.CodeAnalysis.CSharp 1.0.0-beta1-20141031-01" Category="Package" Bounds="553.869981282552,-232.252347341919,345.763333333333,27.29" Label="Microsoft.CodeAnalysis.CSharp 1.0.0-beta1-20141031-01" UseManualLocation="True" />
+    <Node Id="Microsoft.CodeAnalysis.CSharp.Workspaces 1.0.0-beta1-20141031-01" Category="Package" Bounds="-1.9583333333334,-205.935059704687,417.42,27.29" Label="Microsoft.CodeAnalysis.CSharp.Workspaces 1.0.0-beta1-20141031-01" UseManualLocation="True" />
+    <Node Id="Microsoft.CodeAnalysis.Common 1.0.0-beta1-20141031-01" Category="Package" Bounds="488.898314615885,-174.962247341919,357.706666666667,27.29" Label="Microsoft.CodeAnalysis.Common 1.0.0-beta1-20141031-01" UseManualLocation="True" />
+    <Node Id="Microsoft.CodeAnalysis.Workspaces.Common 1.0.0-beta1-20141031-01" Category="Package" Bounds="178.07001180013,-117.672147341919,429.363333333333,27.29" Label="Microsoft.CodeAnalysis.Workspaces.Common 1.0.0-beta1-20141031-01" UseManualLocation="True" />
+    <Node Id="Microsoft.Composition 1.0.27" Category="Package" Bounds="553.781678466797,1.20647205988566,187.94,27.29" Label="Microsoft.Composition 1.0.27" UseManualLocation="True" />
+    <Node Id="RoslynDom 1.0.22-alpha" Category="Package" Bounds="791.031666666666,-74.4200000000001,159.44,27.29" Label="RoslynDom 1.0.22-alpha" UseManualLocation="True" />
+    <Node Id="RoslynDomCSharpFactories 1.0.22-alpha" Category="Package" Bounds="8.9999946339925,-60.3820473419189,251.503333333333,27.29" Label="RoslynDomCSharpFactories 1.0.22-alpha" UseManualLocation="True" />
+    <Node Id="System.Collections.Immutable 1.1.32-beta" Category="Package" Bounds="1074.57478770032,-226.876502410202,259.286666666667,27.2900000000001" Label="System.Collections.Immutable 1.1.32-beta" UseManualLocation="True" />
+    <Node Id="System.Reflection.Metadata 1.0.17-beta" Category="Package" Bounds="1144.46845380342,-168.111133350115,246.56,27.29" Label="System.Reflection.Metadata 1.0.17-beta" UseManualLocation="True" />
+    <Node Id="Unity 3.5.1405-prerelease" Category="Package" Bounds="473.883329874674,-56.0836279401143,165.736666666667,27.29" Label="Unity 3.5.1405-prerelease" UseManualLocation="True" />
   </Nodes>
   <Links>
-    <Link Source="Microsoft.CodeAnalysis.Common 1.0.0-beta1-20141031-01" Target="System.Collections.Immutable 1.1.32-beta" Category="Package Dependency" />
-    <Link Source="Microsoft.CodeAnalysis.Common 1.0.0-beta1-20141031-01" Target="System.Reflection.Metadata 1.0.17-beta" Category="Package Dependency" />
-    <Link Source="Microsoft.CodeAnalysis.CSharp 1.0.0-beta1-20141031-01" Target="Microsoft.CodeAnalysis.Common 1.0.0-beta1-20141031-01" Category="Package Dependency" />
-    <Link Source="System.Reflection.Metadata 1.0.17-beta" Target="System.Collections.Immutable 1.1.32-beta" Category="Package Dependency" />
-    <Link Source="GenerationMetadata" Target="Microsoft.CodeAnalysis.CSharp 1.0.0-beta1-20141031-01" Category="Installed Package" />
-    <Link Source="Microsoft.CodeAnalysis.Common 1.0.0-beta1-20141031-01" Target="System.Collections.Immutable 1.1.32-beta" Category="Package Dependency" />
-    <Link Source="Microsoft.CodeAnalysis.Common 1.0.0-beta1-20141031-01" Target="System.Reflection.Metadata 1.0.17-beta" Category="Package Dependency" />
-    <Link Source="Microsoft.CodeAnalysis.CSharp 1.0.0-beta1-20141031-01" Target="Microsoft.CodeAnalysis.Common 1.0.0-beta1-20141031-01" Category="Package Dependency" />
-    <Link Source="Microsoft.CodeAnalysis.CSharp.Workspaces 1.0.0-beta1-20141031-01" Target="Microsoft.CodeAnalysis.CSharp 1.0.0-beta1-20141031-01" Category="Package Dependency" />
-    <Link Source="Microsoft.CodeAnalysis.CSharp.Workspaces 1.0.0-beta1-20141031-01" Target="Microsoft.CodeAnalysis.Workspaces.Common 1.0.0-beta1-20141031-01" Category="Package Dependency" />
-    <Link Source="Microsoft.CodeAnalysis.Workspaces.Common 1.0.0-beta1-20141031-01" Target="Microsoft.CodeAnalysis.Common 1.0.0-beta1-20141031-01" Category="Package Dependency" />
-    <Link Source="RoslynDom 1.0.16-alpha" Target="Microsoft.CodeAnalysis.CSharp.Workspaces 1.0.0-beta1-20141031-01" Category="Package Dependency" />
-    <Link Source="RoslynDom 1.0.16-alpha" Target="Microsoft.CodeAnalysis.Workspaces.Common 1.0.0-beta1-20141031-01" Category="Package Dependency" />
-    <Link Source="RoslynDom 1.0.16-alpha" Target="Unity 3.5.1405-prerelease" Category="Package Dependency" />
-    <Link Source="System.Reflection.Metadata 1.0.17-beta" Target="System.Collections.Immutable 1.1.32-beta" Category="Package Dependency" />
-    <Link Source="CodeFirstAnalyzer" Target="RoslynDom 1.0.16-alpha" Category="Installed Package" />
-    <Link Source="Microsoft.CodeAnalysis.Common 1.0.0-beta1-20141031-01" Target="System.Collections.Immutable 1.1.32-beta" Category="Package Dependency" />
-    <Link Source="Microsoft.CodeAnalysis.Common 1.0.0-beta1-20141031-01" Target="System.Reflection.Metadata 1.0.17-beta" Category="Package Dependency" />
-    <Link Source="Microsoft.CodeAnalysis.CSharp 1.0.0-beta1-20141031-01" Target="Microsoft.CodeAnalysis.Common 1.0.0-beta1-20141031-01" Category="Package Dependency" />
-    <Link Source="Microsoft.CodeAnalysis.CSharp.Workspaces 1.0.0-beta1-20141031-01" Target="Microsoft.CodeAnalysis.CSharp 1.0.0-beta1-20141031-01" Category="Package Dependency" />
-    <Link Source="Microsoft.CodeAnalysis.CSharp.Workspaces 1.0.0-beta1-20141031-01" Target="Microsoft.CodeAnalysis.Workspaces.Common 1.0.0-beta1-20141031-01" Category="Package Dependency" />
-    <Link Source="Microsoft.CodeAnalysis.Workspaces.Common 1.0.0-beta1-20141031-01" Target="Microsoft.CodeAnalysis.Common 1.0.0-beta1-20141031-01" Category="Package Dependency" />
-    <Link Source="RoslynDomCSharpFactories 1.0.15-alpha" Target="Microsoft.CodeAnalysis.CSharp.Workspaces 1.0.0-beta1-20141031-01" Category="Package Dependency" />
-    <Link Source="RoslynDomCSharpFactories 1.0.15-alpha" Target="Microsoft.CodeAnalysis.Workspaces.Common 1.0.0-beta1-20141031-01" Category="Package Dependency" />
-    <Link Source="RoslynDomCSharpFactories 1.0.15-alpha" Target="Unity 3.5.1405-prerelease" Category="Package Dependency" />
-    <Link Source="System.Reflection.Metadata 1.0.17-beta" Target="System.Collections.Immutable 1.1.32-beta" Category="Package Dependency" />
-    <Link Source="CodeFirstCSharp" Target="RoslynDomCSharpFactories 1.0.15-alpha" Category="Installed Package" />
-    <Link Source="Microsoft.CodeAnalysis.Common 1.0.0-beta1-20141031-01" Target="System.Collections.Immutable 1.1.32-beta" Category="Package Dependency" />
-    <Link Source="Microsoft.CodeAnalysis.Common 1.0.0-beta1-20141031-01" Target="System.Reflection.Metadata 1.0.17-beta" Category="Package Dependency" />
-    <Link Source="Microsoft.CodeAnalysis.CSharp 1.0.0-beta1-20141031-01" Target="Microsoft.CodeAnalysis.Common 1.0.0-beta1-20141031-01" Category="Package Dependency" />
-    <Link Source="Microsoft.CodeAnalysis.CSharp.Workspaces 1.0.0-beta1-20141031-01" Target="Microsoft.CodeAnalysis.CSharp 1.0.0-beta1-20141031-01" Category="Package Dependency" />
-    <Link Source="Microsoft.CodeAnalysis.CSharp.Workspaces 1.0.0-beta1-20141031-01" Target="Microsoft.CodeAnalysis.Workspaces.Common 1.0.0-beta1-20141031-01" Category="Package Dependency" />
-    <Link Source="Microsoft.CodeAnalysis.Workspaces.Common 1.0.0-beta1-20141031-01" Target="Microsoft.CodeAnalysis.Common 1.0.0-beta1-20141031-01" Category="Package Dependency" />
-    <Link Source="RoslynDom 1.0.16-alpha" Target="Microsoft.CodeAnalysis.CSharp.Workspaces 1.0.0-beta1-20141031-01" Category="Package Dependency" />
-    <Link Source="RoslynDom 1.0.16-alpha" Target="Microsoft.CodeAnalysis.Workspaces.Common 1.0.0-beta1-20141031-01" Category="Package Dependency" />
-    <Link Source="RoslynDom 1.0.16-alpha" Target="Unity 3.5.1405-prerelease" Category="Package Dependency" />
-    <Link Source="System.Reflection.Metadata 1.0.17-beta" Target="System.Collections.Immutable 1.1.32-beta" Category="Package Dependency" />
-    <Link Source="CodeFirstT4Example" Target="RoslynDom 1.0.16-alpha" Category="Installed Package" />
-    <Link Source="Microsoft.CodeAnalysis.Common 1.0.0-beta1-20141031-01" Target="System.Collections.Immutable 1.1.32-beta" Category="Package Dependency" />
-    <Link Source="Microsoft.CodeAnalysis.Common 1.0.0-beta1-20141031-01" Target="System.Reflection.Metadata 1.0.17-beta" Category="Package Dependency" />
-    <Link Source="Microsoft.CodeAnalysis.CSharp 1.0.0-beta1-20141031-01" Target="Microsoft.CodeAnalysis.Common 1.0.0-beta1-20141031-01" Category="Package Dependency" />
-    <Link Source="Microsoft.CodeAnalysis.CSharp.Workspaces 1.0.0-beta1-20141031-01" Target="Microsoft.CodeAnalysis.CSharp 1.0.0-beta1-20141031-01" Category="Package Dependency" />
-    <Link Source="Microsoft.CodeAnalysis.CSharp.Workspaces 1.0.0-beta1-20141031-01" Target="Microsoft.CodeAnalysis.Workspaces.Common 1.0.0-beta1-20141031-01" Category="Package Dependency" />
-    <Link Source="Microsoft.CodeAnalysis.Workspaces.Common 1.0.0-beta1-20141031-01" Target="Microsoft.CodeAnalysis.Common 1.0.0-beta1-20141031-01" Category="Package Dependency" />
-    <Link Source="RoslynDom 1.0.16-alpha" Target="Microsoft.CodeAnalysis.CSharp.Workspaces 1.0.0-beta1-20141031-01" Category="Package Dependency" />
-    <Link Source="RoslynDom 1.0.16-alpha" Target="Microsoft.CodeAnalysis.Workspaces.Common 1.0.0-beta1-20141031-01" Category="Package Dependency" />
-    <Link Source="RoslynDom 1.0.16-alpha" Target="Unity 3.5.1405-prerelease" Category="Package Dependency" />
-    <Link Source="RoslynDomCSharpFactories 1.0.15-alpha" Target="Microsoft.CodeAnalysis.CSharp.Workspaces 1.0.0-beta1-20141031-01" Category="Package Dependency" />
-    <Link Source="RoslynDomCSharpFactories 1.0.15-alpha" Target="Microsoft.CodeAnalysis.Workspaces.Common 1.0.0-beta1-20141031-01" Category="Package Dependency" />
-    <Link Source="RoslynDomCSharpFactories 1.0.15-alpha" Target="Unity 3.5.1405-prerelease" Category="Package Dependency" />
-    <Link Source="System.Reflection.Metadata 1.0.17-beta" Target="System.Collections.Immutable 1.1.32-beta" Category="Package Dependency" />
-    <Link Source="CodeFirstMetadataTests" Target="RoslynDom 1.0.16-alpha" Category="Installed Package" />
-    <Link Source="CodeFirstMetadataTests" Target="RoslynDomCSharpFactories 1.0.15-alpha" Category="Installed Package" />
-    <Link Source="Microsoft.CodeAnalysis.Common 1.0.0-beta1-20141031-01" Target="System.Collections.Immutable 1.1.32-beta" Category="Package Dependency" />
-    <Link Source="Microsoft.CodeAnalysis.Common 1.0.0-beta1-20141031-01" Target="System.Reflection.Metadata 1.0.17-beta" Category="Package Dependency" />
-    <Link Source="Microsoft.CodeAnalysis.CSharp 1.0.0-beta1-20141031-01" Target="Microsoft.CodeAnalysis.Common 1.0.0-beta1-20141031-01" Category="Package Dependency" />
-    <Link Source="Microsoft.CodeAnalysis.CSharp.Workspaces 1.0.0-beta1-20141031-01" Target="Microsoft.CodeAnalysis.CSharp 1.0.0-beta1-20141031-01" Category="Package Dependency" />
-    <Link Source="Microsoft.CodeAnalysis.CSharp.Workspaces 1.0.0-beta1-20141031-01" Target="Microsoft.CodeAnalysis.Workspaces.Common 1.0.0-beta1-20141031-01" Category="Package Dependency" />
-    <Link Source="Microsoft.CodeAnalysis.Workspaces.Common 1.0.0-beta1-20141031-01" Target="Microsoft.CodeAnalysis.Common 1.0.0-beta1-20141031-01" Category="Package Dependency" />
-    <Link Source="RoslynDom 1.0.16-alpha" Target="Microsoft.CodeAnalysis.CSharp.Workspaces 1.0.0-beta1-20141031-01" Category="Package Dependency" />
-    <Link Source="RoslynDom 1.0.16-alpha" Target="Microsoft.CodeAnalysis.Workspaces.Common 1.0.0-beta1-20141031-01" Category="Package Dependency" />
-    <Link Source="RoslynDom 1.0.16-alpha" Target="Unity 3.5.1405-prerelease" Category="Package Dependency" />
-    <Link Source="System.Reflection.Metadata 1.0.17-beta" Target="System.Collections.Immutable 1.1.32-beta" Category="Package Dependency" />
-    <Link Source="CodeFirstMetadataCommon" Target="RoslynDom 1.0.16-alpha" Category="Installed Package" />
-    <Link Source="Microsoft.CodeAnalysis.Common 1.0.0-beta1-20141031-01" Target="System.Collections.Immutable 1.1.32-beta" Category="Package Dependency" />
-    <Link Source="Microsoft.CodeAnalysis.Common 1.0.0-beta1-20141031-01" Target="System.Reflection.Metadata 1.0.17-beta" Category="Package Dependency" />
-    <Link Source="Microsoft.CodeAnalysis.CSharp 1.0.0-beta1-20141031-01" Target="Microsoft.CodeAnalysis.Common 1.0.0-beta1-20141031-01" Category="Package Dependency" />
-    <Link Source="Microsoft.CodeAnalysis.CSharp.Workspaces 1.0.0-beta1-20141031-01" Target="Microsoft.CodeAnalysis.CSharp 1.0.0-beta1-20141031-01" Category="Package Dependency" />
-    <Link Source="Microsoft.CodeAnalysis.CSharp.Workspaces 1.0.0-beta1-20141031-01" Target="Microsoft.CodeAnalysis.Workspaces.Common 1.0.0-beta1-20141031-01" Category="Package Dependency" />
-    <Link Source="Microsoft.CodeAnalysis.Workspaces.Common 1.0.0-beta1-20141031-01" Target="Microsoft.CodeAnalysis.Common 1.0.0-beta1-20141031-01" Category="Package Dependency" />
-    <Link Source="RoslynDom 1.0.16-alpha" Target="Microsoft.CodeAnalysis.CSharp.Workspaces 1.0.0-beta1-20141031-01" Category="Package Dependency" />
-    <Link Source="RoslynDom 1.0.16-alpha" Target="Microsoft.CodeAnalysis.Workspaces.Common 1.0.0-beta1-20141031-01" Category="Package Dependency" />
-    <Link Source="RoslynDom 1.0.16-alpha" Target="Unity 3.5.1405-prerelease" Category="Package Dependency" />
-    <Link Source="System.Reflection.Metadata 1.0.17-beta" Target="System.Collections.Immutable 1.1.32-beta" Category="Package Dependency" />
-    <Link Source="CodeFirstMetadata" Target="RoslynDom 1.0.16-alpha" Category="Installed Package" />
+    <Link Source="CodeFirstCSharp" Target="RoslynDomCSharpFactories 1.0.22-alpha" Category="Installed Package" Bounds="163.736833427651,-28.2528929519742,80.6179846088239,51.4109439468473" />
+    <Link Source="CodeFirstMetadata" Target="RoslynDom 1.0.22-alpha" Category="Installed Package" Bounds="805.815533612196,-39.22556683599,53.2037851894959,97.7221397882605" />
+    <Link Source="CodeFirstMetadataCommon" Target="RoslynDom 1.0.22-alpha" Category="Installed Package" Bounds="873.660313390512,-38.203807469349,22.0131483258643,170.823417759876" />
+    <Link Source="CodeFirstMetadataTests" Target="RoslynDomCSharpFactories 1.0.22-alpha" Category="Installed Package" Bounds="81.7307802145697,-26.0800755059194,36.3997538195242,45.2381265007925" />
+    <Link Source="Examples\CodeFirstT4Example" Target="Microsoft.Composition 1.0.27" Category="Installed Package" Bounds="516.665027058919,19.0543306686717,28.1241400230275,1.14800797319983" />
+    <Link Source="Examples\CodeFirstT4Example" Target="RoslynDomCSharpFactories 1.0.22-alpha" Category="Installed Package" Bounds="204.998568430168,-31.1414370791126,182.292292992415,40.4709510866809" />
+    <Link Source="Examples\DiagnosticsGeneration\DiagnosticsGenerationMetadata" Target="Microsoft.CodeAnalysis.CSharp 1.0.0-beta1-20141031-01" Category="Installed Package" Bounds="767.403896051765,-201.465478436401,484.988387501594,204.505455252579" />
+    <Link Source="Examples\DiagnosticsGeneration\DiagnosticsGenerationSupport" Target="Microsoft.CodeAnalysis.CSharp 1.0.0-beta1-20141031-01" Category="Installed Package" Bounds="756.757139259356,-200.268983820958,429.668363405843,262.599062403721" />
+    <Link Source="Examples\DiagnosticsGeneration\DiagnosticsGenerationSupport" Target="RoslynDom 1.0.22-alpha" Category="Installed Package" Bounds="912.820538643121,-43.7545235223024,262.205280593229,106.084600148889" />
+    <Link Source="Examples\DiagnosticsGeneration\DiagnosticsGenerationTemplates" Target="RoslynDom 1.0.22-alpha" Category="Installed Package" Bounds="898.153993850016,-42.0527823386523,280.536637816243,191.67239262918" />
+    <Link Source="Examples\DomainGeneration\DomainGenerationTemplates" Target="Microsoft.CodeAnalysis.CSharp 1.0.0-beta1-20141031-01" Category="Installed Package" Bounds="790.516497981002,-202.796314060493,595.205701536533,147.58626584272" />
+    <Link Source="Examples\DomainGeneration\DomainGenerationTemplates" Target="RoslynDom 1.0.22-alpha" Category="Installed Package" Bounds="959.466571704706,-57.7851575495301,387.521681876023,13.0601283019815" />
+    <Link Source="Microsoft.CodeAnalysis.CSharp 1.0.0-beta1-20141031-01" Target="Microsoft.CodeAnalysis.Common 1.0.0-beta1-20141031-01" Category="Package Dependency" Bounds="688.260738450767,-204.962347341919,24.4386561422874,23.730390750123" />
+    <Link Source="Microsoft.CodeAnalysis.CSharp.Workspaces 1.0.0-beta1-20141031-01" Target="Microsoft.CodeAnalysis.CSharp 1.0.0-beta1-20141031-01" Category="Package Dependency" Bounds="415.461668274403,-209.402865523766,129.419817169706,6.54996035434741" />
+    <Link Source="Microsoft.CodeAnalysis.CSharp.Workspaces 1.0.0-beta1-20141031-01" Target="Microsoft.CodeAnalysis.Workspaces.Common 1.0.0-beta1-20141031-01" Category="Package Dependency" Bounds="235.506331200567,-178.645054321289,120.359711779575,57.1145024878006" />
+    <Link Source="Microsoft.CodeAnalysis.Common 1.0.0-beta1-20141031-01" Target="System.Collections.Immutable 1.1.32-beta" Category="Package Dependency" Bounds="808.755055702147,-199.879919617959,257.491880116695,24.91767227604" />
+    <Link Source="Microsoft.CodeAnalysis.Common 1.0.0-beta1-20141031-01" Target="System.Reflection.Metadata 1.0.17-beta" Category="Package Dependency" Bounds="846.604981282552,-159.274995719986,288.864140544493,3.29841914909017" />
+    <Link Source="Microsoft.CodeAnalysis.Workspaces.Common 1.0.0-beta1-20141031-01" Target="Microsoft.CodeAnalysis.Common 1.0.0-beta1-20141031-01" Category="Package Dependency" Bounds="458.249462265178,-145.836706966788,135.193568126516,28.1645596248692" />
+    <Link Source="RoslynDom 1.0.22-alpha" Target="Microsoft.CodeAnalysis.Common 1.0.0-beta1-20141031-01" Category="Package Dependency" Bounds="703.366620697414,-143.677792891594,139.835092677218,69.2577951804119" />
+    <Link Source="RoslynDom 1.0.22-alpha" Target="Microsoft.CodeAnalysis.Workspaces.Common 1.0.0-beta1-20141031-01" Category="Package Dependency" Bounds="552.512412744305,-89.5710917087954,238.519265722492,21.5825761802003" />
+    <Link Source="RoslynDom 1.0.22-alpha" Target="System.Reflection.Metadata 1.0.17-beta" Category="Package Dependency" Bounds="928.569550841008,-138.753923412172,272.601737303909,64.3339257009905" />
+    <Link Source="RoslynDom 1.0.22-alpha" Target="Unity 3.5.1405-prerelease" Category="Package Dependency" Bounds="648.604690218014,-56.1196622745106,142.426988248783,8.3171776910799" />
+    <Link Source="RoslynDomCSharpFactories 1.0.22-alpha" Target="Microsoft.CodeAnalysis.CSharp.Workspaces 1.0.0-beta1-20141031-01" Category="Package Dependency" Bounds="141.501366963806,-170.578068916736,54.5101377672159,110.19602362865" />
+    <Link Source="RoslynDomCSharpFactories 1.0.22-alpha" Target="Microsoft.CodeAnalysis.Workspaces.Common 1.0.0-beta1-20141031-01" Category="Package Dependency" Bounds="196.200497176302,-88.4311781034051,126.316349254115,28.0491328153192" />
+    <Link Source="RoslynDomCSharpFactories 1.0.22-alpha" Target="RoslynDom 1.0.22-alpha" Category="Package Dependency" Bounds="260.503326416016,-60.3978080749512,521.528411865234,7.16476058959961" />
+    <Link Source="RoslynDomCSharpFactories 1.0.22-alpha" Target="System.Reflection.Metadata 1.0.17-beta" Category="Package Dependency" Bounds="260.214465139514,-141.910702149602,875.487430290122,83.2442386809796" />
+    <Link Source="RoslynDomCSharpFactories 1.0.22-alpha" Target="Unity 3.5.1405-prerelease" Category="Package Dependency" Bounds="260.503327013652,-45.4561610656411,204.380469704155,2.081783295277" />
+    <Link Source="System.Reflection.Metadata 1.0.17-beta" Target="System.Collections.Immutable 1.1.32-beta" Category="Package Dependency" Bounds="1225.57646405604,-193.475127706502,27.4206550171298,25.3639945888266" />
   </Links>
   <Categories>
-    <Category Id="Project" />
+    <Category Id="Installed Package" />
     <Category Id="Package" />
+    <Category Id="Package Dependency" />
+    <Category Id="Project" />
   </Categories>
+  <Properties>
+    <Property Id="Bounds" DataType="System.Windows.Rect" />
+    <Property Id="Expression" DataType="System.String" />
+    <Property Id="GraphDirection" DataType="Microsoft.VisualStudio.Diagrams.Layout.LayoutOrientation" />
+    <Property Id="GroupLabel" DataType="System.String" />
+    <Property Id="IsEnabled" DataType="System.Boolean" />
+    <Property Id="Label" Label="Label" Description="Displayable label of an Annotatable object" DataType="System.String" />
+    <Property Id="TargetType" DataType="System.Type" />
+    <Property Id="UseManualLocation" DataType="System.Boolean" />
+    <Property Id="Value" DataType="System.String" />
+    <Property Id="ValueLabel" DataType="System.String" />
+  </Properties>
   <Styles>
     <Style TargetType="Node" GroupLabel="Project" ValueLabel="True">
       <Condition Expression="HasCategory('Project')" />

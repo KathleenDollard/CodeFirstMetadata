@@ -1,6 +1,6 @@
 ﻿using System;
 
-namespace CodeFirstAnalyzer
+namespace CodeFirstMetadataTest.Diagnostic
 {
    internal class DiagnosticAndCodeFixAttribute : Attribute
    {

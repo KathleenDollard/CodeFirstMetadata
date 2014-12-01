@@ -58,7 +58,9 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="OtherSyntaxesTried.cs" />
     <Compile Include="IfElseBraceDiagnosticCodeFirst.cs" />
+    <Compile Include="IfElseBraceDiagnosticCodeFirst.g.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>
@@ -69,6 +71,10 @@
     <ProjectReference Include="..\DiagnosticsGenerationSupport\DiagnosticsGenerationSupport.csproj">
       <Project>{5e44ba1e-1c02-49a8-901c-855411121c92}</Project>
       <Name>DiagnosticsGenerationSupport</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\DiagnosticsGenerationTemplates\DiagnosticsGenerationTemplates.csproj">
+      <Project>{d863cb41-c193-4234-8f55-74024c11116a}</Project>
+      <Name>DiagnosticsGenerationTemplates</Name>
     </ProjectReference>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
