@@ -9,9 +9,10 @@ using System.Xml.Linq;
 
 namespace CodeFirst.Common
 {
-      public class CodeFirstMetadataParameter<T> : CodeFirstMetadata<T> where T : CodeFirstMetadata<T>
+      public class CodeFirstMetadataParameter<T> : CodeFirstMetadata<T>, ICodeFirstMetadataParameter
+            where T : CodeFirstMetadata<T>
     {
-        public string TypeName { get; set; }
+      public string TypeName { get; set; }
         public string Name { get; set; }
     }
 

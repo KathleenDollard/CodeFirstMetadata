@@ -104,6 +104,12 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="CodeFirstAttribute.cs" />
+    <Compile Include="CodeFirstInterfaces\ICodeFirstMetadata.cs" />
+    <Compile Include="CodeFirstInterfaces\ICodeFirstMetadataClass.cs" />
+    <Compile Include="CodeFirstInterfaces\ICodeFirstMetadataMethod.cs" />
+    <Compile Include="CodeFirstInterfaces\ICodeFirstMetadataNamespace.cs" />
+    <Compile Include="CodeFirstInterfaces\ICodeFirstMetadataParameter.cs" />
+    <Compile Include="CodeFirstInterfaces\ICodeFirstMetadataProperty.cs" />
     <Compile Include="CodeFirstMetadataClasses\CodeFirstMetadataProperty.cs" />
     <Compile Include="CodeFirstMetadataClasses\CodeFirstMetadataParameter.cs" />
     <Compile Include="CodeFirstMetadataClasses\CodeFirstMetadataMethod.cs" />

@@ -21,13 +21,12 @@ namespace CodeFirst.Provider
       {
          //LoadMetadata();
          LoadIntoContainerWithInterfaceName(typeof(IMetadataLoader<>), this);
+         LoadIntoContainerWithInterfaceName(typeof(IMapper2<>), this);
          //LoadIntoContainerWithInterfaceName(typeof(IMapper<>));
          LoadIntoContainer<IMapper>();
-         LoadIntoContainer<IMapper2>();
          LoadIntoContainer<ICodeFirstEntry>();
          LoadIntoContainer<ITemplate>();
          mappers = UnityContainer.ResolveAll<IMapper>();
-         mappers2 = UnityContainer.ResolveAll<IMapper2>();
          entryPoints = UnityContainer.ResolveAll<ICodeFirstEntry>();
          templates = UnityContainer.ResolveAll<ITemplate>();
          isLoaded = true;
@@ -108,23 +107,12 @@ namespace CodeFirst.Provider
          return fallBack;
       }
 
-      public IMapper2 GetMapper2(Type targetType)
+  
+      public IMapper2<T> GetMapper2<T>()
+         where T : CodeFirstMetadata 
       {
-         IMapper2 fallBack = null;
-         foreach (var mapper in mappers2)
-         {
-            foreach (var type in mapper.SupportedTypes)
-            {
-               if (type == typeof(CodeFirstMetadata))
-               {
-                  fallBack = mapper;
-                  continue;
-               }
-               if (type.IsAssignableFrom(targetType))
-               { return mapper; }
-            }
-         }
-         return fallBack;
+         var ret = UnityContainer.ResolveAll<IMapper2<T>>().Single();
+         return ret;
       }
 
       public IMapper GetMapper<T>()
@@ -232,7 +220,8 @@ namespace CodeFirst.Provider
                          && !x.Namespace.StartsWith("Microsoft")
                          && (!x.IsGenericType || x.IsConstructedGenericType
                               || x.GetInterface("IMetadataLoader`1") != null
-                              || x.GetInterface("IMapper`1") != null));
+                              || x.GetInterface("IMapper`1") != null
+                              || x.GetInterface("IMapper2`1") != null));
             }
             return types;
          }

@@ -27,44 +27,47 @@ namespace CodeFirst
       public virtual IEnumerable<Type> SupportedTypes
       { get { return new[] { typeof(CodeFirstMetadata) }; } }
 
-      public virtual T Map(TargetChildMapping mapping, IDom source)
+      public virtual T Map(TargetChildMapping mapping, IDom source, CodeFirstMetadata parent)
       {
-         var codeFirstType = mapping.GetType().GetTypeInfo().GenericTypeArguments.First();
-         var ret = ReflectionHelpers.CreateInstanceOfType<T>();
-         AssignNamedProperties(source, ret, mapping);
+         // var codeFirstType = mapping.GetType().GetTypeInfo().GenericTypeArguments.First();
+         var newItem = ReflectionHelpers.CreateInstanceOfType<T>();
+         newItem.Parent = parent;
+         AssignNamedProperties(source, newItem, mapping);
          var sourceWithAttributes = source as IHasAttributes;
          if (sourceWithAttributes != null)
          {
-            AssignAttributesToProperties(sourceWithAttributes, ret, mapping);
+            AssignAttributesToProperties(sourceWithAttributes, newItem, mapping);
          }
-         AssignChildren(source, ret, mapping);
-         return ret;
+         AssignChildren(source, newItem, mapping, newItem);
+         return newItem;
       }
 
-      public virtual IEnumerable<T> MapList(TargetChildMapping mapping, IEnumerable<IDom> sourceList)
+      public virtual IEnumerable<T> MapList(TargetChildMapping mapping, IEnumerable<IDom> sourceList, CodeFirstMetadata parent)
       {
          var ret = new List<T>();
-         foreach( var source in sourceList)
-         { ret.Add(Map(mapping, source)); }
+         foreach (var source in sourceList)
+         { ret.Add(Map(mapping, source, parent)); }
          return ret;
       }
 
-      public virtual T MapFromInvocation(TargetChildMapping mapping, IDom source)
+      public virtual IEnumerable<T> MapFromConstructor(TargetChildMapping mapping, IDom source, CodeFirstMetadata parent)
       {
-         var codeFirstType = mapping.GetType().GetTypeInfo().GenericTypeArguments.First();
-         var ret = ReflectionHelpers.CreateInstanceOfType<T>();
-         AssignNamedProperties(source, ret, mapping);
-         var sourceWithAttributes = source as IHasAttributes;
-         if (sourceWithAttributes != null)
+         var newItems = new List<T>();
+         var sourceWithConstructor = source as IClassOrStructure;
+         if (sourceWithConstructor != null)
          {
-            AssignAttributesToProperties(sourceWithAttributes, ret, mapping);
+            foreach (var constructor in sourceWithConstructor.Constructors) // no clue what multiple constructors might mean
+            {
+               foreach (var statement in constructor.Statements)
+               {
+                  newItems.AddRange(MapInvocation(statement as IInvocationStatement, source as IClass, parent));
+               }
+            }
          }
-         AssignChildren(source, ret, mapping);
-         return ret;
+         return newItems;
       }
 
-      private void AssignNamedProperties<TLocal>(IDom source, TLocal obj, TargetChildMapping mapping)
-         where TLocal : CodeFirstMetadata<TLocal>
+      private void AssignNamedProperties(IDom source, T obj, TargetChildMapping mapping)
       {
          var sourceHasStructuredDocs = source as IHasStructuredDocumentation;
          if (sourceHasStructuredDocs != null)
@@ -76,6 +79,7 @@ namespace CodeFirst
          foreach (var namedProperty in namedProperties)
          {
             var value = source.RequestValue(namedProperty);
+            if (value == null) { value = source.Parent.RequestValue(namedProperty); }
             if (ReflectionUtilities.CanSetProperty(obj, namedProperty))
             {
                ReflectionHelpers.AssignPropertyValue(obj, namedProperty, value);
@@ -83,7 +87,7 @@ namespace CodeFirst
          }
       }
 
-      private void AssignAttributesToProperties<TLocal>(IHasAttributes source, TLocal obj, TargetChildMapping mapping)
+      private void AssignAttributesToProperties(IHasAttributes source, T obj, TargetChildMapping mapping)
       {
          var usage = MakeValuePairList(source);
 
@@ -99,26 +103,31 @@ namespace CodeFirst
                }
             }
          }
-
       }
 
-      private void AssignChildren<TLocal>(IDom source, TLocal obj, TargetChildMapping mapping)
+      private void AssignChildren(IDom source, T obj, TargetChildMapping mapping, CodeFirstMetadata parent)
       {
          foreach (var childMap in mapping.Children)
          {
-            var sourceChildren = GetSourceChildren(source, childMap);
-            if (sourceChildren != null)
-            {
-               var mapper = serviceProvider.GetMapper2(childMap.UnderlyingTypInfo);
-               //var newItems = mapper.MapList(childMap, sourceChildren);
-               //var newItems = ReflectionHelpers.InvokeGenericMethod(thisType, "CreateTargetChildren",
-               //      childMap.UnderlyingTypInfo, this, sourceChildren, childMap);
-               //newItems = ReflectionHelpers.InvokeGenericMethod(thisType, "AddFromConstructor",
-                //    childMap.UnderlyingTypInfo, this, source, childMap, newItems);
-
-              // ReflectionHelpers.AssignPropertyValue(obj, childMap.TargetName, newItems);
-            }
+            var newItems = ReflectionHelpers.InvokeGenericMethod(thisType, "CreateChildren",
+                           childMap.UnderlyingTypInfo, this, source, childMap, parent);
+            ReflectionHelpers.AssignPropertyValue(obj, childMap.TargetName, newItems);
          }
+      }
+
+      private IEnumerable<TLocal> CreateChildren<TLocal>(IDom source, TargetChildMapping mapping, CodeFirstMetadata parent)
+        where TLocal : CodeFirstMetadata
+      {
+         var mapper = serviceProvider.GetMapper2<TLocal>();
+         var sourceChildren = GetSourceChildren(source, mapping);
+         var items = new List<TLocal>();
+         if (sourceChildren != null)
+         {
+            items.AddRange( mapper.MapList(mapping, sourceChildren, parent));
+         }
+         var newItems2 = mapper.MapFromConstructor(mapping, source, parent);
+         items.AddRange(newItems2);
+         return items;
       }
 
       private IEnumerable<IDom> GetSourceChildren(IDom source, TargetChildMapping mapping)
@@ -136,57 +145,32 @@ namespace CodeFirst
          throw new NotImplementedException();
       }
 
-      //private IEnumerable<TLocal> CreateTargetChildren<TLocal>(IEnumerable<IDom> sourceChildren, TargetChildMapping mapping)
-      //   where TLocal : CodeFirstMetadata
-      //{
-      //   var newItems = new List<TLocal>();
-      //   foreach (var sourceChild in sourceChildren)
-      //   {
-      //      var mapper = serviceProvider.GetMapper<TLocal>();
-      //      var newChild = mapper.Map(mapping, sourceChild);
-      //      newItems.Add((TLocal)newChild);
-      //   }
-      //   return newItems;
-      //}
-
-      private IEnumerable<TLocal> AddFromConstructor<TLocal>(IDom source,
-                  TargetChildMapping mapping, IEnumerable<TLocal> items)
+       private IEnumerable<T> MapInvocation(IInvocationStatement invocation, IClass source, CodeFirstMetadata parent)
       {
-         if (source == null) { return items; }
-         var newItems = new List<TLocal>();
-         var sourceWithConstructor = source as IClassOrStructure;
-         if (sourceWithConstructor == null) { return items; }
-         foreach (var constructor in sourceWithConstructor.Constructors) // no clue what multiple constructors might mean
-         {
-            foreach (var statement in constructor.Statements)
-            {
-               AddFromInvocation(statement as IInvocationStatement, source as IClass, newItems);
-            }
-         }
-         return items.Union(newItems);
-      }
-
-      private void AddFromInvocation<TLocal>(IInvocationStatement invocation, IClass source, List<TLocal> newItems)
-      {
-         if (invocation == null) { return; }
-         if (source == null) { return; }
+         var newItems = new List<T>();
+         if (invocation == null) { return newItems; }
+         if (source == null) { return newItems; }
 
          var name = invocation.MethodName;
          // English language convention used here
-         if (!name.StartsWith("Add")) { return; }
-         name = name.SubstringAfter("Add");
-         var plural = pluralizeService.Pluralize(name);
-         var current = source;
-         if (current != null)
+         if (name.StartsWith("Add"))
          {
-            var property = GetPropertyUseBase(plural, ref current);
-            if (property != null)
+            name = name.SubstringAfter("Add");
+            var plural = pluralizeService.Pluralize(name);
+            var current = source;
+            if (current != null)
             {
-               var newItem = Activator.CreateInstance<TLocal>();
-               SetNewItemProperties(newItem, invocation);
-               newItems.Add(newItem);
+               var property = GetPropertyUseBase(plural, ref current);
+               if (property != null)
+               {
+                  var newItem = Activator.CreateInstance<T>();
+                  newItem.Parent = parent;
+                  SetNewItemProperties(newItem, invocation);
+                  newItems.Add(newItem);
+               }
             }
          }
+         return newItems;
       }
 
       protected virtual void SetNewItemProperties<TLocal>(TLocal newItem, IInvocationStatement invocation)
@@ -215,7 +199,6 @@ namespace CodeFirst
             }
          }
       }
-
 
       private static IProperty GetPropertyUseBase(string plural, ref IClass current)
       {

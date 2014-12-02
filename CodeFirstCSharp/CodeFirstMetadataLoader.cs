@@ -45,8 +45,8 @@ namespace CodeFirst
             var returnType = typeof(T);
             var mapping = TargetMapping.DeriveMapping("root", "root", returnType.GetTypeInfo()) as TargetNamespaceMapping;
             //var mapper = new CodeFirstMapper();
-            var mapper = serviceProvider.GetMapper<T>();
-            var newObj = mapper.Map(mapping, cfNamespace);
+            var mapper = serviceProvider.GetMapper2<T>();
+            var newObj = mapper.Map(mapping, cfNamespace, null);
             return newObj as T;
          }
          return null;

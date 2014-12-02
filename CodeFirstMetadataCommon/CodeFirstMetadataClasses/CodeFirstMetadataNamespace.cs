@@ -9,9 +9,11 @@ using System.Xml.Linq;
 
 namespace CodeFirst.Common
 {
-    public class CodeFirstMetadataNamespace<T> : CodeFirstMetadata<T> where T : CodeFirstMetadata<T>
-    {
- 
-    }
+   public class CodeFirstMetadataNamespace<T> : CodeFirstMetadata<T>, ICodeFirstMetadataNamespace
+         where T : CodeFirstMetadata<T>
+   {
+      // By convention, one namespace per file
+      public string FilePath { get; set; }
+   }
 
 }

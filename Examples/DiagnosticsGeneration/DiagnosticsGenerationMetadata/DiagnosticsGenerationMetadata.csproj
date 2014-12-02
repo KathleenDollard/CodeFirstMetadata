@@ -58,9 +58,9 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="IfElseBraceDiagnosticCodeFirst.g.cs" />
     <Compile Include="OtherSyntaxesTried.cs" />
     <Compile Include="IfElseBraceDiagnosticCodeFirst.cs" />
-    <Compile Include="IfElseBraceDiagnosticCodeFirst.g.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>

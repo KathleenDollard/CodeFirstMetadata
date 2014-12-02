@@ -8,25 +8,30 @@ using RoslynDom.Common;
 
 namespace CodeFirst.Common
 {
-       public abstract class TargetNamespaceMapping : TargetChildMapping
-    {
-        internal TargetNamespaceMapping(string targetName, string prefix, TypeInfo typeInfo)
-            : base(targetName, prefix, typeInfo, TargetLevel.Namespace)
-        { }
+   public abstract class TargetNamespaceMapping : TargetChildMapping
+   {
+      internal TargetNamespaceMapping(string targetName, string prefix, TypeInfo typeInfo)
+          : base(targetName, prefix, typeInfo, TargetLevel.Namespace)
+      { }
 
-        internal override bool CanHaveChildren
-        {
-            get { return true; }
-        }
+      internal override bool CanHaveChildren
+      {
+         get { return true; }
+      }
 
-    }
+      public override IEnumerable<string> GetNamedProperties()
+      {
 
-    public  class TargetNamespaceMapping<T> : TargetNamespaceMapping
-    {
-        internal TargetNamespaceMapping(string targetName, string prefix, TypeInfo typeInfo)
-            : base(targetName, prefix, typeInfo)
-        { }
+         return base.GetNamedProperties().Union(new string[] { "FilePath" });
+      }
+   }
 
-    }
+   public class TargetNamespaceMapping<T> : TargetNamespaceMapping
+   {
+      internal TargetNamespaceMapping(string targetName, string prefix, TypeInfo typeInfo)
+          : base(targetName, prefix, typeInfo)
+      { }
+
+   }
 
 }

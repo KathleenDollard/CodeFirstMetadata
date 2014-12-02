@@ -11,7 +11,8 @@ using RoslynDom.Common;
 namespace CodeFirst.Common
 {
 
-   public class CodeFirstMetadataProperty<T> : CodeFirstMetadata<T> where T : CodeFirstMetadata<T>
+   public class CodeFirstMetadataProperty<T> : CodeFirstMetadata<T>, ICodeFirstMetadataProperty
+         where T : CodeFirstMetadata<T>
    {
       public virtual string Name { get; set; }
       public virtual ScopeAccess ScopeAccess { get; set; }

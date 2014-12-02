@@ -138,7 +138,6 @@ namespace CodeFirst.TemplateSupport
       {
          var newDict = new Dictionary<string, string>();
          var metadataList = GetMetadata(attributeIdentifier, metadataLoader, rootGroup.Roots);
-         var inFileName = rootGroup.Roots.First().FilePath;
 
          IEnumerable<CodeFirstMetadata> candidates;
          if (childPropertyType != null)
@@ -159,6 +158,11 @@ namespace CodeFirst.TemplateSupport
                //.Where(x => x.EntryPointType == typeof(T));
                foreach (var candidateMap in candidateMaps)
                {
+                  var inFileName = candidate
+                                       .AncestorsAndSelf
+                                       .OfType<ICodeFirstMetadataNamespace>()
+                                       .FirstOrDefault()
+                                       ?.FilePath;
                   // TODO: This is wrong so I can test the rest of the system
                   var outFileName = Path.Combine(Path.GetDirectoryName(inFileName), Path.GetFileNameWithoutExtension(inFileName)) + ".g.cs";
                   var templateType = candidateMap.ChildProperty != null

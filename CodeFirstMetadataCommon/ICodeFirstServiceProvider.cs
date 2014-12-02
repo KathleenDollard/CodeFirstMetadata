@@ -15,7 +15,8 @@ namespace CodeFirst.Common
       IMapper GetMapper<T>()
                where T : CodeFirstMetadata;
       IMapper GetMapper(Type targetType);
-      IMapper2 GetMapper2(Type targetType);
+      IMapper2<T> GetMapper2<T>()
+              where T : CodeFirstMetadata;
       void LoadIntoContainer<T>();
    }
 }

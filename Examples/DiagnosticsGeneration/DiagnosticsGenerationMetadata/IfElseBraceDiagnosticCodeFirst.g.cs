@@ -1,5 +1,5 @@
 // This file was generated, if you change it your changes are toast
-// Generation was last done on 11/30/2014 12:00:00 AM using template DiagnosticTemplate
+// Generation was last done on 12/1/2014 12:00:00 AM using template DiagnosticTemplate
 
 using System;
 using System.Collections.Immutable;
@@ -33,27 +33,27 @@ namespace KathleensAnalyzer2
 
       private void AnalyzeNodes(SyntaxNodeAnalysisContext context)
       {
-
-         var ifStatementSyntax = context.Node as IfStatementSyntax;
+      
+         var ifStatementSyntax = context.Node as  IfStatementSyntax;
          if (ifStatementSyntax != null
-               && (!ifStatementSyntax.Statement.IsKind(SyntaxKind.Block)))
+               && ( !ifStatementSyntax.Statement.IsKind(SyntaxKind.Block)))
          {
-            Location loc = ifStatementSyntax.IfKeyword.GetLocation();
+            Location loc =  ifStatementSyntax.IfKeyword.GetLocation();
             Diagnostic diagnostic = Diagnostic.Create(Rule, loc, "if statement");
             context.ReportDiagnostic(diagnostic);
          }
 
-
-         var elseClauseSyntax = context.Node as ElseClauseSyntax;
+      
+         var elseClauseSyntax = context.Node as  ElseClauseSyntax;
          if (elseClauseSyntax != null
-               && (!elseClauseSyntax.Statement.IsKind(SyntaxKind.Block)
+               && ( !elseClauseSyntax.Statement.IsKind(SyntaxKind.Block)
                            && !elseClauseSyntax.Statement.IsKind(SyntaxKind.IfStatement)))
          {
-            Location loc = elseClauseSyntax.ElseKeyword.GetLocation();
+            Location loc =  elseClauseSyntax.ElseKeyword.GetLocation();
             Diagnostic diagnostic = Diagnostic.Create(Rule, loc, "else statement");
             context.ReportDiagnostic(diagnostic);
          }
 
-      }
+            }
    }
 }

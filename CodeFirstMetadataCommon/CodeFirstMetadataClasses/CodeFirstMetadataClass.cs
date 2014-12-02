@@ -9,7 +9,8 @@ using System.Xml.Linq;
 
 namespace CodeFirst.Common
 {
-   public class CodeFirstMetadataClass<T> : CodeFirstMetadata<T> where T : CodeFirstMetadata<T>
+   public class CodeFirstMetadataClass<T> : CodeFirstMetadata<T>, ICodeFirstMetadataClass 
+         where T : CodeFirstMetadata<T>
    {
       public CodeFirstMetadataClass()
       {

@@ -97,8 +97,6 @@
   <ItemGroup>
     <Compile Include="CodeFirstAnalyzer.cs" />
     <Compile Include="CodeFirstAnalyzer.WillBeGen.cs" />
-    <Compile Include="CodeFirstDiagnosticGroupMapper.cs" />
-    <Compile Include="CodeFirstAnalyzerMapper.cs" />
     <Compile Include="CodeFirstDiagnostic.cs" />
     <Compile Include="CodeFirstDiagnostic.WillBeGen..cs" />
     <Compile Include="CodeFirstDiagnosticGroup.cs" />
