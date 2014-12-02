@@ -33,6 +33,7 @@ namespace CodeFirst.Common
                 else if (
                      prop.SetMethod != null 
                      && prop.SetMethod.IsPublic
+                     && prop.Name != "Parent"
                      && !_attributes.Any(x=>x.TargetName == prop.Name))
                 { _attributes.Add(new TargetAttributeMapping(prop, _mappingId)); }
                 else { } // Do Nothing, it's a special readonly property

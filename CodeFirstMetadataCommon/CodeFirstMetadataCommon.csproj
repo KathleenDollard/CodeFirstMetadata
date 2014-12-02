@@ -117,7 +117,6 @@
     <Compile Include="CodeFirstMetadataClasses\CodeFirstMetadataNamespace.cs" />
     <Compile Include="ICodeFirstEntry.cs" />
     <Compile Include="IMapper2.cs" />
-    <Compile Include="IMapper.cs" />
     <Compile Include="IMetadataLoader.cs" />
     <Compile Include="ICodeFirstServiceProvider.cs" />
     <Compile Include="ITemplate.cs" />

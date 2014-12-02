@@ -12,9 +12,6 @@ namespace CodeFirst.Common
       IEnumerable<T> GetServices<T>(Func<T, bool> selector = null);
       IMetadataLoader<T> GetMetadataLoader<T>()
                where T : CodeFirstMetadata;
-      IMapper GetMapper<T>()
-               where T : CodeFirstMetadata;
-      IMapper GetMapper(Type targetType);
       IMapper2<T> GetMapper2<T>()
               where T : CodeFirstMetadata;
       void LoadIntoContainer<T>();

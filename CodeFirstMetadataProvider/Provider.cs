@@ -12,8 +12,6 @@ namespace CodeFirst.Provider
    {
       private IUnityContainer unityContainer = new UnityContainer();
       private bool isLoaded;
-      private IEnumerable<IMapper> mappers;
-      private IEnumerable<IMapper2> mappers2;
       private IEnumerable<ICodeFirstEntry> entryPoints;
       private IEnumerable<ITemplate> templates;
 
@@ -23,10 +21,8 @@ namespace CodeFirst.Provider
          LoadIntoContainerWithInterfaceName(typeof(IMetadataLoader<>), this);
          LoadIntoContainerWithInterfaceName(typeof(IMapper2<>), this);
          //LoadIntoContainerWithInterfaceName(typeof(IMapper<>));
-         LoadIntoContainer<IMapper>();
          LoadIntoContainer<ICodeFirstEntry>();
          LoadIntoContainer<ITemplate>();
-         mappers = UnityContainer.ResolveAll<IMapper>();
          entryPoints = UnityContainer.ResolveAll<ICodeFirstEntry>();
          templates = UnityContainer.ResolveAll<ITemplate>();
          isLoaded = true;
@@ -84,79 +80,25 @@ namespace CodeFirst.Provider
       public IMetadataLoader<T> GetMetadataLoader<T>()
              where T : CodeFirstMetadata
       {
+         if (!isLoaded) { ConfigureContainer(); isLoaded = true; }
          var ret = UnityContainer.ResolveAll<IMetadataLoader<T>>().Single();
          return ret;
       }
 
-      public IMapper GetMapper(Type targetType)
-      {
-         IMapper fallBack = null;
-         foreach (var mapper in mappers)
-         {
-            foreach (var type in mapper.SupportedTypes)
-            {
-               if (type == typeof(CodeFirstMetadata))
-               {
-                  fallBack = mapper;
-                  continue;
-               }
-               if (type.IsAssignableFrom(targetType))
-               { return mapper; }
-            }
-         }
-         return fallBack;
-      }
-
-  
       public IMapper2<T> GetMapper2<T>()
          where T : CodeFirstMetadata 
       {
+         if (!isLoaded) { ConfigureContainer(); isLoaded = true; }
          var ret = UnityContainer.ResolveAll<IMapper2<T>>().Single();
          return ret;
       }
 
-      public IMapper GetMapper<T>()
-               where T : CodeFirstMetadata
-      {
-         return GetMapper(typeof(T));
-         //var registrations = UnityContainer.Registrations.ToList().Select(x => x.Name);
-         //var localMappers = mappers.Select(x=>x.GetType().Name);
-         //IMapper fallBack = null;
-         //foreach (var mapper in mappers)
-         //{
-         //   foreach (var type in mapper.SupportedTypes )
-         //   {
-         //      if (type == typeof(CodeFirstMetadata ))
-         //      {
-         //         fallBack = mapper;
-         //         continue;
-         //      }
-         //      if (type.IsAssignableFrom(typeof(T)))
-         //      { return mapper; }
-         //   }
-         //}
-         //return fallBack;
-      }
-
-      //internal bool CheckContainer(
-      //    [CallerMemberName] string callerName = "",
-      //    [CallerLineNumber] int callerLineNumber = 0)
-      //{
-      //   AssertLoaded();
-      //   var containerChecks = UnityContainer.ResolveAll<IContainerCheck>();
-      //   foreach (var check in containerChecks)
-      //   {
-      //      if (!check.ContainerCheck()) { return false; }
-      //   }
-      //   return true;
-      //}
-
-      private void LoadIntoContainerWithInterfaceName(Type interfaceType, object arg = null)
+        private void LoadIntoContainerWithInterfaceName(Type interfaceType, object arg = null)
       {
          var injectionMembers = arg == null
                                  ? new InjectionMember[] { }
                                  : new InjectionMember[] { new InjectionConstructor(arg) };
-         foreach (var type in types)
+         foreach (var type in Types)
          {
             if (type.GetInterface(interfaceType.Name) != null)
             {

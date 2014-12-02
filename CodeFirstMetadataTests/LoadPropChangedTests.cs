@@ -59,8 +59,9 @@ namespace CodeFirstTest
          var classType = typeof(CodeFirstClassGroup);
          var namespaceMapping = TargetMapping.DeriveMapping("testPropChanged", "test", classType.GetTypeInfo()) as TargetNamespaceMapping;
          Assert.IsNotNull(namespaceMapping, "namespaceMapping is null");
-         var mapper = new CodeFirstMapper();
-         var newObj = mapper.Map(namespaceMapping, cfNamespace);
+         var provider = new CodeFirst.Provider.Provider();
+         var mapper = new CodeFirstMapper2<CodeFirstClassGroup>(provider);
+         var newObj = mapper.Map(namespaceMapping, cfNamespace, null);
          var newNamespace = newObj as CodeFirstClassGroup;
          Assert.IsNotNull(newObj);
          Assert.IsNotNull(newNamespace);
@@ -85,8 +86,9 @@ namespace CodeFirstTest
          Assert.IsNotNull(cfClass, "cfClass is null");
          var propertyType = typeof(CodeFirstClass);
          var classMapping = TargetMapping.DeriveMapping("testPropChanged", "test", propertyType.GetTypeInfo()) as TargetClassMapping;
-         var mapper = new CodeFirstMapper();
-         var newObj = mapper.Map(classMapping, cfClass);
+         var provider = new CodeFirst.Provider.Provider();
+         var mapper = new CodeFirstMapper2<CodeFirstClass>(provider);
+         var newObj = mapper.Map(classMapping, cfClass, null);
          var newClass = newObj as CodeFirstClass;
          Assert.IsNotNull(newObj);
          Assert.IsNotNull(newClass);
@@ -113,8 +115,9 @@ namespace CodeFirstTest
          Assert.IsNotNull(classMapping, "classMapping is null");
          var propertyMapping = classMapping.Children.First();
          Assert.IsNotNull(propertyMapping, "propertyMapping is null");
-         var mapper = new CodeFirstMapper();
-         var newObj = mapper.Map(propertyMapping, cfProperties[0]);
+          var provider = new CodeFirst.Provider.Provider();
+         var mapper = new CodeFirstMapper2<CodeFirstProperty>(provider);
+         var newObj = mapper.Map(propertyMapping, cfProperties[0], null);
          var newProperty = newObj as CodeFirstProperty;
          Assert.IsNotNull(newObj);
          Assert.IsNotNull(newProperty);

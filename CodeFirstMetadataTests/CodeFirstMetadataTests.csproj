@@ -143,6 +143,10 @@
       <Project>{2f5456e7-15a9-46c5-937f-34896da04ebe}</Project>
       <Name>CodeFirstMetadataCommon</Name>
     </ProjectReference>
+    <ProjectReference Include="..\CodeFirstMetadataProvider\CodeFirstMetadataProvider.csproj">
+      <Project>{94dd447b-fee5-4892-a421-59e04e82a2c2}</Project>
+      <Name>CodeFirstMetadataProvider</Name>
+    </ProjectReference>
     <ProjectReference Include="..\CodeFirstMetadata\CodeFirstMetadata.csproj">
       <Project>{4b0bed60-c390-413d-a341-4b6144d8ebc3}</Project>
       <Name>CodeFirstMetadata</Name>

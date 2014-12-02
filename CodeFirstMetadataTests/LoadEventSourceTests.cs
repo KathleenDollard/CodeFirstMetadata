@@ -58,8 +58,9 @@ namespace CodeFirstTest
          var eventSourceType = typeof(CodeFirstEventSourceGroup);
          var namespaceMapping = TargetMapping.DeriveMapping("testEventSource", "test", eventSourceType.GetTypeInfo()) as TargetNamespaceMapping;
          Assert.IsNotNull(namespaceMapping, "namespaceMapping is null");
-         var mapper = new CodeFirstMapper();
-         var newObj = mapper.Map(namespaceMapping, cfNamespace);
+         var provider = new CodeFirst.Provider.Provider();
+         var mapper = new CodeFirstMapper2<CodeFirstEventSourceGroup>(provider);
+         var newObj = mapper.Map(namespaceMapping, cfNamespace, null);
          var newNamespace = newObj as CodeFirstEventSourceGroup;
          Assert.IsNotNull(newObj);
          Assert.IsNotNull(newNamespace);
@@ -84,8 +85,9 @@ namespace CodeFirstTest
          Assert.IsNotNull(cfClass, "cfClass is null");
          var eventSourceType = typeof(CodeFirstEventSource);
          var classMapping = TargetMapping.DeriveMapping("testEventSource", "test", eventSourceType.GetTypeInfo()) as TargetClassMapping;
-         var mapper = new CodeFirstMapper();
-         var newObj = mapper.Map(classMapping, cfClass);
+         var provider = new CodeFirst.Provider.Provider();
+         var mapper = new CodeFirstMapper2<CodeFirstEventSource>(provider);
+         var newObj = mapper.Map(classMapping, cfClass, null);
          var newEventSource = newObj as CodeFirstEventSource;
          Assert.IsNotNull(newObj);
          Assert.IsNotNull(newEventSource);
@@ -114,8 +116,9 @@ namespace CodeFirstTest
          Assert.IsNotNull(classMapping, "classMapping is null");
          var methodMapping = classMapping.Children.First();
          Assert.IsNotNull(methodMapping, "methodMapping is null");
-         var mapper = new CodeFirstMapper();
-         var newObj = mapper.Map(methodMapping, cfMethod);
+         var provider = new CodeFirst.Provider.Provider();
+         var mapper = new CodeFirstMapper2<CodeFirstEvent>(provider);
+         var newObj = mapper.Map(methodMapping, cfMethod, null);
          var newEvent = newObj as CodeFirstEvent;
          Assert.IsNotNull(newObj);
          Assert.IsNotNull(newEvent);
@@ -139,8 +142,9 @@ namespace CodeFirstTest
          Assert.IsNotNull(classMapping, "classMapping is null");
          var paramterMapping = classMapping.Children.First().Children.First();
          Assert.IsNotNull(paramterMapping, "paramterMapping is null");
-         var mapper = new CodeFirstMapper();
-         var newObj = mapper.Map(paramterMapping, cfParameter);
+         var provider = new CodeFirst.Provider.Provider();
+         var mapper = new CodeFirstMapper2<CodeFirstEventParam>(provider);
+         var newObj = mapper.Map(paramterMapping, cfParameter, null);
          var newParameter = newObj as CodeFirstEventParam;
          Assert.IsNotNull(newObj);
          Assert.IsNotNull(newParameter);

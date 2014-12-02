@@ -103,7 +103,6 @@
   <ItemGroup>
     <Compile Include="CodeFirstMapper2.cs" />
     <Compile Include="CodeFirstMapperOfT.cs" />
-    <Compile Include="CodeFirstMapper.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>
