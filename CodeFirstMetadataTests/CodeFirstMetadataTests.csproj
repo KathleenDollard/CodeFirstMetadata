@@ -100,6 +100,21 @@
       <Private>True</Private>
       <HintPath>..\packages\System.Collections.Immutable.1.1.32-beta\lib\portable-net45+win8+wp8+wpa81\System.Collections.Immutable.dll</HintPath>
     </Reference>
+    <Reference Include="System.Composition.AttributedModel">
+      <HintPath>..\packages\Microsoft.Composition.1.0.27\lib\portable-net45+win8+wp8+wpa81\System.Composition.AttributedModel.dll</HintPath>
+    </Reference>
+    <Reference Include="System.Composition.Convention">
+      <HintPath>..\packages\Microsoft.Composition.1.0.27\lib\portable-net45+win8+wp8+wpa81\System.Composition.Convention.dll</HintPath>
+    </Reference>
+    <Reference Include="System.Composition.Hosting">
+      <HintPath>..\packages\Microsoft.Composition.1.0.27\lib\portable-net45+win8+wp8+wpa81\System.Composition.Hosting.dll</HintPath>
+    </Reference>
+    <Reference Include="System.Composition.Runtime">
+      <HintPath>..\packages\Microsoft.Composition.1.0.27\lib\portable-net45+win8+wp8+wpa81\System.Composition.Runtime.dll</HintPath>
+    </Reference>
+    <Reference Include="System.Composition.TypedParts">
+      <HintPath>..\packages\Microsoft.Composition.1.0.27\lib\portable-net45+win8+wp8+wpa81\System.Composition.TypedParts.dll</HintPath>
+    </Reference>
     <Reference Include="System.Reflection.Metadata">
       <HintPath>..\packages\System.Reflection.Metadata.1.0.17-beta\lib\portable-net45+win8\System.Reflection.Metadata.dll</HintPath>
     </Reference>
@@ -147,9 +162,17 @@
       <Project>{94dd447b-fee5-4892-a421-59e04e82a2c2}</Project>
       <Name>CodeFirstMetadataProvider</Name>
     </ProjectReference>
+    <ProjectReference Include="..\CodeFirstMetadataT4Support\CodeFirstMetadataT4Support.csproj">
+      <Project>{3637a580-5bbd-4411-8073-9008d6a67729}</Project>
+      <Name>CodeFirstMetadataT4Support</Name>
+    </ProjectReference>
     <ProjectReference Include="..\CodeFirstMetadata\CodeFirstMetadata.csproj">
       <Project>{4b0bed60-c390-413d-a341-4b6144d8ebc3}</Project>
       <Name>CodeFirstMetadata</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\CodeFirstTemplateSupport\CodeFirstTemplateSupport.csproj">
+      <Project>{7a877c5c-0554-4040-be31-5403471995ab}</Project>
+      <Name>CodeFirstTemplateSupport</Name>
     </ProjectReference>
   </ItemGroup>
   <ItemGroup>

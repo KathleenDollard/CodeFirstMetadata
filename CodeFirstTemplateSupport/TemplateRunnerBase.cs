@@ -190,14 +190,6 @@ namespace CodeFirst.TemplateSupport
          return outText; 
       }
 
-      private bool MatchingBase(string typeName, IClass cl)
-      {
-         if (cl == null) { return false; }
-         if (cl.QualifiedName.Equals(typeName, StringComparison.OrdinalIgnoreCase)) { return true; }
-         var baseType = cl.BaseType;
-         return MatchingBase(typeName, baseType?.Type as IClass);
-      }
-
       private IEnumerable<T> GetMetadata<T>(
                          string attributeIdentifier,
                         IMetadataLoader<T> metadataLoader,
@@ -209,32 +201,6 @@ namespace CodeFirst.TemplateSupport
          {
             var metadata = metadataLoader.LoadFrom(root, attributeIdentifier);
             ret.Add(metadata);
-         }
-         return ret;
-      }
-
-      private IDictionary<string, string> CreateOutputStringsGeneric<T>(
-                        IEnumerable<IRoot> roots,
-                        IEnumerable<TemplateMap> templateMaps,
-                        IMetadataLoader<T> metadataLoader,
-                        string outputRootDirectory)
-         where T : CodeFirstMetadata<T>
-      {
-         var ret = new Dictionary<string, string>();
-         foreach (var root in roots)
-         {
-            var metadata = metadataLoader.LoadFrom(root, "");
-            var inFileName = root.FilePath;
-            var candidateMaps = templateMaps
-                              .Where(x => x.EntryPointType == typeof(T));
-            foreach (var candidateMap in candidateMaps)
-            {
-               // TODO: This is wrong so I can test the rest of the system
-               var outFileName = Path.Combine(Path.GetDirectoryName(inFileName), Path.GetFileNameWithoutExtension(inFileName)) + ".g.cs";
-               var template = (ITemplate<T>)candidateMap.Template;
-               var outText = template.GetOutput(metadata);
-               ret.Add(outFileName, outText);
-            }
          }
          return ret;
       }

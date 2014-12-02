@@ -42,20 +42,19 @@ namespace <#= Meta.Namespace #>
 
       private void AnalyzeNodes(SyntaxNodeAnalysisContext context)
       {
-      <# foreach(var analyzer in Meta.Analyzers) 
+<# foreach(var analyzer in Meta.Analyzers) 
       {
-      #>
+#>
 
-         var <#= analyzer.VariableName #> = context.Node as  <#= analyzer.PropertyType.Name #>;
+         var <#= analyzer.VariableName #> = context.Node as <#= analyzer.PropertyType.Name #>;
          if (<#= analyzer.VariableName #> != null
-               && (<#= analyzer.ConditionString #>))
+               && (<#= analyzer.ConditionString.Trim() #>))
          {
-            Location loc = <#= analyzer.GetLocationString #>;
+            Location loc = <#= analyzer.GetLocationString.Trim() #>;
             Diagnostic diagnostic = Diagnostic.Create(Rule, loc, <#= analyzer.MessageArg #>);
             context.ReportDiagnostic(diagnostic);
          }
-
-      <# } #>
+<# }#>
       }
    }
 }

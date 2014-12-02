@@ -106,12 +106,12 @@ namespace ");
             #line default
             #line hidden
             this.Write(");\r\n      }\r\n\r\n      private void AnalyzeNodes(SyntaxNodeAnalysisContext context)" +
-                    "\r\n      {\r\n      ");
+                    "\r\n      {\r\n");
             
             #line 45 "C:\Users\Kathleen\Documents\Visual Studio 2013\Projects\CodeFirstMetadata\Examples\DiagnosticsGeneration\DiagnosticsGenerationTemplates\DiagnosticTemplate.tt"
  foreach(var analyzer in Meta.Analyzers) 
       {
-      
+
             
             #line default
             #line hidden
@@ -122,7 +122,7 @@ namespace ");
             
             #line default
             #line hidden
-            this.Write(" = context.Node as  ");
+            this.Write(" = context.Node as ");
             
             #line 49 "C:\Users\Kathleen\Documents\Visual Studio 2013\Projects\CodeFirstMetadata\Examples\DiagnosticsGeneration\DiagnosticsGenerationTemplates\DiagnosticTemplate.tt"
             this.Write(this.ToStringHelper.ToStringWithCulture(analyzer.PropertyType.Name));
@@ -139,14 +139,14 @@ namespace ");
             this.Write(" != null\r\n               && (");
             
             #line 51 "C:\Users\Kathleen\Documents\Visual Studio 2013\Projects\CodeFirstMetadata\Examples\DiagnosticsGeneration\DiagnosticsGenerationTemplates\DiagnosticTemplate.tt"
-            this.Write(this.ToStringHelper.ToStringWithCulture(analyzer.ConditionString));
+            this.Write(this.ToStringHelper.ToStringWithCulture(analyzer.ConditionString.Trim()));
             
             #line default
             #line hidden
             this.Write("))\r\n         {\r\n            Location loc = ");
             
             #line 53 "C:\Users\Kathleen\Documents\Visual Studio 2013\Projects\CodeFirstMetadata\Examples\DiagnosticsGeneration\DiagnosticsGenerationTemplates\DiagnosticTemplate.tt"
-            this.Write(this.ToStringHelper.ToStringWithCulture(analyzer.GetLocationString));
+            this.Write(this.ToStringHelper.ToStringWithCulture(analyzer.GetLocationString.Trim()));
             
             #line default
             #line hidden
@@ -157,10 +157,10 @@ namespace ");
             
             #line default
             #line hidden
-            this.Write(");\r\n            context.ReportDiagnostic(diagnostic);\r\n         }\r\n\r\n      ");
+            this.Write(");\r\n            context.ReportDiagnostic(diagnostic);\r\n         }\r\n");
             
-            #line 58 "C:\Users\Kathleen\Documents\Visual Studio 2013\Projects\CodeFirstMetadata\Examples\DiagnosticsGeneration\DiagnosticsGenerationTemplates\DiagnosticTemplate.tt"
- } 
+            #line 57 "C:\Users\Kathleen\Documents\Visual Studio 2013\Projects\CodeFirstMetadata\Examples\DiagnosticsGeneration\DiagnosticsGenerationTemplates\DiagnosticTemplate.tt"
+ }
             
             #line default
             #line hidden

@@ -51,34 +51,34 @@ namespace CodeFirstMetadataTest.Diagnostic
       //}
    }
 
-   public class FluentDiagnosticBuilder
-   {
-      public FluentDiagnosticBuilder WithId(string Id) { return this; }
-      public FluentDiagnosticBuilder WithDescription(string description) { return this; }
-      public FluentDiagnosticBuilder WithMessageFormat(string messageFormat) { return this; }
-      public FluentDiagnosticBuilder WithCategory(string Category) { return this; }
+   //public class FluentDiagnosticBuilder
+   //{
+   //   public FluentDiagnosticBuilder WithId(string Id) { return this; }
+   //   public FluentDiagnosticBuilder WithDescription(string description) { return this; }
+   //   public FluentDiagnosticBuilder WithMessageFormat(string messageFormat) { return this; }
+   //   public FluentDiagnosticBuilder WithCategory(string Category) { return this; }
 
-      public FluentDiagnosticBuilder WithAnalyzer<T>(FluentAnalyzerBuilder<T> analyzer)
-            where T : SyntaxNode
-      { return this; }
-      public FluentDiagnosticBuilder WithCodeFix<T>(FluentCodeFixBuilder<T> fixer)
-            where T : SyntaxNode
-      { return this; }
-   }
+   //   public FluentDiagnosticBuilder WithAnalyzer<T>(FluentAnalyzerBuilder<T> analyzer)
+   //         where T : SyntaxNode
+   //   { return this; }
+   //   public FluentDiagnosticBuilder WithCodeFix<T>(FluentCodeFixBuilder<T> fixer)
+   //         where T : SyntaxNode
+   //   { return this; }
+   //}
 
-   public class FluentAnalyzerBuilder<T>
-      where T : SyntaxNode
-   {
-      public FluentAnalyzerBuilder<T> WithCondition(Func<T, bool> condition) { return this; }
-      public FluentAnalyzerBuilder<T> WithLocationGetter(Func<T, Location> getLocation) { return this; }
-      public FluentAnalyzerBuilder<T> WithMessageArg(string arg) { return this; }
-   }
+   //public class FluentAnalyzerBuilder<T>
+   //   where T : SyntaxNode
+   //{
+   //   public FluentAnalyzerBuilder<T> WithCondition(Func<T, bool> condition) { return this; }
+   //   public FluentAnalyzerBuilder<T> WithLocationGetter(Func<T, Location> getLocation) { return this; }
+   //   public FluentAnalyzerBuilder<T> WithMessageArg(string arg) { return this; }
+   //}
 
-   public class FluentCodeFixBuilder<T>
-      where T : SyntaxNode
-   {
-      public FluentCodeFixBuilder<T> SkipFormatting() { return this; }
-      public FluentCodeFixBuilder<T> DoFormatting() { return this; }
-      public FluentCodeFixBuilder<T> WithNewNodeMaker(Func<T, SyntaxNode> makeNewNode) { return this; }
-   }
+   //public class FluentCodeFixBuilder<T>
+   //   where T : SyntaxNode
+   //{
+   //   public FluentCodeFixBuilder<T> SkipFormatting() { return this; }
+   //   public FluentCodeFixBuilder<T> DoFormatting() { return this; }
+   //   public FluentCodeFixBuilder<T> WithNewNodeMaker(Func<T, SyntaxNode> makeNewNode) { return this; }
+   //}
 }
