@@ -13,7 +13,11 @@ namespace CodeFirst.Common
          where T : CodeFirstMetadata<T>
    {
       // By convention, one namespace per file
-      public string FilePath { get; set; }
+      private string filePath;
+      public string FilePath
+      {
+         get { return filePath; }
+         set { filePath = value; }
+      }
    }
-
 }

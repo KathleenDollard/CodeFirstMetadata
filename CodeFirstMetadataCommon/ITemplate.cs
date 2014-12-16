@@ -11,5 +11,7 @@ namespace CodeFirst.Common
       where T : CodeFirstMetadata<T>
    {
       string GetOutput(T metadata);
+      string FilePathHint { get; }
+      string Name { get; }
    }
 }

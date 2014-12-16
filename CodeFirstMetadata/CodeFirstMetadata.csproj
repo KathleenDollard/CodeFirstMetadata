@@ -70,19 +70,19 @@
     </Reference>
     <Reference Include="RoslynDom, Version=1.0.0.0, Culture=neutral, processorArchitecture=MSIL">
       <SpecificVersion>False</SpecificVersion>
-      <HintPath>..\packages\RoslynDom.1.0.24-alpha\lib\net45\RoslynDom.dll</HintPath>
+      <HintPath>..\packages\RoslynDom.1.0.28-alpha\lib\net45\RoslynDom.dll</HintPath>
     </Reference>
     <Reference Include="RoslynDomCommon, Version=1.0.0.0, Culture=neutral, processorArchitecture=MSIL">
       <SpecificVersion>False</SpecificVersion>
-      <HintPath>..\packages\RoslynDom.1.0.24-alpha\lib\net45\RoslynDomCommon.dll</HintPath>
+      <HintPath>..\packages\RoslynDom.1.0.28-alpha\lib\net45\RoslynDomCommon.dll</HintPath>
     </Reference>
     <Reference Include="RoslynDomRDomCommon, Version=1.0.0.0, Culture=neutral, processorArchitecture=MSIL">
       <SpecificVersion>False</SpecificVersion>
-      <HintPath>..\packages\RoslynDom.1.0.24-alpha\lib\net45\RoslynDomRDomCommon.dll</HintPath>
+      <HintPath>..\packages\RoslynDom.1.0.28-alpha\lib\net45\RoslynDomRDomCommon.dll</HintPath>
     </Reference>
     <Reference Include="RoslynDomUtilities, Version=1.0.0.0, Culture=neutral, processorArchitecture=MSIL">
       <SpecificVersion>False</SpecificVersion>
-      <HintPath>..\packages\RoslynDom.1.0.24-alpha\lib\net45\RoslynDomUtilities.dll</HintPath>
+      <HintPath>..\packages\RoslynDom.1.0.28-alpha\lib\net45\RoslynDomUtilities.dll</HintPath>
     </Reference>
     <Reference Include="System" />
     <Reference Include="System.Collections.Immutable, Version=1.1.32.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a, processorArchitecture=MSIL">
@@ -90,7 +90,6 @@
       <HintPath>..\packages\System.Collections.Immutable.1.1.32-beta\lib\portable-net45+win8+wp8+wpa81\System.Collections.Immutable.dll</HintPath>
     </Reference>
     <Reference Include="System.Core" />
-    <Reference Include="System.Data.Entity.Design" />
     <Reference Include="System.Reflection.Metadata">
       <HintPath>..\packages\System.Reflection.Metadata.1.0.17-beta\lib\portable-net45+win8\System.Reflection.Metadata.dll</HintPath>
     </Reference>

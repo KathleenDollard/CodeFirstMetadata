@@ -1,5 +1,6 @@
 ﻿using System;
 using KadGen.Common;
+using RoslynDom.Common;
 
 namespace CodeFirst.Common
 {

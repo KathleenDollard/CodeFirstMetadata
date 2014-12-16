@@ -42,7 +42,14 @@
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="NormalEventSource2.cs" />
     <None Include="NormalEventSource.cfcs" />
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\SemanticLogGenerationSupport\SemanticLogGenerationSupport.csproj">
+      <Project>{94ff26c7-27cc-40e0-8e97-3ab71fe3878a}</Project>
+      <Name>SemanticLogGenerationSupport</Name>
+    </ProjectReference>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 

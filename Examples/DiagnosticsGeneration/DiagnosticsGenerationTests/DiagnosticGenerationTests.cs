@@ -13,10 +13,9 @@ namespace CodeFirstMetadataTests
    public class DiagnosticGenerationTests
    {
       [TestMethod]
-      public void Should_create_file_from_diagnostic()
+      public void Should_create_file_from_diagnostic_from_project()
       {
-         var provider = new Provider();
-         var runner = new T4TemplateRunner(provider);
+         var runner = new T4TemplateRunner();
          var startDirectory = Path.Combine(FileSupport.ProjectPath(AppDomain.CurrentDomain.BaseDirectory), "..\\DiagnosticsGenerationMetadata");
          startDirectory = Path.GetFullPath(startDirectory);
          var ws = MSBuildWorkspace.Create();
@@ -25,13 +24,24 @@ namespace CodeFirstMetadataTests
          var project = ws.OpenProjectAsync(projectPath).Result;
          var dict = runner.CreateOutputStringsFromProject(project, "..\\Output");
          Assert.AreEqual(1, dict.Count());
-         Assert.AreEqual(expected, dict.First().Value);
+         var actual = dict.First().Value;
+         actual = StringUtilities.RemoveFileHeaderComments(actual); 
+         Assert.AreEqual(expected, actual);
       }
 
-      private string expected = @"// This file was generated, if you change it your changes are toast
-// Generation was last done on 12/1/2014 12:00:00 AM using template DiagnosticTemplate
+      [TestMethod]
+      public void Should_create_file_from_diagnostic_from_path()
+      {
+         var runner = new T4TemplateRunner();
+         var relativePath = "..\\DiagnosticsGenerationMetadata";
+         var dict = runner.CreateOutputStringsFromProject(relativePath, "..\\Output");
+         Assert.AreEqual(1, dict.Count());
+         var actual = dict.First().Value;
+         actual = StringUtilities.RemoveFileHeaderComments(actual);
+         Assert.AreEqual(expected, actual);
+      }
 
-using System;
+      private string expected = @"using System;
 using System.Collections.Immutable;
 using System.Linq;
 using System.Threading;
@@ -75,8 +85,7 @@ namespace KathleensAnalyzer
 
          var elseClauseSyntax = context.Node as ElseClauseSyntax;
          if (elseClauseSyntax != null
-               && (!elseClauseSyntax.Statement.IsKind(SyntaxKind.Block)
-                           && !elseClauseSyntax.Statement.IsKind(SyntaxKind.IfStatement)))
+               && (!elseClauseSyntax.Statement.IsKind(SyntaxKind.Block) && !elseClauseSyntax.Statement.IsKind(SyntaxKind.IfStatement)))
          {
             Location loc = elseClauseSyntax.ElseKeyword.GetLocation();
             Diagnostic diagnostic = Diagnostic.Create(Rule, loc, ""else statement"");

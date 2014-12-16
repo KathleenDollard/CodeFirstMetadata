@@ -42,7 +42,14 @@
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="PropertyChanged2.cs" />
     <None Include="PropertyChanged1.cfcs" />
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\DomainGenerationSupport\DomainGenerationSupport.csproj">
+      <Project>{7545c692-ff04-46cb-8281-436ca5ea7697}</Project>
+      <Name>DomainGenerationSupport</Name>
+    </ProjectReference>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 

@@ -8,6 +8,9 @@ using System.Linq;
 using System.Reflection;
 using System.Text;
 using System.Threading.Tasks;
+using RoslynDom;
+using CodeFirst.Provider;
+using Microsoft.CodeAnalysis.MSBuild;
 
 namespace CodeFirst.TemplateSupport
 {
@@ -21,6 +24,8 @@ namespace CodeFirst.TemplateSupport
 
       protected TemplateRunnerBase(ICodeFirstServiceProvider serviceProvider)
       {
+         if (serviceProvider == null)
+         { serviceProvider = new ServiceProvider(); }
          this.serviceProvider = serviceProvider;
          serviceProvider.LoadIntoContainer<IFactoryAccess>();
       }
@@ -40,10 +45,12 @@ namespace CodeFirst.TemplateSupport
             var childProperty = GetChildProperty(entryPointType);
             foreach (var template in templates)
             {
-               var metadataType = template
+               var interfaceType = template
                               .GetType()
-                              .GetInterface("ITemplate`1")
-                              ?.GenericTypeArguments.FirstOrDefault();
+                              .GetInterface("ITemplate`1");
+               var metadataType = interfaceType == null
+                                    ? null
+                                    : interfaceType.GenericTypeArguments.FirstOrDefault();
                if (metadataType != null)
                {
                   var isDirectMatch = false;
@@ -77,7 +84,7 @@ namespace CodeFirst.TemplateSupport
          return null;
       }
 
-      private IFactoryAccess FactoryAccess
+      protected IFactoryAccess FactoryAccess
       {
          get
          {
@@ -98,6 +105,17 @@ namespace CodeFirst.TemplateSupport
 
       }
 
+      public IDictionary<string, string> CreateOutputStringsFromProject(string relativePath, string outputRootDirectory, bool whatIf = false)
+      {
+         var startDirectory = Path.Combine(FileSupport.ProjectPath(AppDomain.CurrentDomain.BaseDirectory), relativePath);
+         startDirectory = Path.GetFullPath(startDirectory);
+         var ws = MSBuildWorkspace.Create();
+         var projectPath = FileSupport.GetNearestCSharpProject(startDirectory);
+         // For now: wait for the result
+         var project = ws.OpenProjectAsync(projectPath).Result;
+         return CreateOutputStringsFromProject(project, outputRootDirectory, whatIf);
+      }
+      
       public IDictionary<string, string> CreateOutputStringsFromProject(Project project, string outputRootDirectory, bool whatIf = false)
       {
          var rootGroup = FactoryAccess.LoadGroup(project);
@@ -115,7 +133,9 @@ namespace CodeFirst.TemplateSupport
                                  x.EntryPointType,
                                  x.MetadataLoader,
                                  childProperty = x.ChildProperty,
-                                 childType = x.ChildProperty?.PropertyType.GenericTypeArguments.First(),
+                                 childType = x.ChildProperty == null
+                                             ? null
+                                             : x.ChildProperty.PropertyType.GenericTypeArguments.First(),
                                  x.AttributeIdentifier
                               })
                               .Distinct()
@@ -143,7 +163,7 @@ namespace CodeFirst.TemplateSupport
          if (childPropertyType != null)
          {
             candidates = metadataList
-                           .Where(x=>x!=null)
+                           .Where(x => x != null)
                            .SelectMany(x => (childProperty.GetValue(x) as IEnumerable<CodeFirstMetadata>)).ToList();
          }
          else
@@ -158,16 +178,21 @@ namespace CodeFirst.TemplateSupport
                //.Where(x => x.EntryPointType == typeof(T));
                foreach (var candidateMap in candidateMaps)
                {
-                  var inFileName = candidate
+                  var firstNamespace = candidate
                                        .AncestorsAndSelf
                                        .OfType<ICodeFirstMetadataNamespace>()
-                                       .FirstOrDefault()
-                                       ?.FilePath;
+                                       .FirstOrDefault();
+                  var inFileName = firstNamespace == null
+                                      ? null
+                                      : firstNamespace.FilePath;
                   // TODO: This is wrong so I can test the rest of the system
                   var outFileName = Path.Combine(Path.GetDirectoryName(inFileName), Path.GetFileNameWithoutExtension(inFileName)) + ".g.cs";
-                  var templateType = candidateMap.ChildProperty != null
-                                  ? candidateMap.ChildProperty?.PropertyType.GenericTypeArguments.First()
-                                  : candidateMap.EntryPointType;
+                  var genericChildPropertyType = candidateMap.ChildProperty == null
+                                                 ? null
+                                                 : candidateMap.ChildProperty.PropertyType.GenericTypeArguments.FirstOrDefault();
+                  var templateType = genericChildPropertyType != null
+                                        ? genericChildPropertyType
+                                        : candidateMap.EntryPointType;
                   var outText = ReflectionHelpers.InvokeGenericMethod(typeof(TemplateRunnerBase).GetTypeInfo(), "CreateOutputString",
                                        templateType, this,
                                        candidateMap.Template, candidate)
@@ -183,14 +208,14 @@ namespace CodeFirst.TemplateSupport
          return newDict;
       }
 
-      private string CreateOutputString<TLocal>(ITemplate<TLocal> template, TLocal candidate)
+      protected string CreateOutputString<TLocal>(ITemplate<TLocal> template, TLocal candidate)
          where TLocal : CodeFirstMetadata<TLocal>
       {
-         var outText = template.GetOutput(candidate );
-         return outText; 
+         var outText = template.GetOutput(candidate);
+         return outText;
       }
 
-      private IEnumerable<T> GetMetadata<T>(
+      protected IEnumerable<T> GetMetadata<T>(
                          string attributeIdentifier,
                         IMetadataLoader<T> metadataLoader,
                         IEnumerable<IRoot> roots)

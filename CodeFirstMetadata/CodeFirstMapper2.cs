@@ -7,7 +7,6 @@ using System.Threading.Tasks;
 using CodeFirst.Common;
 using RoslynDom.Common;
 using System.Collections;
-using System.Data.Entity.Design.PluralizationServices;
 using System.Globalization;
 
 namespace CodeFirst
@@ -16,7 +15,7 @@ namespace CodeFirst
       where T : CodeFirstMetadata<T>
    {
       private static readonly TypeInfo thisType = typeof(CodeFirstMapper2<T>).GetTypeInfo();
-      private static PluralizationService pluralizeService = PluralizationService.CreateService(CultureInfo.GetCultureInfo("en-us"));
+      //private static PluralizationService pluralizeService = PluralizationService.CreateService(CultureInfo.GetCultureInfo("en-us"));
       private ICodeFirstServiceProvider serviceProvider;
 
       public CodeFirstMapper2(ICodeFirstServiceProvider serviceProvider)
@@ -78,8 +77,8 @@ namespace CodeFirst
          var namedProperties = mapping.GetNamedProperties().ToList();
          foreach (var namedProperty in namedProperties)
          {
-            var value = source.RequestValue(namedProperty);
-            if (value == null) { value = source.Parent.RequestValue(namedProperty); }
+            var value = source.RequestValue(namedProperty, true);
+            //while (value == null) { value = source.Parent.RequestValue(namedProperty); }
             if (ReflectionUtilities.CanSetProperty(obj, namedProperty))
             {
                ReflectionHelpers.AssignPropertyValue(obj, namedProperty, value);
@@ -156,7 +155,7 @@ namespace CodeFirst
          if (name.StartsWith("Add"))
          {
             name = name.SubstringAfter("Add");
-            var plural = pluralizeService.Pluralize(name);
+            var plural = Pluralizer.Pluralize(name);
             var current = source;
             if (current != null)
             {
@@ -208,7 +207,9 @@ namespace CodeFirst
             property = (current as ITypeMemberContainer).Properties
                               .Where(x => x.Name == plural)
                               .FirstOrDefault();
-            current = current.BaseType?.Type as IClass;
+            current = current.BaseType == null
+                        ? null
+                        : current.BaseType.Type as IClass;
          }
 
          return property;
@@ -237,7 +238,11 @@ namespace CodeFirst
          foreach (var attrib in source.Attributes)
          {
             IEnumerable<IAttributeValue> attribValues = attrib.AttributeValues;
-            var firstValue = attrib?.AttributeValues?.FirstOrDefault();
+            var firstValue = attrib == null
+                              ? null
+                              : (attrib.AttributeValues == null
+                                 ? null
+                                 : attrib.AttributeValues.FirstOrDefault());
             if (firstValue != null && string.IsNullOrEmpty(firstValue.Name)) // assume positional param
             {
                ret.Add(new UsageTrackingEntry<KeyValuePair<string, object>>(new KeyValuePair<string, object>(attrib.Name, firstValue.Value)));

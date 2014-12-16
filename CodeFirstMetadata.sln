@@ -1,7 +1,7 @@
 ﻿
 Microsoft Visual Studio Solution File, Format Version 12.00
-# Visual Studio 14
-VisualStudioVersion = 14.0.22310.1
+# Visual Studio 2013
+VisualStudioVersion = 12.0.30324.0
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "CodeFirstMetadata", "CodeFirstMetadata\CodeFirstMetadata.csproj", "{4B0BED60-C390-413D-A341-4B6144D8EBC3}"
 EndProject
@@ -57,6 +57,12 @@ EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "CodeFirstMetadataProvider", "CodeFirstMetadataProvider\CodeFirstMetadataProvider.csproj", "{94DD447B-FEE5-4892-A421-59E04E82A2C2}"
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "CodeFirstTemplateSupport", "CodeFirstTemplateSupport\CodeFirstTemplateSupport.csproj", "{7A877C5C-0554-4040-BE31-5403471995AB}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "SqlSchema", "SqlSchema\SqlSchema.csproj", "{4C8FAFB5-3368-4A35-AD1F-4390ACE70991}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "SchemaTests", "SchemaTests\SchemaTests.csproj", "{F8A5DC08-346E-49E7-849A-5DF291C876EF}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Tests", "Tests", "{099EB1F3-4FFA-47B3-AA17-B45C416DED16}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -296,11 +302,29 @@ Global
 		{7A877C5C-0554-4040-BE31-5403471995AB}.Release|ARM.Build.0 = Release|Any CPU
 		{7A877C5C-0554-4040-BE31-5403471995AB}.Release|x86.ActiveCfg = Release|Any CPU
 		{7A877C5C-0554-4040-BE31-5403471995AB}.Release|x86.Build.0 = Release|Any CPU
+		{4C8FAFB5-3368-4A35-AD1F-4390ACE70991}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{4C8FAFB5-3368-4A35-AD1F-4390ACE70991}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{4C8FAFB5-3368-4A35-AD1F-4390ACE70991}.Debug|ARM.ActiveCfg = Debug|Any CPU
+		{4C8FAFB5-3368-4A35-AD1F-4390ACE70991}.Debug|x86.ActiveCfg = Debug|Any CPU
+		{4C8FAFB5-3368-4A35-AD1F-4390ACE70991}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{4C8FAFB5-3368-4A35-AD1F-4390ACE70991}.Release|Any CPU.Build.0 = Release|Any CPU
+		{4C8FAFB5-3368-4A35-AD1F-4390ACE70991}.Release|ARM.ActiveCfg = Release|Any CPU
+		{4C8FAFB5-3368-4A35-AD1F-4390ACE70991}.Release|x86.ActiveCfg = Release|Any CPU
+		{F8A5DC08-346E-49E7-849A-5DF291C876EF}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{F8A5DC08-346E-49E7-849A-5DF291C876EF}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{F8A5DC08-346E-49E7-849A-5DF291C876EF}.Debug|ARM.ActiveCfg = Debug|Any CPU
+		{F8A5DC08-346E-49E7-849A-5DF291C876EF}.Debug|x86.ActiveCfg = Debug|Any CPU
+		{F8A5DC08-346E-49E7-849A-5DF291C876EF}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{F8A5DC08-346E-49E7-849A-5DF291C876EF}.Release|Any CPU.Build.0 = Release|Any CPU
+		{F8A5DC08-346E-49E7-849A-5DF291C876EF}.Release|ARM.ActiveCfg = Release|Any CPU
+		{F8A5DC08-346E-49E7-849A-5DF291C876EF}.Release|x86.ActiveCfg = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
 	EndGlobalSection
 	GlobalSection(NestedProjects) = preSolution
+		{DF3ADB75-0734-4A36-B25F-5CED939DA8DE} = {099EB1F3-4FFA-47B3-AA17-B45C416DED16}
+		{7032A16A-91F3-4210-BE29-9138CBE01607} = {099EB1F3-4FFA-47B3-AA17-B45C416DED16}
 		{348821B1-9574-4DC7-842D-26E535D2DC7B} = {A379EE7F-9CC7-49AC-8BC6-00671C24FF1F}
 		{ECC00025-6791-40F4-8E9C-1E581485FAFC} = {A379EE7F-9CC7-49AC-8BC6-00671C24FF1F}
 		{4B7D39C8-936C-4D99-8867-FEEB0A99F93D} = {A379EE7F-9CC7-49AC-8BC6-00671C24FF1F}

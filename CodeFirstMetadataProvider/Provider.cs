@@ -8,7 +8,7 @@ using CodeFirst.Common;
 namespace CodeFirst.Provider
 {
 
-   public class Provider : ICodeFirstServiceProvider
+   public class ServiceProvider : ICodeFirstServiceProvider
    {
       private IUnityContainer unityContainer = new UnityContainer();
       private bool isLoaded;

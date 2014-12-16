@@ -21,7 +21,7 @@ namespace ConsoleRunT4Example
    {
       static void Main(string[] args)
       {
-         var provider = new Provider();
+         var provider = new ServiceProvider();
          var runner = new T4TemplateRunner(provider);
          var startDirectory = Path.Combine(FileSupport.ProjectPath(AppDomain.CurrentDomain.BaseDirectory), "..\\DiagnosticsGeneration\\DiagnosticsGenerationMetadata");
          startDirectory = Path.GetFullPath(startDirectory);

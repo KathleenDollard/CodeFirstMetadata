@@ -45,6 +45,7 @@
     <Compile Include="CodeFirstClassGroup.WillBeGen.cs" />
     <Compile Include="CodeFirstProperty.cs" />
     <Compile Include="CodeFirstProperty.WillBeGen.cs" />
+    <Compile Include="NotifyPropertyChangedAttribute.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>

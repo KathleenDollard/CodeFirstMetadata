@@ -48,6 +48,9 @@
     <Compile Include="CodeFirstSemanticLogGroup.cs" />
     <Compile Include="CodeFirstSemanticLogGroup.WillBeGen.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="EventIdAttribute.cs" />
+    <Compile Include="UniqueNameAttribute.cs" />
+    <Compile Include="SemanticLogAttribute.cs" />
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\..\..\CodeFirstMetadataCommon\CodeFirstMetadataCommon.csproj">

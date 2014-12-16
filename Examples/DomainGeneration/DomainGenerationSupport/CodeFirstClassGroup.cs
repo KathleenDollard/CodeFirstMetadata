@@ -9,13 +9,19 @@ using CodeFirst.Common;
 
 namespace CodeFirstMetadataTest.PropertyChanged
 {
- 
-    public class CodeFirstClassGroup : CodeFirstClassGroupBase
-    {
-        // TODO: Supply custom code
-        // TODO: Provide way for multi-property notification
-    
-    }
+
+   public class CodeFirstClassGroup : CodeFirstClassGroupBase, ICodeFirstEntry
+   {
+      // TODO: Supply custom code
+      // TODO: Provide way for multi-property notification
+      public string AttributeId
+      {
+         get
+         {
+            return "";
+         }
+      }
+   }
 
 
 }

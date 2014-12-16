@@ -10,7 +10,15 @@ using CodeFirst.Common;
 namespace CodeFirstMetadataTest.SemanticLog
 {
 
-    public class CodeFirstSemanticLogGroup : CodeFirstSemanticLogGroupBase
-    { }
+   public class CodeFirstSemanticLogGroup : CodeFirstSemanticLogGroupBase, ICodeFirstEntry
+   {
+      public string AttributeId
+      {
+         get
+         {
+            return "SemanticLog";
+         }
+      }
+   }
 
 }

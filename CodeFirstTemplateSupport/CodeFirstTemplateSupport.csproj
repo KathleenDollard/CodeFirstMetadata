@@ -65,19 +65,19 @@
     </Reference>
     <Reference Include="RoslynDom, Version=1.0.0.0, Culture=neutral, processorArchitecture=MSIL">
       <SpecificVersion>False</SpecificVersion>
-      <HintPath>..\packages\RoslynDom.1.0.24-alpha\lib\net45\RoslynDom.dll</HintPath>
+      <HintPath>..\packages\RoslynDom.1.0.28-alpha\lib\net45\RoslynDom.dll</HintPath>
     </Reference>
     <Reference Include="RoslynDomCommon, Version=1.0.0.0, Culture=neutral, processorArchitecture=MSIL">
       <SpecificVersion>False</SpecificVersion>
-      <HintPath>..\packages\RoslynDom.1.0.24-alpha\lib\net45\RoslynDomCommon.dll</HintPath>
+      <HintPath>..\packages\RoslynDom.1.0.28-alpha\lib\net45\RoslynDomCommon.dll</HintPath>
     </Reference>
     <Reference Include="RoslynDomRDomCommon, Version=1.0.0.0, Culture=neutral, processorArchitecture=MSIL">
       <SpecificVersion>False</SpecificVersion>
-      <HintPath>..\packages\RoslynDom.1.0.24-alpha\lib\net45\RoslynDomRDomCommon.dll</HintPath>
+      <HintPath>..\packages\RoslynDom.1.0.28-alpha\lib\net45\RoslynDomRDomCommon.dll</HintPath>
     </Reference>
     <Reference Include="RoslynDomUtilities, Version=1.0.0.0, Culture=neutral, processorArchitecture=MSIL">
       <SpecificVersion>False</SpecificVersion>
-      <HintPath>..\packages\RoslynDom.1.0.24-alpha\lib\net45\RoslynDomUtilities.dll</HintPath>
+      <HintPath>..\packages\RoslynDom.1.0.28-alpha\lib\net45\RoslynDomUtilities.dll</HintPath>
     </Reference>
     <Reference Include="System" />
     <Reference Include="System.Collections.Immutable, Version=1.1.32.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a, processorArchitecture=MSIL">
@@ -102,6 +102,10 @@
     <ProjectReference Include="..\CodeFirstMetadataCommon\CodeFirstMetadataCommon.csproj">
       <Project>{2f5456e7-15a9-46c5-937f-34896da04ebe}</Project>
       <Name>CodeFirstMetadataCommon</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\CodeFirstMetadataProvider\CodeFirstMetadataProvider.csproj">
+      <Project>{94dd447b-fee5-4892-a421-59e04e82a2c2}</Project>
+      <Name>CodeFirstMetadataProvider</Name>
     </ProjectReference>
   </ItemGroup>
   <ItemGroup>

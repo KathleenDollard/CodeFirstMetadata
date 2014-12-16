@@ -13,7 +13,7 @@ using RoslynDom.CSharp;
 namespace CodeFirst
 {
    public class CodeFirstMetadataLoader<T> : IMetadataLoader<T>
-           where T : CodeFirstMetadata 
+           where T : CodeFirstMetadata
    {
       private ICodeFirstServiceProvider serviceProvider;
 
@@ -30,9 +30,16 @@ namespace CodeFirst
          var root = RDom.CSharp.LoadFromFile(fileName);
          return LoadFrom(root, attributeIdentifier);
       }
+
       public T LoadFromString(string input, string attributeIdentifier)
       {
          var root = RDom.CSharp.Load(input);
+         return LoadFrom(root, attributeIdentifier);
+      }
+
+      public T LoadFrom(Document document, string attributeIdentifier)
+      {
+         var root = RDom.CSharp.Load(document);
          return LoadFrom(root, attributeIdentifier);
       }
 
@@ -51,8 +58,10 @@ namespace CodeFirst
          }
          return null;
       }
+   
       private bool ShouldRun(IRoot root, string attributeIdentifier)
       {
+         if (string.IsNullOrWhiteSpace(attributeIdentifier)) { return true; }
          var attributeUsed = root.RootClasses
                               .Any(x => x.Attributes
                                     .Any(y => y.Name == attributeIdentifier));
@@ -62,7 +71,7 @@ namespace CodeFirst
          //               select true);
          if (attributeUsed) { return true; }
          var hasNamedBase = root.RootClasses
-                        .Any(x => x.BaseType.Name == attributeIdentifier + "Base");
+                        .Any(x => x.BaseType != null && x.BaseType.Name == attributeIdentifier + "Base");
          return hasNamedBase;
 
       }

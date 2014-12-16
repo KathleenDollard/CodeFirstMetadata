@@ -59,7 +59,7 @@ namespace CodeFirstTest
          var classType = typeof(CodeFirstClassGroup);
          var namespaceMapping = TargetMapping.DeriveMapping("testPropChanged", "test", classType.GetTypeInfo()) as TargetNamespaceMapping;
          Assert.IsNotNull(namespaceMapping, "namespaceMapping is null");
-         var provider = new CodeFirst.Provider.Provider();
+         var provider = new CodeFirst.Provider.ServiceProvider();
          var mapper = new CodeFirstMapper2<CodeFirstClassGroup>(provider);
          var newObj = mapper.Map(namespaceMapping, cfNamespace, null);
          var newNamespace = newObj as CodeFirstClassGroup;
@@ -86,7 +86,7 @@ namespace CodeFirstTest
          Assert.IsNotNull(cfClass, "cfClass is null");
          var propertyType = typeof(CodeFirstClass);
          var classMapping = TargetMapping.DeriveMapping("testPropChanged", "test", propertyType.GetTypeInfo()) as TargetClassMapping;
-         var provider = new CodeFirst.Provider.Provider();
+         var provider = new CodeFirst.Provider.ServiceProvider();
          var mapper = new CodeFirstMapper2<CodeFirstClass>(provider);
          var newObj = mapper.Map(classMapping, cfClass, null);
          var newClass = newObj as CodeFirstClass;
@@ -115,7 +115,7 @@ namespace CodeFirstTest
          Assert.IsNotNull(classMapping, "classMapping is null");
          var propertyMapping = classMapping.Children.First();
          Assert.IsNotNull(propertyMapping, "propertyMapping is null");
-          var provider = new CodeFirst.Provider.Provider();
+          var provider = new CodeFirst.Provider.ServiceProvider();
          var mapper = new CodeFirstMapper2<CodeFirstProperty>(provider);
          var newObj = mapper.Map(propertyMapping, cfProperties[0], null);
          var newProperty = newObj as CodeFirstProperty;

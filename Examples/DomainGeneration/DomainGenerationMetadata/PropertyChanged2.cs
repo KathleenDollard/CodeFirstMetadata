@@ -1,0 +1,15 @@
+﻿
+using System;
+using DomainGeneration.Metadata;
+
+namespace CodeFirstTest
+{
+    [NotifyPropertyChanged]
+    public class Customer
+    {
+        public string FirstName{get; set;}
+        public string LastName{get; set;}
+        public int  Id{get; set;}
+        public DateTime  BirthDate{get; set;}
+    }
+}

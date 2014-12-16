@@ -23,6 +23,7 @@ namespace KadGen.Common
             this.Write("{");
             this.PushIndent();
         }
+
         protected void PopBracket()
         {
             this.PopIndent();

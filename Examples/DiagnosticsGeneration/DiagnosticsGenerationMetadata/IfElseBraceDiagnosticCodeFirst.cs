@@ -23,13 +23,12 @@ namespace KathleensAnalyzer
             makeNewNode: x => x.WithStatement(
                      SyntaxFactory.Block(x.Statement)));
          AddAnalyzer<ElseClauseSyntax>(
-           syntaxKind: SyntaxKind.IfStatement,
-           condition: x => !x.Statement.IsKind(SyntaxKind.Block)
-                           && !x.Statement.IsKind(SyntaxKind.IfStatement),
-           getLocation: x => x.ElseKeyword.GetLocation(),
-           messageArg: "else statement");
+            syntaxKind: SyntaxKind.IfStatement,
+            condition: x => !x.Statement.IsKind(SyntaxKind.Block) && !x.Statement.IsKind(SyntaxKind.IfStatement),
+            getLocation: x => x.ElseKeyword.GetLocation(),
+            messageArg: "else statement");
          AddCodeFix<ElseClauseSyntax>(
-           makeNewNode: GetNewElseNode);
+            makeNewNode: GetNewElseNode);
       }
 
       private SyntaxNode GetNewElseNode(ElseClauseSyntax elseClause)

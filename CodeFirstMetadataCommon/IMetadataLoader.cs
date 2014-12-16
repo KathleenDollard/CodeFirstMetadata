@@ -4,6 +4,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using Microsoft.CodeAnalysis;
 
 namespace CodeFirst.Common
 {
@@ -18,5 +19,6 @@ namespace CodeFirst.Common
       T LoadFromFile(string fileName, string AttributeIdentifier);
       T LoadFromString(string input, string AttributeIdentifier);
       T LoadFrom(IRoot root, string AttributeIdentifier);
+      T LoadFrom(Document document, string AttributeIdentifier);
    }
 }

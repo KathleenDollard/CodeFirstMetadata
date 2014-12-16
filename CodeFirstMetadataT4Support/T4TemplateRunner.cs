@@ -11,7 +11,9 @@ namespace CodeFirstMetadataT4Support
    public class T4TemplateRunner : TemplateRunnerBase
    {
 
-      public T4TemplateRunner(ICodeFirstServiceProvider serviceProvider) : base(serviceProvider) { }
+      public T4TemplateRunner(ICodeFirstServiceProvider serviceProvider ) : base(serviceProvider) { }
+
+      public T4TemplateRunner() : base(null) { }
 
       public override string CreateString<TMetadata, TTemplate>(TMetadata metadata, TTemplate template)
       {
