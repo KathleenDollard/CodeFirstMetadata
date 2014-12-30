@@ -61,7 +61,7 @@ namespace CodeFirst
    
       private bool ShouldRun(IRoot root, string attributeIdentifier)
       {
-         if (string.IsNullOrWhiteSpace(attributeIdentifier)) { return true; }
+         if (string.IsNullOrWhiteSpace(attributeIdentifier)) { return root.RootClasses.Any(); }
          var attributeUsed = root.RootClasses
                               .Any(x => x.Attributes
                                     .Any(y => y.Name == attributeIdentifier));

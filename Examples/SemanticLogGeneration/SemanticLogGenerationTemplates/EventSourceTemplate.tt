@@ -30,5 +30,12 @@ using System.Diagnostics.Tracing;
 <#   } #>
 
 <# OutputNamespaceClose(); #>
-
+<#+
+public override string FilePathHint
+{
+   get
+   { return @"{ExecutionPath}\..\..\..\DomainOutput\{MetadataFileName}2.g.cs";
+   }
+}
+#>
 

@@ -7,7 +7,7 @@
 //     the code is regenerated.
 // </auto-generated>
 // ------------------------------------------------------------------------------
-namespace CodeFirstT4Example
+namespace DomainGenerationTemplates
 {
     using System.Linq;
     using CodeFirst.Common;
@@ -19,7 +19,7 @@ namespace CodeFirstT4Example
     /// Class to produce the template output
     /// </summary>
     
-    #line 1 "C:\Users\Kathleen\Documents\Visual Studio 2013\Projects\CodeFirstMetadata\CodeFirstT4Example\PropertyChangedTemplate.tt"
+    #line 1 "C:\Users\Kathleen\Documents\Visual Studio 2013\Projects\CodeFirstMetadata\Examples\DomainGeneration\DomainGenerationTemplates\PropertyChangedTemplate.tt"
     [global::System.CodeDom.Compiler.GeneratedCodeAttribute("Microsoft.VisualStudio.TextTemplating", "14.0.0.0")]
     public partial class PropertyChangedTemplate : CodeFirstT4CSharpBase<CodeFirstClass>
     {
@@ -30,47 +30,50 @@ namespace CodeFirstT4Example
         public override string TransformText()
         {
             
-            #line 10 "C:\Users\Kathleen\Documents\Visual Studio 2013\Projects\CodeFirstMetadata\CodeFirstT4Example\PropertyChangedTemplate.tt"
+            #line 10 "C:\Users\Kathleen\Documents\Visual Studio 2013\Projects\CodeFirstMetadata\Examples\DomainGeneration\DomainGenerationTemplates\PropertyChangedTemplate.tt"
  
+// ******* THIS IS A TEST TEMPLATE FOR THE SAKE OF ALL HUMANITY, DON'T WRITE TEMPLATES LIKE THIS *******
+// (instead, use the built-in C# features to avoid the quoted strings)
 	OutputGenerationWarning();
     var classMeta = Meta as CodeFirstClass;
- 
+
             
             #line default
             #line hidden
             this.Write("using System;\r\nusing System.ComponentModel;\r\n\r\n");
             
-            #line 17 "C:\Users\Kathleen\Documents\Visual Studio 2013\Projects\CodeFirstMetadata\CodeFirstT4Example\PropertyChangedTemplate.tt"
+            #line 19 "C:\Users\Kathleen\Documents\Visual Studio 2013\Projects\CodeFirstMetadata\Examples\DomainGeneration\DomainGenerationTemplates\PropertyChangedTemplate.tt"
  OutputNamespaceOpen(); 
             
             #line default
             #line hidden
             this.Write("\r\npublic class ");
             
-            #line 19 "C:\Users\Kathleen\Documents\Visual Studio 2013\Projects\CodeFirstMetadata\CodeFirstT4Example\PropertyChangedTemplate.tt"
+            #line 21 "C:\Users\Kathleen\Documents\Visual Studio 2013\Projects\CodeFirstMetadata\Examples\DomainGeneration\DomainGenerationTemplates\PropertyChangedTemplate.tt"
             this.Write(this.ToStringHelper.ToStringWithCulture(Meta.Name));
             
             #line default
             #line hidden
             this.Write(" : INotifyPropertyChanged\r\n\r\n");
             
-            #line 21 "C:\Users\Kathleen\Documents\Visual Studio 2013\Projects\CodeFirstMetadata\CodeFirstT4Example\PropertyChangedTemplate.tt"
+            #line 23 "C:\Users\Kathleen\Documents\Visual Studio 2013\Projects\CodeFirstMetadata\Examples\DomainGeneration\DomainGenerationTemplates\PropertyChangedTemplate.tt"
 
 PushBracket();
+WriteLine();
 foreach(var prop in Meta.Properties)
 { 
             
             #line default
             #line hidden
             
-            #line 25 "C:\Users\Kathleen\Documents\Visual Studio 2013\Projects\CodeFirstMetadata\CodeFirstT4Example\PropertyChangedTemplate.tt"
+            #line 28 "C:\Users\Kathleen\Documents\Visual Studio 2013\Projects\CodeFirstMetadata\Examples\DomainGeneration\DomainGenerationTemplates\PropertyChangedTemplate.tt"
             this.Write(this.ToStringHelper.ToStringWithCulture(FieldDeclaration(prop.Name, prop.PropertyType.Name)));
             
             #line default
             #line hidden
             this.Write(";\r\n");
             
-            #line 26 "C:\Users\Kathleen\Documents\Visual Studio 2013\Projects\CodeFirstMetadata\CodeFirstT4Example\PropertyChangedTemplate.tt"
+            #line 29 "C:\Users\Kathleen\Documents\Visual Studio 2013\Projects\CodeFirstMetadata\Examples\DomainGeneration\DomainGenerationTemplates\PropertyChangedTemplate.tt"
  } 
             
             #line default
@@ -80,108 +83,106 @@ foreach(var prop in Meta.Properties)
                     "   {\r\n        this.PropertyChanged(this, new PropertyChangedEventArgs(name));\r\n " +
                     "   }\r\n}\r\n\r\n");
             
-            #line 38 "C:\Users\Kathleen\Documents\Visual Studio 2013\Projects\CodeFirstMetadata\CodeFirstT4Example\PropertyChangedTemplate.tt"
+            #line 41 "C:\Users\Kathleen\Documents\Visual Studio 2013\Projects\CodeFirstMetadata\Examples\DomainGeneration\DomainGenerationTemplates\PropertyChangedTemplate.tt"
 
 foreach(var prop in Meta.Properties)
 {
     OutputXmlComments(prop);
-	OutputAttributes(prop);
+	 OutputAttributes(prop);
     var fieldName = MakeFieldName(prop.Name);
     var propertyName = MakePublicName(prop.Name);
             
             #line default
             #line hidden
             
-            #line 45 "C:\Users\Kathleen\Documents\Visual Studio 2013\Projects\CodeFirstMetadata\CodeFirstT4Example\PropertyChangedTemplate.tt"
+            #line 48 "C:\Users\Kathleen\Documents\Visual Studio 2013\Projects\CodeFirstMetadata\Examples\DomainGeneration\DomainGenerationTemplates\PropertyChangedTemplate.tt"
             this.Write(this.ToStringHelper.ToStringWithCulture(PropertyDeclaration(propertyName, prop.ScopeAccess, prop.PropertyType.Name)));
             
             #line default
             #line hidden
             this.Write("\r\n");
             
-            #line 48 "C:\Users\Kathleen\Documents\Visual Studio 2013\Projects\CodeFirstMetadata\CodeFirstT4Example\PropertyChangedTemplate.tt"
+            #line 51 "C:\Users\Kathleen\Documents\Visual Studio 2013\Projects\CodeFirstMetadata\Examples\DomainGeneration\DomainGenerationTemplates\PropertyChangedTemplate.tt"
  this.PushBracket(); 
             
             #line default
             #line hidden
-            this.Write("  \r\n");
             
-            #line 49 "C:\Users\Kathleen\Documents\Visual Studio 2013\Projects\CodeFirstMetadata\CodeFirstT4Example\PropertyChangedTemplate.tt"
+            #line 52 "C:\Users\Kathleen\Documents\Visual Studio 2013\Projects\CodeFirstMetadata\Examples\DomainGeneration\DomainGenerationTemplates\PropertyChangedTemplate.tt"
  if (prop.CanGet) { 
             
             #line default
             #line hidden
-            this.Write("get { return ");
+            this.Write("\r\nget { return ");
             
-            #line 50 "C:\Users\Kathleen\Documents\Visual Studio 2013\Projects\CodeFirstMetadata\CodeFirstT4Example\PropertyChangedTemplate.tt"
+            #line 54 "C:\Users\Kathleen\Documents\Visual Studio 2013\Projects\CodeFirstMetadata\Examples\DomainGeneration\DomainGenerationTemplates\PropertyChangedTemplate.tt"
             this.Write(this.ToStringHelper.ToStringWithCulture(fieldName));
             
             #line default
             #line hidden
             this.Write("; }\r\n");
             
-            #line 51 "C:\Users\Kathleen\Documents\Visual Studio 2013\Projects\CodeFirstMetadata\CodeFirstT4Example\PropertyChangedTemplate.tt"
+            #line 55 "C:\Users\Kathleen\Documents\Visual Studio 2013\Projects\CodeFirstMetadata\Examples\DomainGeneration\DomainGenerationTemplates\PropertyChangedTemplate.tt"
  } 
             
             #line default
             #line hidden
             
-            #line 52 "C:\Users\Kathleen\Documents\Visual Studio 2013\Projects\CodeFirstMetadata\CodeFirstT4Example\PropertyChangedTemplate.tt"
+            #line 56 "C:\Users\Kathleen\Documents\Visual Studio 2013\Projects\CodeFirstMetadata\Examples\DomainGeneration\DomainGenerationTemplates\PropertyChangedTemplate.tt"
  if (prop.CanGet) { 
             
             #line default
             #line hidden
             this.Write("set\r\n");
             
-            #line 54 "C:\Users\Kathleen\Documents\Visual Studio 2013\Projects\CodeFirstMetadata\CodeFirstT4Example\PropertyChangedTemplate.tt"
+            #line 58 "C:\Users\Kathleen\Documents\Visual Studio 2013\Projects\CodeFirstMetadata\Examples\DomainGeneration\DomainGenerationTemplates\PropertyChangedTemplate.tt"
  PushBracket(); 
             
             #line default
             #line hidden
-            this.Write("\r\nif ( ");
+            this.Write("\r\nif (");
             
-            #line 56 "C:\Users\Kathleen\Documents\Visual Studio 2013\Projects\CodeFirstMetadata\CodeFirstT4Example\PropertyChangedTemplate.tt"
+            #line 60 "C:\Users\Kathleen\Documents\Visual Studio 2013\Projects\CodeFirstMetadata\Examples\DomainGeneration\DomainGenerationTemplates\PropertyChangedTemplate.tt"
             this.Write(this.ToStringHelper.ToStringWithCulture(fieldName));
             
             #line default
             #line hidden
-            this.Write(" != value )\r\n{ ");
+            this.Write(" != value)\r\n{\r\n   ");
             
-            #line 57 "C:\Users\Kathleen\Documents\Visual Studio 2013\Projects\CodeFirstMetadata\CodeFirstT4Example\PropertyChangedTemplate.tt"
+            #line 62 "C:\Users\Kathleen\Documents\Visual Studio 2013\Projects\CodeFirstMetadata\Examples\DomainGeneration\DomainGenerationTemplates\PropertyChangedTemplate.tt"
             this.Write(this.ToStringHelper.ToStringWithCulture(fieldName));
             
             #line default
             #line hidden
             this.Write(" = value;\r\n   this.OnPropertyChanged(\"");
             
-            #line 58 "C:\Users\Kathleen\Documents\Visual Studio 2013\Projects\CodeFirstMetadata\CodeFirstT4Example\PropertyChangedTemplate.tt"
+            #line 63 "C:\Users\Kathleen\Documents\Visual Studio 2013\Projects\CodeFirstMetadata\Examples\DomainGeneration\DomainGenerationTemplates\PropertyChangedTemplate.tt"
             this.Write(this.ToStringHelper.ToStringWithCulture(propertyName));
             
             #line default
             #line hidden
             this.Write("\");\r\n}\r\n");
             
-            #line 60 "C:\Users\Kathleen\Documents\Visual Studio 2013\Projects\CodeFirstMetadata\CodeFirstT4Example\PropertyChangedTemplate.tt"
+            #line 65 "C:\Users\Kathleen\Documents\Visual Studio 2013\Projects\CodeFirstMetadata\Examples\DomainGeneration\DomainGenerationTemplates\PropertyChangedTemplate.tt"
  PopBracket(); 
             
             #line default
             #line hidden
             
-            #line 61 "C:\Users\Kathleen\Documents\Visual Studio 2013\Projects\CodeFirstMetadata\CodeFirstT4Example\PropertyChangedTemplate.tt"
+            #line 66 "C:\Users\Kathleen\Documents\Visual Studio 2013\Projects\CodeFirstMetadata\Examples\DomainGeneration\DomainGenerationTemplates\PropertyChangedTemplate.tt"
  }
             
             #line default
             #line hidden
             
-            #line 62 "C:\Users\Kathleen\Documents\Visual Studio 2013\Projects\CodeFirstMetadata\CodeFirstT4Example\PropertyChangedTemplate.tt"
+            #line 67 "C:\Users\Kathleen\Documents\Visual Studio 2013\Projects\CodeFirstMetadata\Examples\DomainGeneration\DomainGenerationTemplates\PropertyChangedTemplate.tt"
  this.PopBracket();
 } 
             
             #line default
             #line hidden
-            this.Write("\r\n");
             
-            #line 65 "C:\Users\Kathleen\Documents\Visual Studio 2013\Projects\CodeFirstMetadata\CodeFirstT4Example\PropertyChangedTemplate.tt"
+            #line 69 "C:\Users\Kathleen\Documents\Visual Studio 2013\Projects\CodeFirstMetadata\Examples\DomainGeneration\DomainGenerationTemplates\PropertyChangedTemplate.tt"
  
 PopBracket();
 OutputNamespaceClose(); 
@@ -189,9 +190,21 @@ OutputNamespaceClose();
             
             #line default
             #line hidden
-            this.Write("\r\n\r\n");
             return this.GenerationEnvironment.ToString();
         }
+        
+        #line 73 "C:\Users\Kathleen\Documents\Visual Studio 2013\Projects\CodeFirstMetadata\Examples\DomainGeneration\DomainGenerationTemplates\PropertyChangedTemplate.tt"
+
+public override string FilePathHint
+{
+   get
+   { return @"{ExecutionPath}\..\..\..\DomainOutput\{MetadataFileName}.g.cs";
+   }
+}
+
+        
+        #line default
+        #line hidden
     }
     
     #line default

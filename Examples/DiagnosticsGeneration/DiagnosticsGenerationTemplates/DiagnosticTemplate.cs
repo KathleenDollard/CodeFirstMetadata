@@ -164,9 +164,22 @@ namespace ");
             
             #line default
             #line hidden
-            this.Write("      }\r\n   }\r\n}");
+            this.Write("      }\r\n   }\r\n}\r\n");
             return this.GenerationEnvironment.ToString();
         }
+        
+        #line 61 "C:\Users\Kathleen\Documents\Visual Studio 2013\Projects\CodeFirstMetadata\Examples\DiagnosticsGeneration\DiagnosticsGenerationTemplates\DiagnosticTemplate.tt"
+
+public override string FilePathHint
+{
+   get
+   { return @"{ExecutionPath}\..\..\..\DiagnosticOutput\{MetadataFileName}2.g.cs";
+   }
+}
+
+        
+        #line default
+        #line hidden
     }
     
     #line default

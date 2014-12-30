@@ -1,0 +1,21 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<package xmlns="http://schemas.microsoft.com/packaging/2012/06/nuspec.xsd">
+    <metadata>
+        <id>CodeFirstMetadata</id>
+        <version>1.0.16-alpha</version>
+        <authors>Kathleen Dollard</authors>
+        <requireLicenseAcceptance>false</requireLicenseAcceptance>
+        <description>My package description.</description>
+        <dependencies>
+            <group targetFramework=".NETFramework4.5" />
+        </dependencies>
+    </metadata>
+    <files>
+        <file src="Lib\CodeFirstCSharp.dll" target="lib\net45\CodeFirstCSharp.dll" />
+        <file src="Lib\CodeFirstMetadata.dll" target="lib\net45\CodeFirstMetadata.dll" />
+        <file src="Lib\CodeFirstMetadataCommon.dll" target="lib\net45\CodeFirstMetadataCommon.dll" />
+        <file src="Lib\CodeFirstMetadataProvider.dll" target="lib\net45\CodeFirstMetadataProvider.dll" />
+        <file src="Lib\CodeFirstMetadataT4Support.dll" target="lib\net45\CodeFirstMetadataT4Support.dll" />
+        <file src="Lib\CodeFirstTemplateSupport.dll" target="lib\net45\CodeFirstTemplateSupport.dll" />
+    </files>
+</package>

@@ -58,3 +58,11 @@ namespace <#= Meta.Namespace #>
       }
    }
 }
+<#+
+public override string FilePathHint
+{
+   get
+   { return @"{ExecutionPath}\..\..\..\DiagnosticOutput\{MetadataFileName}2.g.cs";
+   }
+}
+#>

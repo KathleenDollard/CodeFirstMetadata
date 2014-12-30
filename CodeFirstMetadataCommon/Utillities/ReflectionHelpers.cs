@@ -209,7 +209,10 @@ namespace RoslynDom.Common
       public static object InvokeGenericMethod(TypeInfo type, string methodName, Type innerType, object obj, params object[] parameters)
       {
          var bindingFlags = BindingFlags.Instance | BindingFlags.Static | BindingFlags.Public | BindingFlags.NonPublic | BindingFlags.FlattenHierarchy;
-         var methodInfo = type.GetMethod(methodName, bindingFlags);
+         var methodInfo = type.GetMethods( bindingFlags)
+                           .Where (x=>x.Name == methodName
+                                       && x.IsGenericMethodDefinition)
+                           .FirstOrDefault();
          if (methodInfo == null) throw new InvalidOperationException("Method not found");
          var concreteInfo = methodInfo.MakeGenericMethod(innerType);
          return concreteInfo.Invoke(obj, parameters);

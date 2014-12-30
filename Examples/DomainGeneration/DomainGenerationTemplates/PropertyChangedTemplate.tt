@@ -8,9 +8,11 @@
 <#@ import namespace="KadGen.Common" #>
 <#@ import namespace="CodeFirstMetadataTest.PropertyChanged" #>
 <# 
+// ******* THIS IS A TEST TEMPLATE FOR THE SAKE OF ALL HUMANITY, DON'T WRITE TEMPLATES LIKE THIS *******
+// (instead, use the built-in C# features to avoid the quoted strings)
 	OutputGenerationWarning();
     var classMeta = Meta as CodeFirstClass;
- #>
+#>
 using System;
 using System.ComponentModel;
 
@@ -20,6 +22,7 @@ public class <#= Meta.Name #> : INotifyPropertyChanged
 
 <#
 PushBracket();
+WriteLine();
 foreach(var prop in Meta.Properties)
 { #>
 <#= FieldDeclaration(prop.Name, prop.PropertyType.Name) #>;
@@ -39,32 +42,39 @@ protected virtual void OnPropertyChanged(string name)
 foreach(var prop in Meta.Properties)
 {
     OutputXmlComments(prop);
-	OutputAttributes(prop);
+	 OutputAttributes(prop);
     var fieldName = MakeFieldName(prop.Name);
     var propertyName = MakePublicName(prop.Name);#>
 <#= 
 PropertyDeclaration(propertyName, prop.ScopeAccess, prop.PropertyType.Name) 
 #>
-<# this.PushBracket(); #>  
+<# this.PushBracket(); #>
 <# if (prop.CanGet) { #>
+
 get { return <#= fieldName #>; }
 <# } #>
 <# if (prop.CanGet) { #>
 set
 <# PushBracket(); #>
 
-if ( <#= fieldName #> != value )
-{ <#= fieldName #> = value;
+if (<#= fieldName #> != value)
+{
+   <#= fieldName #> = value;
    this.OnPropertyChanged("<#= propertyName #>");
 }
 <# PopBracket(); #>
 <# }#>
 <# this.PopBracket();
 } #>
-
 <# 
 PopBracket();
 OutputNamespaceClose(); 
 #>
-
-
+<#+
+public override string FilePathHint
+{
+   get
+   { return @"{ExecutionPath}\..\..\..\DomainOutput\{MetadataFileName}.g.cs";
+   }
+}
+#>

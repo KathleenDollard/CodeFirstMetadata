@@ -1,18 +1,8 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using CodeFirst;
-using CodeFirst.Common;
 using CodeFirstMetadataT4Support;
-using CodeFirstMetadataTest.SemanticLog;
-using CodeFirstMetadataTest.PropertyChanged;
-using CodeFirstT4Example;
 using RoslynDom.Common;
-using CodeFirstMetadataTest.Diagnostic;
 using System.IO;
-using RoslynDom.CSharp;
 using Microsoft.CodeAnalysis.MSBuild;
-using DiagnosticsGenerationTemplates;
 using CodeFirst.Provider;
 
 namespace ConsoleRunT4Example

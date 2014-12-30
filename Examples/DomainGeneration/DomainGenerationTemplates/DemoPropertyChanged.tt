@@ -1,0 +1,39 @@
+﻿<#@ template language="C#" inherits="CodeFirstT4CSharpBase<CodeFirstClass>" #>
+<#@ assembly name="System.Core" #>
+<#@ import namespace="System.Linq" #>
+<#@ import namespace="CodeFirst.Common" #>
+<#@ import namespace="RoslynDom.Common" #>
+<#@ import namespace="CodeFirstMetadataTest.PropertyChanged" #>
+using System;
+using System.ComponentModel;
+
+namespace <#= Meta.Namespace #>
+{
+   public class <#= Meta.Name #> : INotifyPropertyChanged
+   {
+      public event PropertyChangedEventHandler PropertyChanged;
+
+<# foreach(var prop in Meta.Properties)
+{   
+   var fieldName = StringUtilities.CamelCase(prop.Name);
+   var propertyName = StringUtilities.PascalCase(prop.Name);
+ #>
+      private <#= prop.PropertyType.Name #> <#= fieldName #>
+      public <#= prop.ScopeAccess #> <#= prop.PropertyType.Name #> <#= propertyName #>
+      {
+         get { return <#= fieldName #>; }
+         set { SetProperty(ref <#= fieldName #>, value); }
+      }
+
+<# 
+} #>
+   }
+}
+<#+
+public override string FilePathHint
+{
+   get
+   { return @"{ExecutionPath}\..\..\..\DomainOutput\{MetadataFileName}2.g.cs";
+   }
+}
+#>

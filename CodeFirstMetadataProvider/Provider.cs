@@ -4,6 +4,8 @@ using System.Linq;
 using System.Runtime.CompilerServices;
 using Microsoft.Practices.Unity;
 using CodeFirst.Common;
+using RoslynDom.Common;
+using System.Reflection;
 
 namespace CodeFirst.Provider
 {
@@ -59,15 +61,7 @@ namespace CodeFirst.Provider
       {
          throw new NotImplementedException();
       }
-      //[ExcludeFromCodeCoverage]
-      //private void AssertLoaded()
-      //{
-      //   if (!isLoaded || unityContainer == null)
-      //   {
-      //      Guardian.Assert.AccessedProviderBeforeInitialization(typeof(Provider));
-      //   }
-      //}
-
+ 
       internal IEnumerable<T> GetItems<T>(
           [CallerMemberName] string callerName = "",
           [CallerLineNumber] int callerLineNumber = 0)
@@ -83,6 +77,14 @@ namespace CodeFirst.Provider
          if (!isLoaded) { ConfigureContainer(); isLoaded = true; }
          var ret = UnityContainer.ResolveAll<IMetadataLoader<T>>().Single();
          return ret;
+      }
+
+      public IMetadataLoader GetMetadataLoader(TypeInfo metadataGroupTypeInfo)
+      {
+         var metadataLoader = ReflectionHelpers.InvokeGenericMethod(typeof(ServiceProvider).GetTypeInfo(),
+                     "GetMetadataLoader", metadataGroupTypeInfo, this)
+                     as IMetadataLoader;
+         return metadataLoader;
       }
 
       public IMapper2<T> GetMapper2<T>()

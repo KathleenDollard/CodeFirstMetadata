@@ -6,8 +6,8 @@ using System.Threading.Tasks;
 
 namespace CodeFirst.Common
 {
-    public static class StringUtilities
-    {
+    //public static class StringUtilities
+    //{
 
         //public static string SubstringAfter(this string input, string delimiter)
         //{
@@ -40,5 +40,5 @@ namespace CodeFirst.Common
         //    if (pos < 0) return "";
         //    return input.Substring(0, pos);
         //}
-    }
+    //}
 }

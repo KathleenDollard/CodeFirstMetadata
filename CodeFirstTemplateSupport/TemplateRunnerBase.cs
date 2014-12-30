@@ -39,9 +39,7 @@ namespace CodeFirst.TemplateSupport
          foreach (var entryPoint in entryPoints)
          {
             var entryPointType = entryPoint.GetType();
-            var metadataLoader = ReflectionHelpers.InvokeGenericMethod(serviceProvider.GetType().GetTypeInfo(),
-                        "GetMetadataLoader", entryPointType, serviceProvider)
-                        as IMetadataLoader;
+            var metadataLoader = serviceProvider.GetMetadataLoader(entryPoint.GetType().GetTypeInfo());
             var childProperty = GetChildProperty(entryPointType);
             foreach (var template in templates)
             {
@@ -164,7 +162,8 @@ namespace CodeFirst.TemplateSupport
          {
             candidates = metadataList
                            .Where(x => x != null)
-                           .SelectMany(x => (childProperty.GetValue(x) as IEnumerable<CodeFirstMetadata>)).ToList();
+                           .SelectMany(x => (childProperty.GetValue(x) as IEnumerable<CodeFirstMetadata>))
+                           .ToList();
          }
          else
          {
@@ -174,7 +173,7 @@ namespace CodeFirst.TemplateSupport
          {
             foreach (var candidate in candidates)
             {
-               var candidateMaps = templateMaps;
+               var candidateMaps = templateMaps.ToList();
                //.Where(x => x.EntryPointType == typeof(T));
                foreach (var candidateMap in candidateMaps)
                {
@@ -185,8 +184,7 @@ namespace CodeFirst.TemplateSupport
                   var inFileName = firstNamespace == null
                                       ? null
                                       : firstNamespace.FilePath;
-                  // TODO: This is wrong so I can test the rest of the system
-                  var outFileName = Path.Combine(Path.GetDirectoryName(inFileName), Path.GetFileNameWithoutExtension(inFileName)) + ".g.cs";
+                  var outFileName = GetFileName(candidateMap.Template.FilePathHint, inFileName, "");
                   var genericChildPropertyType = candidateMap.ChildProperty == null
                                                  ? null
                                                  : candidateMap.ChildProperty.PropertyType.GenericTypeArguments.FirstOrDefault();
@@ -206,6 +204,35 @@ namespace CodeFirst.TemplateSupport
             //                       as Dictionary<string, string>;
          }
          return newDict;
+      }
+
+      /// <summary>
+      /// A template for creation of a file path. The following values are supported and
+      /// should be included in curly braces. 
+      /// 
+      /// - MetadataPath
+      /// - MetadataFileName
+      /// - TemplatePath
+      /// - TemplateFileName
+      /// - ExecutionPath
+      /// 
+      /// </summary>
+      private string GetFileName(string filePathHint, string metadataFilePath, string templateFilePath)
+      {
+         var executionFilePath = Environment.CurrentDirectory;
+         var hint = filePathHint
+                        .Replace("{MetadataPath}", @"{0}")
+                        .Replace("{MetadataFileName}", @"{1}")
+                        .Replace("{TemplatePath}", @"{2}")
+                        .Replace("{TemplateFileName}", @"{3}")
+                        .Replace("{ExecutionPath}", @"{4}");
+         var outFileName = string.Format(hint,
+                     Path.GetDirectoryName(metadataFilePath),
+                     Path.GetFileNameWithoutExtension(metadataFilePath),
+                     "",
+                     "",
+                     executionFilePath);
+         return Path.GetFullPath(outFileName);
       }
 
       protected string CreateOutputString<TLocal>(ITemplate<TLocal> template, TLocal candidate)
