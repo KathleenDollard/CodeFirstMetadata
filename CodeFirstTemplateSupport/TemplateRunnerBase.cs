@@ -109,7 +109,7 @@ namespace CodeFirst.TemplateSupport
          startDirectory = Path.GetFullPath(startDirectory);
          var ws = MSBuildWorkspace.Create();
          var projectPath = FileSupport.GetNearestCSharpProject(startDirectory);
-         // For now: wait for the result
+         // For testing: wait for the result
          var project = ws.OpenProjectAsync(projectPath).Result;
          return CreateOutputStringsFromProject(project, outputRootDirectory, whatIf);
       }
