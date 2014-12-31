@@ -30,11 +30,21 @@ namespace CodeFirst.TemplateSupport
          serviceProvider.LoadIntoContainer<IFactoryAccess>();
       }
 
+      protected virtual IEnumerable<ICodeFirstEntry > GetMetadata()
+      {
+         return serviceProvider.GetServices<ICodeFirstEntry>();
+      }
+
+      protected virtual IEnumerable<ITemplate> GetTemplates()
+      {
+         return serviceProvider.GetServices<ITemplate>();
+      }
+
       private IEnumerable<TemplateMap> MakeTemplateMaps()
       {
          var ret = new List<TemplateMap>();
-         var entryPoints = serviceProvider.GetServices<ICodeFirstEntry>();
-         var templates = serviceProvider.GetServices<ITemplate>();
+         var entryPoints = GetMetadata();
+         var templates = GetTemplates();
 
          foreach (var entryPoint in entryPoints)
          {
@@ -67,7 +77,6 @@ namespace CodeFirst.TemplateSupport
          }
          return ret;
       }
-
 
       private PropertyInfo GetChildProperty(Type entryPointType)
       {
