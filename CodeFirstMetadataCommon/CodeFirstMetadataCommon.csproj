@@ -108,14 +108,14 @@
     <Compile Include="CodeFirstInterfaces\ICodeFirstMetadata.cs" />
     <Compile Include="CodeFirstInterfaces\ICodeFirstMetadataClass.cs" />
     <Compile Include="CodeFirstInterfaces\ICodeFirstMetadataMethod.cs" />
-    <Compile Include="CodeFirstInterfaces\ICodeFirstMetadataNamespace.cs" />
+    <Compile Include="CodeFirstInterfaces\ICodeFirstMetadataRoot.cs" />
     <Compile Include="CodeFirstInterfaces\ICodeFirstMetadataParameter.cs" />
     <Compile Include="CodeFirstInterfaces\ICodeFirstMetadataProperty.cs" />
     <Compile Include="CodeFirstMetadataClasses\CodeFirstMetadataProperty.cs" />
     <Compile Include="CodeFirstMetadataClasses\CodeFirstMetadataParameter.cs" />
     <Compile Include="CodeFirstMetadataClasses\CodeFirstMetadataMethod.cs" />
     <Compile Include="CodeFirstMetadataClasses\CodeFirstMetadataClass.cs" />
-    <Compile Include="CodeFirstMetadataClasses\CodeFirstMetadataNamespace.cs" />
+    <Compile Include="CodeFirstMetadataClasses\CodeFirstMetadataRoot.cs" />
     <Compile Include="ICodeFirstEntry.cs" />
     <Compile Include="IMapper2.cs" />
     <Compile Include="IMetadataLoader.cs" />

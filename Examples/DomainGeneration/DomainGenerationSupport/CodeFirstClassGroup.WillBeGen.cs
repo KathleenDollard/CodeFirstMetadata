@@ -11,7 +11,7 @@ using System.ComponentModel;
 namespace CodeFirstMetadataTest.PropertyChanged
 {
     // TODO: Generate this base class based on expected attributes
-    public class CodeFirstClassGroupBase : CodeFirstMetadataNamespace<CodeFirstClassGroup>
+    public abstract class CodeFirstClassGroupBase : CodeFirstMetadataNamespace<CodeFirstClassGroup>
     {
         public CodeFirstClassGroupBase()
         {

@@ -27,7 +27,7 @@ namespace DomainGenerationTests
       }
 
       [TestMethod]
-      public void Should_create_domain_file_from_from_path()
+      public void Should_create_domain_file_from_path()
       {
          var runner = new T4TemplateRunner();
          var relativePath = "..\\DomainGenerationMetadata";

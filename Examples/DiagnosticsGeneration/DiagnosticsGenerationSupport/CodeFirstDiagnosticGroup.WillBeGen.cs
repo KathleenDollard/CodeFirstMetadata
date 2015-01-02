@@ -11,7 +11,7 @@ using System.ComponentModel;
 namespace CodeFirstMetadataTest.Diagnostic
 {
    // TODO: Generate this base class based on expected attributes
-   public class CodeFirstDiagnosticGroupBase : CodeFirstMetadataNamespace<CodeFirstDiagnosticGroup>
+   public abstract class CodeFirstDiagnosticGroupBase : CodeFirstMetadataNamespace<CodeFirstDiagnosticGroup>
     {
         public CodeFirstDiagnosticGroupBase()
         {

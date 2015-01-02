@@ -10,17 +10,10 @@ using CodeFirst.Common;
 namespace CodeFirstMetadataTest.PropertyChanged
 {
 
-   public class CodeFirstClassGroup : CodeFirstClassGroupBase, ICodeFirstEntry
+   public class CodeFirstClassGroup : CodeFirstClassGroupBase
    {
       // TODO: Supply custom code
       // TODO: Provide way for multi-property notification
-      public string AttributeId
-      {
-         get
-         {
-            return "";
-         }
-      }
    }
 
 

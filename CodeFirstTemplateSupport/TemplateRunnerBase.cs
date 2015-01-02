@@ -49,29 +49,32 @@ namespace CodeFirst.TemplateSupport
          foreach (var entryPoint in entryPoints)
          {
             var entryPointType = entryPoint.GetType();
-            var metadataLoader = serviceProvider.GetMetadataLoader(entryPoint.GetType().GetTypeInfo());
-            var childProperty = GetChildProperty(entryPointType);
-            foreach (var template in templates)
+            if (!entryPointType.IsAbstract)
             {
-               var interfaceType = template
-                              .GetType()
-                              .GetInterface("ITemplate`1");
-               var metadataType = interfaceType == null
-                                    ? null
-                                    : interfaceType.GenericTypeArguments.FirstOrDefault();
-               if (metadataType != null)
+               var metadataLoader = serviceProvider.GetMetadataLoader(entryPoint.GetType().GetTypeInfo());
+               var childProperty = GetChildProperty(entryPointType);
+               foreach (var template in templates)
                {
-                  var isDirectMatch = false;
-                  PropertyInfo childMatch = null;
-                  if (metadataType.IsAssignableFrom(entryPoint.GetType()))
-                  { isDirectMatch = true; }
-                  else if (childProperty != null
-                              && metadataType.IsAssignableFrom(childProperty.PropertyType.GenericTypeArguments.First()))
-                  { childMatch = childProperty; }
-                  if (isDirectMatch)
-                  { ret.Add(new TemplateMap(entryPoint.AttributeId, entryPointType, template, metadataLoader)); }
-                  else if (childMatch != null)
-                  { ret.Add(new TemplateMap(entryPoint.AttributeId, entryPointType, template, metadataLoader, childMatch)); }
+                  var interfaceType = template
+                                 .GetType()
+                                 .GetInterface("ITemplate`1");
+                  var metadataType = interfaceType == null
+                                       ? null
+                                       : interfaceType.GenericTypeArguments.FirstOrDefault();
+                  if (metadataType != null)
+                  {
+                     var isDirectMatch = false;
+                     PropertyInfo childMatch = null;
+                     if (metadataType.IsAssignableFrom(entryPoint.GetType()))
+                     { isDirectMatch = true; }
+                     else if (childProperty != null
+                                 && metadataType.IsAssignableFrom(childProperty.PropertyType.GenericTypeArguments.First()))
+                     { childMatch = childProperty; }
+                     if (isDirectMatch)
+                     { ret.Add(new TemplateMap(entryPoint.AttributeId, entryPointType, template, metadataLoader)); }
+                     else if (childMatch != null)
+                     { ret.Add(new TemplateMap(entryPoint.AttributeId, entryPointType, template, metadataLoader, childMatch)); }
+                  }
                }
             }
          }
@@ -160,7 +163,8 @@ namespace CodeFirst.TemplateSupport
       }
 
       private IDictionary<string, string> CreateOutputStringsCore<TLocal>(IRootGroup rootGroup, string outputRootDirectory,
-                        IMetadataLoader<TLocal> metadataLoader, PropertyInfo childProperty, Type childPropertyType, string attributeIdentifier, IEnumerable<TemplateMap> templateMaps)
+                        IMetadataLoader<TLocal> metadataLoader, PropertyInfo childProperty, Type childPropertyType, 
+                        string attributeIdentifier, IEnumerable<TemplateMap> templateMaps)
          where TLocal : CodeFirstMetadata<TLocal>
       {
          var newDict = new Dictionary<string, string>();
