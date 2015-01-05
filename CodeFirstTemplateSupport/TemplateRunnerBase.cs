@@ -265,7 +265,8 @@ namespace CodeFirst.TemplateSupport
          foreach (var root in roots)
          {
             var metadata = metadataLoader.LoadFrom(root, attributeIdentifier);
-            ret.Add(metadata);
+            if (metadata != null)
+            { ret.Add(metadata); }
          }
          return ret;
       }

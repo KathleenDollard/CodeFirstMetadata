@@ -1,4 +1,4 @@
-set version=1.0.20-alpha
+set version=1.0.23-alpha
 if not exist .\nuget_packages mkdir nuget_packages
 del /Q .\nuget_packages\*.*
 .nuget\NuGet.exe pack CodeFirstMetadata.nuspec -OutputDirectory .\nuget_packages -Version %version% -symbols
